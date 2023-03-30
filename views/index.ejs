@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IF-Space | LogIn</title>
+    <link rel="stylesheet" href="/stylesheets/style.index.css">
   </head>
+  
   <body>
-    <h1>Ala</h1>
-    <p>Testa ai se puxou</p>
+    <div class="container">
+      <aside class="left-bar">
+        <img src="" alt="">
+      </aside>
+
+      <main class="hero">
+        <section>
+          <header>
+            <h1>Bem vindo ao IF-Space!</h1>
+          </header>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit consequuntur atque ipsum voluptatibus labore, quibusdam mollitia distinctio eum! Dolores culpa consequatur illum cumque explicabo assumenda cum nemo nobis repellat?</p>
+        </section>
+      </main>
+
+      <form action="POST" class="login">
+        <div class="field">
+          <label for="">E-mail:</label>
+          <input type="text" id="senha" name="email">
+        </div>
+
+        <div class="field">
+          <label for="senha">Senha:</label>
+          <input type="password" id="senha" name="senha">
+        </div>
+
+        <input type="submit" value="Entrar">
+      </form>
+    </div>
   </body>
 </html>
