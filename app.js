@@ -20,9 +20,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/contato', indexRouter);
-app.use('/equipe', indexRouter);
-app.use('/sobre', indexRouter);
 app.use('/usuarios', usersRouter);
 
 // catch 404 and forward to error handler
