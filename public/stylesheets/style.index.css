@@ -1,8 +1,45 @@
+:root {
+    --cor-clara: #88ACDB;
+    --cor-escura: #1C2D42;
+    --cor-destaque: #8F774A;
+}
+
 body {
+    background-color: var(--cor-escura);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3em;
     
 }
 
+.layout {
+    display: flex;
+}
+
+.left-bar {
+    background-color: var(--cor-destaque);
+    width: 100%;
+    padding: 2rem;
+}
+
+.hero {
+    background-color: var(--cor-clara);
+}
+
 .login{
+    background-color: var(--cor-destaque);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+
+    border-radius: 15px 0 15px 0 ;
+    padding: 1.5rem;
+}
+
+.field {
+    
+    margin: .5em;
 }
