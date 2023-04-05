@@ -5,7 +5,9 @@
 }
 
 body {
-    background-color: var(--cor-escura);
+    margin: 0;
+    background-color: var(--cor-clara);
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .container {
@@ -21,9 +23,16 @@ body {
 }
 
 .left-bar {
-    background-color: var(--cor-destaque);
+    background-color: var(--cor-escura);
     width: 100%;
-    padding: 2rem;
+    padding: 2em;
+}
+
+.left-bar img {
+    box-shadow: 0 0 10px #9acd32;
+    padding: .2em;
+    margin: 1em;
+    border-radius: 0 6% 0 6%;
 }
 
 .hero {
