@@ -5,41 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IF-Space | LogIn</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/stylesheets/style.index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Rajdhani:wght@500&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style.index.css">
   </head>
   
   <body>
     <div class="container">
-      <aside class="left-bar">
-        <figure class="image-container">
-          <img class='logo-img' src="/images/logo-ifspace.png" alt="logo">
-          <figcaption class="title-glow">IF-Space</figcaption>
-        </figure>
+      <aside class="aside">
+        <div>
+          <img src="/img/logo-ifspace.png" alt="logo">
+          <h1 class="logo-title">IF-Space</h1>
+        </div>
       </aside>
 
       <div class="layout">
         <main class="hero">
           <section>
-            <header class="title">
-              <h1>Bem vindo ao IF-Space!</h1>
+            <header >
+              <h1 class="title">Bem vindo!</h1>
             </header>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit consequuntur atque ipsum voluptatibus labore, quibusdam mollitia distinctio eum! Dolores culpa consequatur illum cumque explicabo assumenda cum nemo nobis repellat?</p>
           </section>
         </main>
+
         <form action="POST" class="login">
-          <div class="field">
-            <label for="">E-mail:</label>
-            <input type="text" id="senha" name="email">
+
+          <div class="fields">
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input type="text" id="email" name="email">
+            </div>
+            <div class="options">
+              <input type="checkbox" value="reEmail" id="check">
+              <label for="check">Lembrar E-mail?</label>
+            </div>
+            <div class="field">
+              <label for="senha">Senha</label>
+              <input autocomplete="current-password" type="password" id="senha" name="senha">
+            </div>
+
+            <div class="options">
+              <a href="#">Esqueceu sua senha?</a>
+            </div>
+            <input class='btn' type="submit" value="Entrar">
           </div>
-          <div class="field">
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha">
-          </div>
-          <input type="submit" value="Entrar">
+
+          <button class="btn" type="button">Cadastre-se!</button>
         </form>
+
       </div>
     </div>
   </body>
