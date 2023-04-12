@@ -6,4 +6,8 @@ router.post('/', (req, res, next) => {
     res.render('principal/home', { name: email }); //Só pra aparecer de exemplo no title
 });
 
+router.get('/profile', (req, res, next) => {
+    res.render('principal/profile');
+})
+
 module.exports = router;
