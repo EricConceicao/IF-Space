@@ -5,16 +5,20 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index');
 });
- /* GET página contato. */
- router.get('/contato', function(req, res, next) {
+
+/* GET página contato. */
+router.get('/contato', function(req, res, next) {
   res.render('contato', { title: 'IF - Space | Contato' });
- });
- /* GET página equipe. */
- router.get('/equipe', function(req, res, next) {
-  res.render('equipe', { title: 'IF - Space | Equipe' });
- });
- /* GET página sobre. */
- router.get('/sobre', function(req, res, next) {
-  res.render('sobre', { title: 'IF - Space | Sobre' });
- });
+});
+
+/* GET página cadastro. */
+router.get('/cadastro', function(req, res, next) {
+  res.render('singup');
+});
+
+/* GET página cadastro. */
+router.post('/cadastro', function(req, res, next) {
+  res.render('index');
+});
+
 module.exports = router;

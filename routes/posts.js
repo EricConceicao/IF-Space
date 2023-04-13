@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     res.render('principal/post')
 });
 
-//Só pra fingir mesmo :v
+//Submeter o post
 router.post('/', (req, res, next) => {
     res.end('<h1>Postou com sucesso!<h1>');
 });
