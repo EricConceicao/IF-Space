@@ -34,6 +34,12 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+.center {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
+
 a{  
     text-decoration: none;
     color: var(--cor-texto-b);
@@ -45,23 +51,15 @@ a:focus {
 }
 
 .container {
-    max-width: 1220px;
-    margin-inline: auto;
-    padding: 0em .4em;
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     align-items: center;
     justify-content: center;
     gap: 1em;
-}
-
-.layout {
-   display: flex;
-   flex-wrap: wrap;
-}
-
-.layout > * {
-    box-shadow: 0 0 .4em #000;
+    
+    max-width: 1220px;
+    margin-inline: auto;
+    padding: 0em .4em;
 }
 
 .aside {
@@ -73,25 +71,6 @@ a:focus {
     align-items: center;
     gap: 1em;
     margin-bottom: 1em;
-}
-
-@media screen and (min-width:800px) {
-    .aside {        
-        background-image: linear-gradient(180deg, var(--cor-escura), #646496cc);
-        min-height: 100vh;
-        flex-basis: 20%;
-    }
-    aside div {
-        padding: .2em;
-        flex-direction: column;
-    }
-    .layout {
-        gap: 1em;
-        flex: 50%;
-    }
-    .login, .hero {
-        padding: 2em;
-    }
 }
 
 .aside img {
@@ -111,50 +90,33 @@ a:focus {
     font-size: clamp(1.8rem, 10vw + 1.2rem, 3rem);
 }
 
-.title {
-    line-height: 1;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(1.6rem, 10vw + 1rem, 3rem);
-
-}
-
-.hero {
-    background-image: linear-gradient(45deg, var(--cor-clara), var(--cor-escura-a));
-    border-radius: 10px 10px 0 0;
-
-    flex-grow: 1;
-    flex-basis: 60%;
-}
-.hero section {
-    padding: 1em 1em 1.4em 1em;
-    
-}
-
-.login {
+.signup {
     border-radius: 10px 10px 0 0;
     padding: 0.8em;
-    flex: 1;
+
+    box-shadow: 0 0 0.4em #000;
     background-image: linear-gradient(180deg, var(--cor-fundo), var(--cor-escura));
 }
 
-@media screen and (max-width:527px) {
-    .login {
-        clip-path: polygon(0 10%, 25% 0, 50% 10%, 75% 0, 100% 10%, 100% 100%, 0 100%);
-        margin-top: -1.5rem;
-    }
-}
-
 .fields {
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    align-content: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
     margin-top: 1em;
 }
 
+@media screen and (min-width:420px) {
+    .fields {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 .field {
-    
     padding: 0.2em 0;
+}
+
+.field label {
+    display: block;
 }
 
 .field input {
@@ -174,7 +136,7 @@ a:focus {
     display: inline-block;
     font-family: 'Rajdhani', sans-serif;
     padding: .2em .7em;
-    margin: .1em;
+    
     background-color: var(--cor-clara);
     border: none;
     border-radius: 5px;

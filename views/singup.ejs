@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IF-Space | LogIn</title>
+    <title>IF-Space | Cadastro</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Rajdhani:wght@500&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/style.index.css">
+    <link rel="stylesheet" href="/styles/style.signup.css">
   </head>
   
   <body>
@@ -21,60 +21,53 @@
         </div>
       </aside>
 
-      <div class="layout">
-        <!-- <main class="hero">
-          <section>
-            <header >
-              <h1 class="title">Bem vindo!</h1>
-            </header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit consequuntur atque ipsum voluptatibus labore, quibusdam mollitia distinctio eum! Dolores culpa consequatur illum cumque explicabo assumenda cum nemo nobis repellat?</p>
-          </section>
-        </main> -->
+      <form action="/home" method="post" class="signup">
+          
+        <div class="fields">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" name="pNome" id="nome">
+          </div>
 
-        <form action="/home" method="post" class="login">
-            
-          <div class="fields">
-            <div class="field">
-                <label for="nome">Nome</label>
-                <input type="text" name="pNome" id="nome">
-            </div>
+          <div class="field">
+            <label for="sobreNome">Sobrenome</label>
+            <input type="text" name="sNome" id="sobreNome">
+          </div>
 
-            <div class="field">
-                <label for="sobreNome">Sobrenome</label>
-                <input type="text" name="sNome" id="sobreNome">
-            </div>
+          <div class="field">
+            <label for="data">Data de Nascimento</label>
+            <input type="date" name="dataNasc" id="data">
+          </div>
 
-            <div class="field">
-                <label for="nick">Apelido</label>
-                <input type="text" name="nick" id="nick">
-            </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input required type="text" id="email" name="email" placeholder="Digita um nome pra testar">
+          </div>
+  
+          <div class="field">
+            <label for="senha">Senha</label>
+            <input required type="password" id="senha" name="senha" placeholder="Não precisa">
+          </div>
 
-            <div class="field">
-                <label for="data">Data de Nascimento</label>
-                <input type="date" name="dataNasc" id="data">
-            </div>
+          <div class="field">
+              <label for="checkSenha">Confirmar Senha</label>
+              <input required type="password" id="checkSenha" name="confirmSenha" placeholder="Não precisa">
+          </div>
 
-            <div class="field">
-              <label for="email">E-mail</label>
-              <input required type="text" id="email" name="email" placeholder="Digita um nome pra testar">
-            </div>
-    
-            <div class="field">
-              <label for="senha">Senha</label>
-              <input required type="password" id="senha" name="senha" placeholder="Não precisa">
-            </div>
-
-            <div class="field">
-                <label for="senha">Confirmar Senha</label>
-                <input required type="password" id="senha" name="senha" placeholder="Não precisa">
-              </div>
-
+          <div class="field">
+            <label for="nick">Apelido</label>
+            <input type="text" name="nick" id="nick">
+          </div>
+          
+          <div class="center">
             <input class='btn' type="submit" value="Enviar">
             <a href="/"><button class="btn" type="button">Já tem uma conta?</button></a>
           </div>
-        </form>
+        </div>
 
-      </div>
+        
+      </form>
+
     </div>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IF-Space | LogIn</title>
+    <title>IF-Space | Login</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,7 @@
             <header >
               <h1 class="title">Bem vindo!</h1>
             </header>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit consequuntur atque ipsum voluptatibus labore, quibusdam mollitia distinctio eum! Dolores culpa consequatur illum cumque explicabo assumenda cum nemo nobis repellat?</p>
+            <p>Texto de boas vindas ao IF-Space que a Tatiana escreveu!</p>
           </section>
         </main>
 
@@ -36,7 +36,7 @@
           <div class="fields">
             <div class="field">
               <label for="email">E-mail</label>
-              <input type="text" id="email" name="email" placeholder="Digita um nome pra testar">
+              <input required autocomplete type="text" id="email" name="email" placeholder="Digita um nome pra testar">
             </div>
             <div class="options">
               <input type="checkbox" value="reEmail" id="check">
@@ -44,16 +44,18 @@
             </div>
             <div class="field">
               <label for="senha">Senha</label>
-              <input autocomplete="current-password" type="password" id="senha" name="senha" placeholder="Não precisa">
+              <input required autocomplete="current-password" type="password" id="senha" name="senha" placeholder="Não precisa">
             </div>
 
             <div class="options">
               <a href="#">Esqueceu sua senha?</a>
             </div>
             <input class='btn' type="submit" value="Entrar">
+            
+            <a href="/cadastro"><button class="btn" type="button">Cadastre-se!</button></a>
           </div>
 
-          <a href="/cadastro"><button class="btn" type="button">Cadastre-se!</button></a>
+          
         </form>
 
       </div>
