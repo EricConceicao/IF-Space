@@ -1,26 +1,3 @@
-:root {
-    /* --cor-exemplo   = cor plana normal 
-       --cor-exemplo-a = cor com nível de alpha/transparente */
-    --cor-clara: #88ACDB;
-    --cor-clara-a: #88acdba1;
-
-    --cor-escura: #1C2D42;
-    --cor-escura-a: #1c2d42ba;
-
-    --cor-fundo: #8F774A;
-    --cor-fundo-a: #8f774ac9;
-
-    --cor-destaque: #92f510;
-
-    --cor-texto-b: #e1e1e1;
-    --cor-texto-p: #0f1a27;
-}
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     background-color: var(--cor-escura);
     background-image: url(/img/espaco-bkg.jpg);
@@ -28,21 +5,6 @@ body {
     background-size: cover;
     min-height: 100vh;
     min-width: 300px;
-
-    color: var(--cor-texto-p);
-    font-size:clamp(.8rem, 10vw, 1.2rem);
-    line-height: 1.5;
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-a{  
-    text-decoration: none;
-    color: var(--cor-texto-b);
-}
-
-a:hover,
-a:focus {
-    color: var(--cor-texto-p);
 }
 
 .container {
@@ -112,7 +74,7 @@ a:focus {
 .title {
     line-height: 1;
     font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(1.6rem, 10vw + 1rem, 3rem);
+    font-size: var(--font-tam-titulo);
 
 }
 
@@ -165,19 +127,4 @@ a:focus {
     padding: .1em;
     font-size: .8rem;
     color: var(--cor-texto-b);
-}
-
-.btn {
-    display: inline-block;
-    font-family: 'Rajdhani', sans-serif;
-    padding: .2em .7em;
-    margin: .1em;
-    background-color: var(--cor-clara);
-    border: none;
-    border-radius: 5px;
-}
-
-.btn:hover {
-    color: var(--cor-texto-b);
-    background-color: var(--cor-escura);
 }
