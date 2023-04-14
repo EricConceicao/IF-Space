@@ -55,7 +55,7 @@ a:focus {
     flex-flow: column wrap;
     align-items: center;
     justify-content: center;
-    gap: 1em;
+    gap: 2em;
     
     max-width: 1220px;
     margin-inline: auto;
@@ -92,7 +92,7 @@ a:focus {
 
 .signup {
     border-radius: 10px 10px 0 0;
-    padding: 0.8em;
+    padding: 2em;
 
     box-shadow: 0 0 0.4em #000;
     background-image: linear-gradient(180deg, var(--cor-fundo), var(--cor-escura));
@@ -102,7 +102,6 @@ a:focus {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    margin-top: 1em;
 }
 
 @media screen and (min-width:420px) {

@@ -27,6 +27,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
+    min-width: 300px;
 
     color: var(--cor-texto-p);
     font-size:clamp(.8rem, 10vw, 1.2rem);
@@ -89,9 +90,6 @@ a:focus {
         gap: 1em;
         flex: 50%;
     }
-    .login, .hero {
-        padding: 2em;
-    }
 }
 
 .aside img {
@@ -108,7 +106,7 @@ a:focus {
     font-family: 'Rajdhani', sans-serif;
     line-height: 1;
     color: var(--cor-destaque);
-    font-size: clamp(1.8rem, 10vw + 1.2rem, 3rem);
+    font-size: clamp(1.8rem, 10vw + 1.2rem, 2.6rem);
 }
 
 .title {
@@ -121,7 +119,7 @@ a:focus {
 .hero {
     background-image: linear-gradient(45deg, var(--cor-clara), var(--cor-escura-a));
     border-radius: 10px 10px 0 0;
-
+    padding: 1em;
     flex-grow: 1;
     flex-basis: 60%;
 }
@@ -146,9 +144,8 @@ a:focus {
 
 .fields {
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
     align-items: center;
-    align-content: center;
     margin-top: 1em;
 }
 
