@@ -20,7 +20,8 @@
     --font-tam-titulo: clamp(1.6rem, 10vw + 1rem, 3rem);
 }
 
-*{
+*{  
+    list-style-type: none;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -33,7 +34,12 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+img {
+    width: 100%;
+}
+
 a{  
+    display: block;
     text-decoration: none;
     color: var(--cor-texto-b);
 }

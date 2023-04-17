@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET página inicial. */
+
+/* GET renderiza a página de login. */
 router.get('/', function(req, res, next) {
   res.render('index');
 });
@@ -11,13 +12,19 @@ router.get('/contato', function(req, res, next) {
   res.render('contato', { title: 'IF - Space | Contato' });
 });
 
-/* GET página cadastro. */
-router.get('/cadastro', function(req, res, next) {
+/* GET renderiza a página de cadastro. */
+router.get('/signup', function(req, res, next) {
   res.render('singup');
 });
 
-/* GET página cadastro. */
-router.post('/cadastro', function(req, res, next) {
+/* POST Login para página inicial. */
+router.post('/login', function(req, res, next) {
+  res.cookie('name', req.body.email)
+  res.redirect('/home');
+});
+
+/* POST para cadastrar. */
+router.post('/signup', function(req, res, next) {
   res.render('index');
 });
 
