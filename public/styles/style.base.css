@@ -17,7 +17,7 @@
     --cor-texto-p: #0f1a27;
 
     --font-tam-texto: clamp(.8rem, 10vw, 1.2rem);
-    --font-tam-titulo: clamp(1.6rem, 10vw + 1rem, 3rem);
+    --font-tam-titulo: clamp(1.6rem, 10vw, 3rem);
 }
 
 *{  
@@ -46,20 +46,33 @@ a{
 
 a:hover,
 a:focus {
-    color: var(--cor-texto-p);
+    color: var(--cor-texto-b);
+    text-shadow: 0 1px .5rem var(--cor-destaque);
+}
+
+a:visited {
+    
+}
+
+input {
+    border: none;
+    background-color: transparent;
 }
 
 .btn {
     display: inline-block;
     font-family: 'Rajdhani', sans-serif;
-    padding: .2em .7em;
+    padding: .3em .7em;
     margin: .1em;
     background-color: var(--cor-clara);
-    border: none;
-    border-radius: 5px;
+
+    border: .1rem solid var(--cor-escura);
+    border-bottom: .2rem solid var(--cor-escura);
+    border-radius: 10px;
 }
 
 .btn:hover {
     color: var(--cor-texto-b);
-    background-color: var(--cor-escura);
+    background-color: var(--cor-texto-p);
+    border-color: var(--cor-texto-p);
 }

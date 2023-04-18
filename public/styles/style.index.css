@@ -85,9 +85,15 @@ body {
     flex-grow: 1;
     flex-basis: 60%;
 }
+
 .hero section {
-    padding: 1em 1em 1.4em 1em;
-    
+    padding: 1em 1em 1.4em 1em; 
+}
+
+.hero header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .login {
