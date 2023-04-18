@@ -50,9 +50,7 @@ a:focus {
     text-shadow: 0 1px .5rem var(--cor-destaque);
 }
 
-a:visited {
-    
-}
+
 
 input {
     border: none;

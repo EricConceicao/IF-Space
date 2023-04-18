@@ -5,6 +5,8 @@ body {
     background-size: cover;
     min-height: 100vh;
     min-width: 300px;
+
+    font-size: var(--font-tam-texto);
 }
 
 .container {
@@ -79,7 +81,7 @@ body {
 }
 
 .hero {
-    background-image: linear-gradient(45deg, var(--cor-clara), var(--cor-escura-a));
+    background-image: linear-gradient(180deg, var(--cor-clara), var(--cor-escura-a));
     border-radius: 10px 10px 0 0;
     padding: 1em;
     flex-grow: 1;
@@ -94,6 +96,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    margin-bottom: .4em;
+    border-bottom: solid .2rem var(--cor-escura);
+    border-radius: 5px;
 }
 
 .login {
