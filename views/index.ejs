@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Rajdhani:wght@500&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/styles/style.base.css">
     <link rel="stylesheet" href="/styles/style.index.css">
   </head>
@@ -26,18 +27,20 @@
       <div class="layout">
         <main class="hero">
           <section>
-            <header >
+            <header>
               <h1 class="title">Bem vindo!</h1>
+              <i class="fa-solid fa-laptop-code fa-2xl text-right"></i>
             </header>
             <p>Texto de boas vindas ao IF-Space que a Tatiana escreveu!</p>
           </section>
         </main>
 
         <form action="/login" method="post" class="login">
-
+          
           <div class="fields">
+  
             <div class="field">
-              <label for="email">E-mail</label>
+              <label for="email"><i class="fa-sharp fa-solid fa-at fa-beat fa-sm"></i> E-mail</label>
               <input required autocomplete type="text" id="email" name="email">
             </div>
             <div class="options">
@@ -45,16 +48,20 @@
               <label for="check">Lembrar E-mail?</label>
             </div>
             <div class="field">
-              <label for="senha">Senha</label>
+              <label for="senha"><i class="fa-solid fa-key fa-sm"></i> Senha</label>
               <input required autocomplete="current-password" type="password" id="senha" name="senha">
             </div>
 
             <div class="options">
               <a href="#">Esqueceu sua senha?</a>
             </div>
-            <input class='btn' type="submit" value="Entrar">
             
-            <a href="/signup"><button class="btn" type="button">Cadastre-se!</button></a>
+            <input class="btn" type="submit" value="Acessar">
+                        
+            <a href="/signup">
+              <button class="btn" type="button"><i class="fa-solid fa-user-astronaut fa-beat fa-lg"></i> Cadastre-se!</button>
+            </a>
+
           </div>
 
           
@@ -62,5 +69,6 @@
 
       </div>
     </div>
+
   </body>
 </html>
