@@ -9,7 +9,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/profile', (req, res, next) => {
-    res.render('principal/profile');
+    let name = req.cookies.name;
+    res.render('principal/profile', { name });
 });
 
 module.exports = router;

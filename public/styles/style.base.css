@@ -1,11 +1,19 @@
+/* Aquarela do projeto :v */
+
 :root {
     /* --cor-exemplo   = cor plana normal 
        --cor-exemplo-a = cor com nível de alpha/transparente 
+       --cor-exemplo-[2-3] = cor mais clara/escura
     */
     --cor-clara: #88ACDB;
     --cor-clara-a: #88acdba1;
 
-    --cor-escura: #1C2D42;
+    --cor-clara-2: #98c7e3;
+    --cor-clara-3: #ace9f2;
+
+    --cor-escura-1: #325958;
+    --cor-escura-2: #24404a;
+    --cor-escura-3: #1C2D42;
     --cor-escura-a: #1c2d42ba;
 
     --cor-fundo: #8F774A;
@@ -16,9 +24,13 @@
     --cor-texto-b: #e1e1e1;
     --cor-texto-p: #0f1a27;
 
+    --font-tam-opcoes: clamp(.5rem, 8vw, 1rem);
     --font-tam-texto: clamp(.8rem, 10vw, 1.2rem);
     --font-tam-titulo: clamp(1.6rem, 10vw, 3rem);
 }
+/*=======================================*/
+
+/* Definindo valores padrão e resetando outros */
 
 *{  
     list-style-type: none;
@@ -29,7 +41,7 @@
 
 body {
     color: var(--cor-texto-p);
-    font-size:var(--font-tam-padrao);
+    font-size:var(--font-tam-texto);
     line-height: 1.5;
     font-family: 'Source Sans Pro', sans-serif;
 }
@@ -38,39 +50,107 @@ img {
     width: 100%;
 }
 
-a{  
+a {  
     display: block;
     text-decoration: none;
     color: var(--cor-texto-b);
 }
-
-a:hover,
-a:focus {
-    color: var(--cor-texto-b);
-    text-shadow: 0 1px .5rem var(--cor-destaque);
-}
-
-
 
 input {
     border: none;
     background-color: transparent;
 }
 
-.btn {
-    display: inline-block;
-    font-family: 'Rajdhani', sans-serif;
-    padding: .3em .7em;
-    margin: .1em;
-    background-color: var(--cor-clara);
-
-    border: .1rem solid var(--cor-escura);
-    border-bottom: .2rem solid var(--cor-escura);
+textarea {
+    border: solid .2em var(--cor-escura-1);
+    background: var(--cor-clara-3);
     border-radius: 10px;
+    resize: none;
+    padding: .5rem;
 }
 
-.btn:hover {
+fieldset {
+    border-color: var(--cor-escura-2);
+    padding: 1rem;
+    border-radius: 10px;
+    background: var(--cor-clara);
+}
+
+legend {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: bold;
+    padding: .2em;
+    
+    border-radius: 10px;
+    background: var(--cor-clara-2);
+}
+/*=======================================*/
+
+/* Estilizando links */
+
+.link:hover,
+.link:focus {
+    text-decoration: underline solid .1em var(--cor-texto-b);
+    text-shadow: 0 0 1em var(--cor-clara);
+}
+
+.link:active {
+    text-decoration: none;
+    text-shadow: none;
+    color: var(--cor-texto-p);
+}
+/*=======================================*/
+
+/* Botões */
+
+.btn {
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--cor-texto-p);
+    font-size: var(--font-tam-opcoes);
+
+    padding: .3em .3em;
+    margin: .1em;
+    border: .1rem solid var(--cor-escura-2);
+    border-bottom: .2rem solid var(--cor-escura-3);
+    border-radius: 10px;
+    background-color: var(--cor-clara);
+}
+
+.btn:hover,
+.btn:focus {
+    outline: solid .125em var(--cor-clara-3);
+}
+
+.btn:active {
     color: var(--cor-texto-b);
     background-color: var(--cor-texto-p);
     border-color: var(--cor-texto-p);
 }
+/*=======================================*/
+
+/* Relacionado a formulários / Campos / Input / opções */
+.fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.field {
+    
+    padding: 0.2em 0;
+}
+
+.field input {
+    background-color: transparent;
+    border: none;
+    padding: 0.2em;
+    border-bottom: solid 2px var(--cor-texto-p);
+}
+
+.options {
+    padding: .1em;
+    font-size: .8rem;
+    color: var(--cor-texto-b);
+}
+/*=======================================*/

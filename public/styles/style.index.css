@@ -5,8 +5,6 @@ body {
     background-size: cover;
     min-height: 100vh;
     min-width: 300px;
-
-    font-size: var(--font-tam-texto);
 }
 
 .container {
@@ -42,7 +40,7 @@ body {
 
 @media screen and (min-width:800px) {
     .aside {        
-        background-image: linear-gradient(180deg, var(--cor-escura), #646496cc);
+        background-image: linear-gradient(180deg, var(--cor-escura-3), #646496cc);
         min-height: 100vh;
         flex-basis: 20%;
     }
@@ -89,6 +87,7 @@ body {
 }
 
 .hero section {
+    text-align: center;
     padding: 1em 1em 1.4em 1em; 
 }
 
@@ -98,7 +97,7 @@ body {
     align-items: center;
 
     margin-bottom: .4em;
-    border-bottom: solid .2rem var(--cor-escura);
+    border-bottom: solid .2rem var(--cor-escura-2);
     border-radius: 5px;
 }
 
@@ -106,37 +105,12 @@ body {
     border-radius: 10px 10px 0 0;
     padding: 0.8em;
     flex: 1;
-    background-image: linear-gradient(180deg, var(--cor-fundo), var(--cor-escura));
+    background-image: linear-gradient(180deg, var(--cor-fundo), var(--cor-escura-3));
 }
 
-@media screen and (max-width:512px) {
+@media screen and (max-width:527px) {
     .login {
         clip-path: polygon(0 10%, 25% 0, 50% 10%, 75% 0, 100% 10%, 100% 100%, 0 100%);
         margin-top: -1.5rem;
     }
-}
-
-.fields {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1em;
-}
-
-.field {
-    
-    padding: 0.2em 0;
-}
-
-.field input {
-    background-color: transparent;
-    border: none;
-    padding: 0.2em;
-    border-bottom: solid 2px var(--cor-texto-p);
-}
-
-.options {
-    padding: .1em;
-    font-size: .8rem;
-    color: var(--cor-texto-b);
 }

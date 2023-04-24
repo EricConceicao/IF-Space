@@ -1,5 +1,5 @@
 body {
-    background-color: var(--cor-escura);
+    background-color: var(--cor-escura-1);
 }
 
 .layout {
@@ -10,6 +10,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+
+    border-bottom: solid 1em var(--cor-escura-3);
 
     background-image: url('/img/espaco-bkg.jpg');
     background-size: cover;
@@ -28,7 +30,7 @@ body {
     font-weight: bold;
     font-family: Courgette, sans-serif;
     display: inline-block;
-    background-image: linear-gradient(90deg, var(--cor-fundo), transparent);
+    background-image: linear-gradient(90deg, var(--cor-clara-3), transparent);
     width: 80%;
     padding: .2rem;
     margin-bottom: .3rem;
@@ -36,23 +38,37 @@ body {
 
 .nav {
     flex-basis: 20%;
+    background: var(--cor-escura-3);
     padding: .4rem ;
-    background-color: var(--cor-fundo);
 }
 
 .nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+
     position: sticky;
     top: 1em;
 }
 
+@media  screen and (min-width: 770px) {
+    .nav-item:last-child {
+        position: fixed;
+        bottom: 1em;
+    }
+}
+
+.aside {
+    border-bottom: solid 1rem var(--cor-escura-2);
+    background: var(--cor-escura-2);
+}
+
 .nav,
 .aside {
-    background-color: var(--cor-fundo);
-
     flex-basis: 20%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 769px) {
 
     .layout {
         flex-direction: column;
@@ -66,7 +82,7 @@ body {
     .nav-items,
     .friends {
         display: grid;
-        grid-auto-columns: minmax(9.5rem, 1fr);
+        grid-auto-columns: minmax(9.1rem, 1fr);
         grid-auto-flow: column;
 
         overflow-x: scroll;
@@ -85,64 +101,87 @@ body {
     }
 }
 
-.nav-item {
+.nav-item { 
     scroll-snap-align: start;
-
-    padding: .2em;
-    margin: .2em;
-    
-    border-radius: 5px;
-    background-color: var(--cor-clara);
-
-    transition: .5s;
-}
-/* 
-.nav-item:hover,
-.nav-item:focus {
-    transform: scale(1.1);
-} */
-
-.nav-items li:last-child {
-    margin-block:auto;
 }
 
 .friend {
     display: flex;
     align-items: center;
     gap: .2rem;
-    border-right: solid .1em var(--cor-texto-p);
-    margin: .1em;
+
+    border-right: solid .1em #000;
+    padding: .2em;
     scroll-snap-align: start;
+    background: linear-gradient(270deg, transparent, #fff8);
+
+    font-family: 'Rajdhani', system-ui, sans-serif;
 }
 
 .friend img {
     border-radius: 50%;
-    border: solid .3em var(--cor-texto-p);
+    border: solid .2em var(--cor-escura-3);
     width: 30%;
 }
 
 .posts {
     flex: 1 60%;
+    border-right:solid .2em #000;
+    border-left:solid .2em #000;
+    background: var(--cor-clara)
 }
 
 .post {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     
+    padding: 1rem;
     margin: 2rem;
+    min-height: 20em;
+    border: solid .125rem var(--cor-escura-3);
+    border-radius: 10px;
+    background: var(--cor-clara-2);
     
-    background-color: var(--cor-escura);
 }
 
 .post header {
     padding: .6rem;
-    border: solid .2rem var(--cor-fundo);
-    background-image: linear-gradient(90deg, var(--cor-clara), transparent);
 }
 
 .post p {
     padding: .4rem;
-    border: solid .2rem var(--cor-fundo);
-    background-image: linear-gradient(180deg, var(--cor-clara), var(--cor-fundo));
+}
+
+.postProfile {
+    display: flex;
+    align-items: center;
+    gap: .2;
+
+    font-family: 'Rajdhani', system-ui, sans-serif;
+    
+}
+
+.postProfile img {
+    border-radius: 50%;
+    width: 4em;
+    border: solid .3em var(--cor-escura-3);
+}
+
+/* Página do perfil */
+
+.profile-editor {
+    flex: 0 40%;
+    background-color: var(--cor-fundo);
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 10px;
+    box-shadow: 0 0 .5em #000;
+}
+
+.field label {
+    display: block;
+}
+
+.field, input {
+    width: 100%;
 }
