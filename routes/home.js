@@ -9,7 +9,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/profile', (req, res, next) => {
-    let name = req.cookies.name;
+    //Se não carregar o cookie. Ele irá renderizar a página ainda
+    let name = typeof req.cookies.name !== 'undefined' ? req.cookies.name : ''; 
+    
     res.render('principal/profile', { name });
 });
 
