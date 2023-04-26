@@ -135,8 +135,8 @@ body {
     display: flex;
     flex-direction: column;
     
-    padding: 1rem;
-    margin: 2rem;
+    padding: .5rem;
+    margin: 1rem .5rem 3rem .5rem;
     min-height: 20em;
     border: solid .125rem var(--cor-escura-3);
     border-radius: 10px;
@@ -171,11 +171,11 @@ body {
 
 .profile-editor {
     flex: 0 40%;
-    background-color: var(--cor-fundo);
+    /* background-color: var(--cor-fundo); */
     padding: 1rem;
     margin: 1rem auto;
     border-radius: 10px;
-    box-shadow: 0 0 .5em #000;
+    /* box-shadow: 0 0 .5em #000; */
 }
 
 .field label {

@@ -5,6 +5,20 @@
        --cor-exemplo-a = cor com nível de alpha/transparente 
        --cor-exemplo-[2-3] = cor mais clara/escura
     */
+
+    /* Pra mim arrumar em casa
+    
+    //Tons de sombra
+    --cor-clara-sahde-1:
+    --cor-clara-shade-2:
+    --cor-clara-shade-3:
+    //Tons normais
+    --cor-clara-1:
+    --cor-clara-2:
+    --cor-clara-3:
+        
+    */
+
     --cor-clara: #88ACDB;
     --cor-clara-a: #88acdba1;
 
