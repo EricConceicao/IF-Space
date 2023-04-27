@@ -177,8 +177,11 @@ body {
     border: solid .3em var(--cor-contraste);
 }
 
-/* Página do perfil */
-
+/*
+==================== 
+Página do perfil 
+====================
+*/
 .profile-editor {
     flex: 0 40%;
     background-color: var(--cor-clara-shade-2);
@@ -196,16 +199,40 @@ body {
     padding: 0 1em;
 }
 
-.fields {
+.profile-form .fields {
     border: solid .2em var(--cor-clara-2);
-    border-radius: 10px;
+    border-radius: inherit;
     background-color: var(--cor-fundo);
 }
 
-.field label {
+.profile-form .field label {
     display: block;
 }
 
-.field, input {
+.profile-form .field, input {
     width: 100%;
+}
+/*
+============================
+Pagina de edição de postagem
+============================
+*/
+.post-form {
+    margin-inline: auto;
+    background: repeating-linear-gradient(limegreen, lightblue);
+    padding: 1em;
+    border-radius: 10px;
+}
+
+.post-form .fields{
+    border-radius: inherit;
+    border: solid .2em var(--cor-clara-1);
+}
+
+.post-form label {
+    display: block;
+}
+
+.post-form textarea {
+    padding: .5em;
 }

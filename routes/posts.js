@@ -10,7 +10,10 @@ router.get('/:id', (req, res, next) => {
 
 //Receber a página para fazer uma postagem
 router.get('/', (req, res, next) => {
-    res.render('principal/post')
+    //Se não carregar o cookie. Ele irá renderizar a página ainda
+    let name = typeof req.cookies.name !== 'undefined' ? req.cookies.name : '';
+
+    res.render('principal/post', { name })
 });
 
 //Submeter o post

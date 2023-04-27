@@ -5,15 +5,53 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Edição de postagem</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="styles/style.base.css">
+        <link rel="stylesheet" href="styles/style.home.css">
     </head>
 
     <body>
-        <h1>Criação de post</h1>
-        <form action="/post" method="post">
-            <h2>Título:</h2>
-            <p>Assunto:</p>
-            <input type='file'>
-            <input type="submit" value="Postar!">
-        </form>
+
+        <header class="profile" id="topo">
+            <img class="pfp" src="/img/logo-ifspace.png" alt="Foto de Perfil">
+            <p class="user-name"><%= name %></p>
+        </header>
+
+        <div class="layout">
+            <nav class="nav">
+                <ul class="nav-items">
+                    <li class="nav-item"><a href="#topo" class="btn"><i class="fa-regular fa-circle-up fa-lg"></i> Voltar ao topo</a></li>
+                    <li class="nav-item"><a href="/home/profile" class="btn"><i class="fa-regular fa-address-card fa-lg"></i> Perfil</a></li>
+                    <li class="nav-item"><a href="/home" class="btn"><i class="fa-solid fa-house-user fa-lg"></i> Página Inicial</a></li>
+                    <li class="nav-item"><a href="/post" class="btn"><i class="fa-regular fa-paper-plane fa-lg"></i> Postar</a></li>
+                    <li class="nav-item"><a href="/" class="btn"><i class="fa-solid fa-rocket fa-lg"></i> LogOut</a></li>
+                </ul>
+            </nav>
+        
+            <form action="/post" method="post" class="post-form">
+                <fieldset class='fields'>
+                    <legend>Edite sua postagem</legend>
+
+                    <div class="field">
+                        <label for="title">Título da postagem</label>
+                        <input type="text" class="field" name="title" id="title">
+                    </div>
+
+                    <div class="field">
+                        <label for="text">Descrição/Texto</label>
+                        <textarea type="text" class="field" name="text" id="text" cols="30" rows="10" placeholder="Minha postagem muito legal"></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label for="file">Anexe uma imagem ou arquivo!</label>
+                        <input type='file' id="file">
+                        
+                    </div>
+                    <input class="btn" type="submit" value="Postar!">
+                </fieldset>
+                
+                
+            </form>
+        </div>
     </body>
 </html>
