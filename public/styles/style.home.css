@@ -1,5 +1,5 @@
 body {
-    background-color: var(--cor-escura-1);
+    background-color: var(--cor-contraste);
 }
 
 .layout {
@@ -11,7 +11,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
 
-    border-bottom: solid 1em var(--cor-escura-3);
+    border-bottom: double .5em var(--cor-forte);
 
     background-image: url('/img/espaco-bkg.jpg');
     background-size: cover;
@@ -30,7 +30,7 @@ body {
     font-weight: bold;
     font-family: Courgette, sans-serif;
     display: inline-block;
-    background-image: linear-gradient(90deg, var(--cor-clara-3), transparent);
+    background-image: linear-gradient(90deg, var(--cor-clara-3), transparent 50%);
     width: 80%;
     padding: .2rem;
     margin-bottom: .3rem;
@@ -38,7 +38,7 @@ body {
 
 .nav {
     flex-basis: 20%;
-    background: var(--cor-escura-3);
+    background: var(--cor-fundo);
     padding: .4rem ;
 }
 
@@ -59,13 +59,39 @@ body {
 }
 
 .aside {
-    border-bottom: solid 1rem var(--cor-escura-2);
-    background: var(--cor-escura-2);
+    background: var(--cor-clara-shade-1);
 }
 
 .nav,
 .aside {
     flex-basis: 20%;
+}
+
+.friends {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.friend {
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+
+    border: solid 0.1em var(--cor-contraste);
+    border-bottom: solid 0.2em var(--cor-contraste);
+    border-radius: 2em;
+    background-color: var(--cor-clara-1);
+    padding: .2em;
+    scroll-snap-align: start;
+
+    font-family: 'Rajdhani', system-ui, sans-serif;
+}
+
+.friend img {
+    border-radius: 50%;
+    border: solid .2em var(--cor-contraste);
+    width: 30%;
 }
 
 @media screen and (max-width: 769px) {
@@ -105,30 +131,12 @@ body {
     scroll-snap-align: start;
 }
 
-.friend {
-    display: flex;
-    align-items: center;
-    gap: .2rem;
-
-    border-right: solid .1em #000;
-    padding: .2em;
-    scroll-snap-align: start;
-    background: linear-gradient(270deg, transparent, #fff8);
-
-    font-family: 'Rajdhani', system-ui, sans-serif;
-}
-
-.friend img {
-    border-radius: 50%;
-    border: solid .2em var(--cor-escura-3);
-    width: 30%;
-}
-
 .posts {
     flex: 1 60%;
-    border-right:solid .2em #000;
-    border-left:solid .2em #000;
-    background: var(--cor-clara)
+    border-right:solid .1em #000;
+    border-left:solid .1em #000;
+    border-radius: 1%/40%;
+    background: var(--cor-clara-shade-2)
 }
 
 .post {
@@ -138,9 +146,9 @@ body {
     padding: .5rem;
     margin: 1rem .5rem 3rem .5rem;
     min-height: 20em;
-    border: solid .125rem var(--cor-escura-3);
+    border: solid .125rem var(--cor-contraste);
     border-radius: 10px;
-    background: var(--cor-clara-2);
+    background: var(--cor-clara-1);
     
 }
 
@@ -155,8 +163,9 @@ body {
 .postProfile {
     display: flex;
     align-items: center;
-    gap: .2;
-
+    gap: .2rem;
+    border-radius: 20%/85%;
+    background-image: linear-gradient(90deg, var(--cor-clara-shade-1) , transparent 50%);
     font-family: 'Rajdhani', system-ui, sans-serif;
     
 }
@@ -164,18 +173,33 @@ body {
 .postProfile img {
     border-radius: 50%;
     width: 4em;
-    border: solid .3em var(--cor-escura-3);
+    
+    border: solid .3em var(--cor-contraste);
 }
 
 /* Página do perfil */
 
 .profile-editor {
     flex: 0 40%;
-    /* background-color: var(--cor-fundo); */
+    background-color: var(--cor-clara-shade-2);
     padding: 1rem;
     margin: 1rem auto;
     border-radius: 10px;
-    /* box-shadow: 0 0 .5em #000; */
+    box-shadow: 0 0 .5em #000;
+}
+
+.editor-header {
+    background-color: var(--cor-clara-3);
+    border-bottom: solid 0.3em var(--cor-clara-shade-1);
+    border-radius: 10px;
+    width: fit-content;
+    padding: 0 1em;
+}
+
+.fields {
+    border: solid .2em var(--cor-clara-2);
+    border-radius: 10px;
+    background-color: var(--cor-fundo);
 }
 
 .field label {

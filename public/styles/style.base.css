@@ -1,34 +1,18 @@
 /* Aquarela do projeto :v */
 
 :root {
-    /* --cor-exemplo   = cor plana normal 
-       --cor-exemplo-a = cor com nível de alpha/transparente 
-       --cor-exemplo-[2-3] = cor mais clara/escura
-    */
 
-    /* Pra mim arrumar em casa
-    
-    //Tons de sombra
-    --cor-clara-sahde-1:
-    --cor-clara-shade-2:
-    --cor-clara-shade-3:
-    //Tons normais
-    --cor-clara-1:
-    --cor-clara-2:
-    --cor-clara-3:
-        
-    */
+    /*Cor clara*/
+    /*Tons de sombra*/
+    --cor-clara-shade-1:#646bc4;
+    --cor-clara-shade-2:#788fcc;
+    /*Tons normais*/
+    --cor-clara-1:#88acdb;
+    --cor-clara-2:#98c7e3;
+    --cor-clara-3:#ace9f2;
 
-    --cor-clara: #88ACDB;
-    --cor-clara-a: #88acdba1;
-
-    --cor-clara-2: #98c7e3;
-    --cor-clara-3: #ace9f2;
-
-    --cor-escura-1: #325958;
-    --cor-escura-2: #24404a;
-    --cor-escura-3: #1C2D42;
-    --cor-escura-a: #1c2d42ba;
+    --cor-contraste: #1C2D42;
+    --cor-forte:#423315;
 
     --cor-fundo: #8F774A;
     --cor-fundo-a: #8f774ac9;
@@ -38,9 +22,9 @@
     --cor-texto-b: #e1e1e1;
     --cor-texto-p: #0f1a27;
 
-    --font-tam-opcoes: clamp(.5rem, 8vw, 1rem);
-    --font-tam-texto: clamp(.8rem, 10vw, 1.2rem);
-    --font-tam-titulo: clamp(1.6rem, 10vw, 3rem);
+    --font-tam-opcoes: clamp(.8rem, 8vw, 1rem);
+    --font-tam-texto: clamp(.5rem, 6vw, 1.2rem);
+    --font-tam-titulo: clamp(2rem, 7vw, 3rem);
 }
 /*=======================================*/
 
@@ -71,6 +55,7 @@ a {
 }
 
 input {
+    color: var(--cor-texto-b);
     border: none;
     background-color: transparent;
 }
@@ -84,10 +69,8 @@ textarea {
 }
 
 fieldset {
-    border-color: var(--cor-escura-2);
+    border: none;
     padding: 1rem;
-    border-radius: 10px;
-    background: var(--cor-clara);
 }
 
 legend {
@@ -105,7 +88,7 @@ legend {
 .link:hover,
 .link:focus {
     text-decoration: underline solid .1em var(--cor-texto-b);
-    text-shadow: 0 0 1em var(--cor-clara);
+    text-shadow: 0 0 1em var(--cor-clara-shade-1);
 }
 
 .link:active {
@@ -124,10 +107,10 @@ legend {
 
     padding: .3em .3em;
     margin: .1em;
-    border: .1rem solid var(--cor-escura-2);
-    border-bottom: .2rem solid var(--cor-escura-3);
+    border: .1rem solid var(--cor-contraste);
+    border-bottom: .2rem solid var(--cor-contraste);
     border-radius: 10px;
-    background-color: var(--cor-clara);
+    background-color: var(--cor-clara-1);
 }
 
 .btn:hover,
@@ -151,15 +134,15 @@ legend {
 }
 
 .field {
-    
     padding: 0.2em 0;
 }
 
 .field input {
-    background-color: transparent;
-    border: none;
-    padding: 0.2em;
-    border-bottom: solid 2px var(--cor-texto-p);
+    display: block;
+    border-radius: 5px;
+    background-color: #1c2d4275;
+    padding: 0.2em 0.5em;
+    border-bottom: solid 3px var(--cor-texto-p);
 }
 
 .options {
