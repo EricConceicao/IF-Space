@@ -218,14 +218,17 @@ Pagina de edição de postagem
 ============================
 */
 .post-form {
+    height: fit-content;
+    margin-block: 2em;
     margin-inline: auto;
-    background: repeating-linear-gradient(limegreen, lightblue);
+    background-color: var(--cor-fundo);
     padding: 1em;
     border-radius: 10px;
 }
 
 .post-form .fields{
     border-radius: inherit;
+    gap: 1em;
     border: solid .2em var(--cor-clara-1);
 }
 

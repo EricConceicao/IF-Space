@@ -7,8 +7,7 @@ router.get('/', (req, res, next) => {
     let name = req.cookies.name;
     res.render('principal/home', { name }); //Só pra aparecer de exemplo no title
 });
-
-router.get('/profile', (req, res, next) => {
+router.get('/profile', (req, res, next) => {//Vai ter um parâmetro 'id' aqui depois
     //Se não carregar o cookie. Ele irá renderizar a página ainda
     let name = typeof req.cookies.name !== 'undefined' ? req.cookies.name : ''; 
     
