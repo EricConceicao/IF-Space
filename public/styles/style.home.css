@@ -239,3 +239,46 @@ Pagina de edição de postagem
 .post-form textarea {
     padding: .5em;
 }
+
+/*
+============================
+Postagens do outros usuários
+============================
+*/
+
+.container {
+    flex-basis: 80%;
+    background-color: var(--cor-clara-shade-2);
+    padding: 1em;
+    border: solid 0.3em var(--cor-clara-shade-1);
+}
+
+.container aside {
+    margin-top: 10em;
+}
+
+.post-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.post-header {
+    border: solid 0.2em var(--cor-clara-3);
+    border-radius: 5px;
+    background-color: var(--cor-clara-2);
+}
+
+.post-section {
+    max-width: 80%;
+    background-color: var(--cor-clara-1);
+    border-radius: 5px;
+    padding: 0.4em;
+    margin: 0.4em;
+}
+
+.comment-profile img {
+    border-radius: 50%;
+    width: 2.5em;
+    border: solid 0.3em var(--cor-contraste);
+}
