@@ -9,7 +9,7 @@ router.get('/user/:id', (req, res, next) => {
 });
 
 //Receber a página para fazer uma postagem
-router.get('/:id', (req, res, next) => {
+router.get('/', (req, res, next) => {
     //Se não carregar o cookie. Ele irá renderizar a página ainda
     let name = typeof req.cookies.name !== 'undefined' ? req.cookies.name : '';
 

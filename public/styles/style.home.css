@@ -64,7 +64,7 @@ body {
 
 .nav,
 .aside {
-    flex-basis: 20%;
+    flex-basis: 15%;
 }
 
 .friends {
@@ -144,7 +144,7 @@ body {
     flex-direction: column;
     
     padding: .5rem;
-    margin: 1rem .5rem 3rem .5rem;
+    margin: 1rem .5rem;
     min-height: 20em;
     border: solid .125rem var(--cor-contraste);
     border-radius: 10px;
@@ -160,17 +160,14 @@ body {
     padding: .4rem;
 }
 
-.postProfile {
+.post-profile {
     display: flex;
     align-items: center;
     gap: .2rem;
-    border-radius: 20%/85%;
-    background-image: linear-gradient(90deg, var(--cor-clara-shade-1) , transparent 50%);
     font-family: 'Rajdhani', system-ui, sans-serif;
-    
 }
 
-.postProfile img {
+.post-profile img {
     border-radius: 50%;
     width: 4em;
     
@@ -203,6 +200,10 @@ Página do perfil
     border: solid .2em var(--cor-clara-2);
     border-radius: inherit;
     background-color: var(--cor-fundo);
+}
+
+.profile-form .btn {
+    margin-top: 1em;
 }
 
 .profile-form .field label {
@@ -242,25 +243,28 @@ Pagina de edição de postagem
 
 /*
 ============================
-Postagens do outros usuários
+Postagens dos outros usuários
 ============================
 */
 
 .container {
     flex-basis: 80%;
     background-color: var(--cor-clara-shade-2);
-    padding: 1em;
+    padding: .5em;
     border: solid 0.3em var(--cor-clara-shade-1);
 }
 
 .container aside {
-    margin-top: 10em;
+    margin: 10em 1em 0 1em;
 }
 
 .post-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 1em;
+
+    margin: 1em;
 }
 
 .post-header {
@@ -270,15 +274,37 @@ Postagens do outros usuários
 }
 
 .post-section {
-    max-width: 80%;
     background-color: var(--cor-clara-1);
     border-radius: 5px;
     padding: 0.4em;
     margin: 0.4em;
 }
 
-.comment-profile img {
-    border-radius: 50%;
+.reactions {
+    display: flex;
+    justify-content: left;
+    
+    gap: 1em;
+    flex-grow: 1;
+}
+
+/*
+====================
+Seção de comentários
+====================
+*/
+
+.comment {
+    border-radius: 5px;
+    background-color: var(--cor-clara-2);
+    border-bottom: double .2em var(--cor-clara-shade-2) ;
+    padding: 1em;
+}
+
+.comment img {
     width: 2.5em;
-    border: solid 0.3em var(--cor-contraste);
+}
+
+.comment p {
+    padding: .2em .5em; 
 }

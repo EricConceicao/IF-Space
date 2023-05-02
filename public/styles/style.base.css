@@ -22,8 +22,8 @@
     --cor-texto-b: #e1e1e1;
     --cor-texto-p: #0f1a27;
 
-    --font-tam-opcoes: clamp(.8rem, 7vw, 1rem);
-    --font-tam-texto: clamp(.5rem, 6vw, 1.2rem);
+    --font-tam-opcoes: clamp(.8rem, 5vw, 1rem);
+    --font-tam-texto: clamp(.5rem, 5vw, 1rem);
     --font-tam-titulo: clamp(1.5rem, 8vw, 2rem);
 }
 /*=======================================*/
