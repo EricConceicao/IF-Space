@@ -15,7 +15,7 @@ senha       BINARY(32)      NOT NULL,
 pNome       VARCHAR(25)     NOT NULL,
 sNome       VARCHAR(25)     NOT NULL,
 nick        VARCHAR(50),
-dataNasc    DATE NOT NULL,
+dataNasc    DATE NOT NULL
 );
 
 
@@ -28,7 +28,7 @@ data            TIMESTAMP       DEFAULT             CURRENT_TIMESTAMP,
 anexos          BLOB,
 likes           INT,
 
-FOREIGN KEY (usuariosId) REFERENCES usuarios(id),
+FOREIGN KEY (usuariosId) REFERENCES usuarios(id)
 );
 
 
