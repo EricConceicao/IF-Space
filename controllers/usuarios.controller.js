@@ -1,4 +1,4 @@
-const usuarioModel = require('../models/usuarios');
+const Usuario = require('../models/usuarios');
 
 exports.cadastrar = async function (req, res) {
 
@@ -6,11 +6,11 @@ exports.cadastrar = async function (req, res) {
 	const {email, senha, pNome, sNome, nick, dataNasc} = req.body;
 
     //Cria um novo objeto embasado na classe Usuario, e passa os dados correspondentes
-    const novoUsuario = new usuarioModel.Usuario(email, senha, pNome, sNome, nick, dataNasc);
+    const novoUsuario = new Usuario(email, senha, pNome, sNome, nick, dataNasc);
 
     try {
         //chama o método verificarEmail() da classe Usuarios para ver se o email já existe.
-        const result = await novoUsuario.verificarEmail();
+        const result = await novoUsuario.cadastrar();
 
         //O resultado é um true ou false que diz se o email já existe ou não.
         if (result) {
@@ -24,6 +24,6 @@ exports.cadastrar = async function (req, res) {
 
     } catch (err) {
         //Apenas em caso de erro
-        throw `Erro na operação de cadastro. Erro: ${err.message}`;
+        console.error(`Erro na operação de cadastro. Erro: ${err}`);
     }
 }

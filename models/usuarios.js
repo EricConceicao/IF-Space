@@ -20,7 +20,7 @@ class Usuario {
             return rows.length > 0;
             
         } catch (err) {
-            throw `Erro na operação de verificar E-mail. Erro: ${err.message}`;
+            console.error(`Erro na operação de verificar E-mail. Erro: ${err}`);
         }
     }
 
@@ -35,11 +35,11 @@ class Usuario {
             return result.insertId;
 
             } else {
-                throw `Erro ao fazer cadastro no banco de dados`;
+                console.error(`Erro ao fazer cadastro no banco de dados`);
             }
 
         } catch (err) {
-            throw `Erro na operação de cadastro no banco de dados: ${err.message}`;
+            console.error(`Erro na operação de cadastro no banco de dados: ${err}`);
         }
     }
 }
