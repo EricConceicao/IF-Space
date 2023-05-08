@@ -1,4 +1,5 @@
 const Usuario = require('../models/usuarios');
+const router = require('../routes');
 
 exports.cadastrar = async function (req, res) {
 
@@ -10,16 +11,16 @@ exports.cadastrar = async function (req, res) {
 
     try {
         //chama o método verificarEmail() da classe Usuarios para ver se o email já existe.
-        const result = await novoUsuario.cadastrar();
+        const result = await novoUsuario.verificarEmail();
 
         //O resultado é um true ou false que diz se o email já existe ou não.
-        if (result) {
-            return {sucess: false, message: 'Este E-mail já existe :S'}
-
-        } else {
+        if (!result) {
             //chama o método cadastrar() da classe Usuarios para inserir os dados no banco.
             await novoUsuario.cadastrar();
-            return {sucess: true, message: 'Cadastro feito com sucesso :D'}; 
+            res.redirect('/');
+        } else {
+            res.status(400).send('Email já cadastrado');
+    
         }
 
     } catch (err) {
