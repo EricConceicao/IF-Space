@@ -1,5 +1,4 @@
 const Usuario = require('../models/usuarios');
-const router = require('../routes');
 
 exports.cadastrar = async function (req, res) {
 

@@ -15,7 +15,8 @@ senha       BINARY(32)      NOT NULL,
 pNome       VARCHAR(25)     NOT NULL,
 sNome       VARCHAR(25)     NOT NULL,
 nick        VARCHAR(50),
-dataNasc    DATE NOT NULL
+dataNasc    DATE NOT NULL,
+dataCriacao            TIMESTAMP       DEFAULT             CURRENT_TIMESTAMP
 );
 
 
@@ -24,7 +25,7 @@ id              INT             AUTO_INCREMENT      PRIMARY KEY,
 usuariosId      INT             NOT NULL,
 titulo          VARCHAR(50)     NOT NULL,    
 texto           TEXT,
-data            TIMESTAMP       DEFAULT             CURRENT_TIMESTAMP,
+dataCriacao     TIMESTAMP       DEFAULT             CURRENT_TIMESTAMP,
 anexos          BLOB,
 likes           INT,
 

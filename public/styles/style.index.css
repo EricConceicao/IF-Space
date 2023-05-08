@@ -29,7 +29,7 @@ body {
 
 .aside {
     padding-top: .4em;
-    
+    z-index: 1;
 }
 
 .aside div {
@@ -116,4 +116,24 @@ body {
         clip-path: polygon(0 10%, 25% 0, 50% 10%, 75% 0, 100% 10%, 100% 100%, 0 100%);
         margin-top: -35px;
     }
+}
+
+.footer {
+    width: 100%;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-b);
+    text-align: right;
+    
+    position: absolute;
+    bottom: 0;
+}
+
+.footer p {
+    text-shadow: 0 0 4px black;
+    margin-right: 1em
+}
+
+.footer a {
+    display: inline;
+    text-decoration: underline 2px;
 }
