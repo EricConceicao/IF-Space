@@ -20,8 +20,6 @@ class Postagem {
         } catch (err) {
             throw new Error(`Erro na operação de inserir postagem no banco. Erro: ${err}`);
 
-        } finally {
-            connection.release();
         }        
     }
 

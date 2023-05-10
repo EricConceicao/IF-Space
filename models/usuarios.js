@@ -29,8 +29,6 @@ class Usuario {
         } catch (err) {
             throw new Error(`Erro na operação de verificar E-mail. Erro: ${err}`);
             
-        } finally {
-            connection.release();
         }
     }
 
@@ -49,8 +47,20 @@ class Usuario {
         } catch (err) {
             throw new Error(`Erro na operação de cadastro no banco de dados: ${err}`);
 
-        } finally {
-            connection.release();
+        }
+    }
+
+    async login() {
+        try {
+            const connection = await db.getConnection();
+
+            const [ rows, fields ] = await db.query(
+                'SELECT * FROM usuarios WHERE email = ? AND senha = SHA2(?, 256)',
+                [this.email, this.senha]
+            );
+            
+        } catch (err) {
+            throw new Error('Erro na operação de login', err);
         }
     }
 }
