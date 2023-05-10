@@ -1,6 +1,6 @@
 body {
     background-color: var(--cor-escura);
-    background-image: url(/img/espaco-bkg.jpg);
+    background-image: url(/img/bkg-2.png);
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
@@ -81,7 +81,7 @@ body {
 }
 
 .hero {
-    background: repeating-linear-gradient(45deg, var(--cor-clara-shade-2), #788fccbf 5em);
+    background: repeating-linear-gradient(45deg, var(--cor-clara-1) 28%, var(--cor-clara-shade-2) 83%);
     backdrop-filter: blur(3px);
     border-radius: 10px 10px 0 0;
     padding: 1em;
@@ -99,7 +99,7 @@ body {
     justify-content: space-between;
     align-items: center;
 
-    margin-bottom: .4em;
+    margin-bottom: 1em;
     border-bottom: solid .2rem var(--cor-escura-2);
     border-radius: 5px;
 }
@@ -116,24 +116,4 @@ body {
         clip-path: polygon(0 10%, 25% 0, 50% 10%, 75% 0, 100% 10%, 100% 100%, 0 100%);
         margin-top: -35px;
     }
-}
-
-.footer {
-    width: 100%;
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto-b);
-    text-align: right;
-    
-    position: absolute;
-    bottom: 0;
-}
-
-.footer p {
-    text-shadow: 0 0 4px black;
-    margin-right: 1em
-}
-
-.footer a {
-    display: inline;
-    text-decoration: underline 2px;
 }

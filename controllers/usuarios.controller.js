@@ -7,6 +7,9 @@ exports.cadastrar = async function (req, res) {
 
     //Cria um novo objeto embasado na classe Usuario, e passa os dados correspondentes
     const novoUsuario = new Usuario(email, senha, pNome, sNome, nick, dataNasc);
+    if (!email || !senha || !pNome || !sNome || !nick || !dataNasc) {
+        throw new Error(`Erro. Campos obrigatórios não preenchidos.`);
+    }
 
     try {
         //chama o método verificarEmail() da classe Usuarios para ver se o email já existe.
@@ -24,6 +27,6 @@ exports.cadastrar = async function (req, res) {
 
     } catch (err) {
         //Apenas em caso de erro
-        console.error(`Erro na operação de cadastro. Erro: ${err}`);
+        throw new Error(`Erro na operação de cadastro. Erro: ${err}`);
     }
 }

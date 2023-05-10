@@ -1,4 +1,43 @@
+body {
+  min-height: 100vh;
+  font-size: var(--font-tam-texto);
+  background-color: var(--cor-clara-shade-2);
+  background-image: url('../img/bkg-2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  text-align: center;
+}
+
 .cards {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));;
+
+}
+
+.card { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1em;
+  margin: 1em;
+  background: linear-gradient(180deg, var(--cor-contraste) 20%, var(--cor-fundo) 25%);
+
+  border: 0.2em solid var(--cor-clara-1);
+  border-bottom: solid .4em var(--cor-clara-shade-2) ;
+  border-radius: 10px;
+}
+
+.card img {
+  border: solid 1em var(--cor-clara-shade-1);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  width: 10em;
+}
+
+.card a {
+  display: inline;
 }

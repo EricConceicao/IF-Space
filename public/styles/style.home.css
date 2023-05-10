@@ -71,6 +71,7 @@ body {
 .friends {
     display: flex;
     flex-direction: column;
+    padding: .2em;
     gap: .5em;
 }
 
@@ -136,7 +137,6 @@ body {
     flex: 1 60%;
     border-right:solid .1em #000;
     border-left:solid .1em #000;
-    border-radius: 1%/40%;
     background: var(--cor-clara-shade-2)
 }
 
@@ -145,12 +145,11 @@ body {
     flex-direction: column;
     
     padding: .5rem;
-    margin: 1rem .5rem;
+    margin: 2em 1em;
     min-height: 20em;
     border: solid .125rem var(--cor-contraste);
     border-radius: 10px;
     background: var(--cor-clara-1);
-    
 }
 
 .post header {
@@ -181,10 +180,10 @@ Página do perfil
 ====================
 */
 .profile-editor {
-    flex: 0 30%;
+    flex-grow: 1;
     background-color: var(--cor-clara-shade-2);
-    padding: 1rem;
-    margin: 1rem auto;
+    padding: 1em;
+    margin: .3em;
     border-radius: 10px;
     box-shadow: 0 0 .5em #000;
 }
@@ -220,15 +219,16 @@ Pagina de edição de postagem
 ============================
 */
 .post-form {
+    flex-grow: 1;
     height: fit-content;
-    margin-block: 2em;
-    margin-inline: auto;
+    margin: 1em .2em;
     background-color: var(--cor-fundo);
     padding: 1em;
     border-radius: 10px;
 }
 
 .post-form .fields{
+    display: block;
     border-radius: inherit;
     gap: 1em;
     border: solid .2em var(--cor-clara-1);
@@ -249,7 +249,7 @@ Postagens dos outros usuários
 */
 
 .container {
-    flex-basis: 80%;
+    flex-basis: 85%;
     background-color: var(--cor-clara-shade-2);
     padding: .5em;
     border: solid 0.3em var(--cor-clara-shade-1);

@@ -28,6 +28,9 @@ class Usuario {
             
         } catch (err) {
             throw new Error(`Erro na operação de verificar E-mail. Erro: ${err}`);
+            
+        } finally {
+            connection.release();
         }
     }
 
@@ -45,6 +48,9 @@ class Usuario {
 
         } catch (err) {
             throw new Error(`Erro na operação de cadastro no banco de dados: ${err}`);
+
+        } finally {
+            connection.release();
         }
     }
 }

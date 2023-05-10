@@ -1,5 +1,4 @@
 /* Aquarela do projeto :v */
-
 :root {
 
     /*Cor clara*/
@@ -23,7 +22,7 @@
     --cor-texto-p: #0f1a27;
 
     --font-tam-opcoes: clamp(.8rem, 5vw, 1rem);
-    --font-tam-texto: clamp(.5rem, 5vw, 1rem);
+    --font-tam-texto: clamp(.5rem, 5vw, 1.2rem);
     --font-tam-titulo: clamp(1.5rem, 8vw, 2rem);
 }
 /*=======================================*/
@@ -88,10 +87,15 @@ legend {
 
 .title {
     font-size: var(--font-tam-titulo);
+    padding: 0 1em;
 }
 /*=======================================*/
 
 /* Estilizando links */
+
+.link {
+    text-decoration: underline 2px;
+}
 
 .link:hover,
 .link:focus {
@@ -143,14 +147,14 @@ legend {
 }
 
 .field {
-    padding: 0.2em 0;
+    padding: 0.4em 0;
 }
 
 .field input {
     display: block;
     border-radius: 5px;
     background-color: #1c2d4275;
-    padding: 0.2em 0.5em;
+    padding: 0.5em 0.5em;
     border-bottom: solid 3px var(--cor-texto-p);
 }
 
@@ -183,4 +187,33 @@ legend {
 /* Barrinha quando põe o mouse em cima */
 ::-webkit-scrollbar-thumb:hover {
     background: var(--cor-clara-3);
+}
+
+/*============================*/
+/* Footer */
+.footer {
+    width: 100%;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-b);
+    text-align: right;
+    padding: .6em;
+    
+    position: absolute;
+    bottom: 0;
+}
+
+.footer p {
+    text-shadow: 0 0 4px black;
+    margin-right: 1em
+}
+
+.footer a {
+    display: inline;
+}
+
+@media screen and (max-width: 630px) {
+    .footer {
+        margin-top: 2em;
+        position: relative;
+    }
 }
