@@ -11,5 +11,4 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-console.log('Conexão ao banco realizada com sucesso');
 module.exports = pool;

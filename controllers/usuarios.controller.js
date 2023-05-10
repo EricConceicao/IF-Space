@@ -7,8 +7,9 @@ exports.cadastrar = async function (req, res) {
 
     //Cria um novo objeto embasado na classe Usuario, e passa os dados correspondentes
     const novoUsuario = new Usuario(email, senha, pNome, sNome, nick, dataNasc);
-    if (!email || !senha || !pNome || !sNome || !nick || !dataNasc) {
-        throw new Error(`Erro. Campos obrigatórios não preenchidos.`);
+    if (!email || !senha || !pNome || !sNome || !dataNasc) {
+        alert(`Erro. Campos obrigatórios não preenchidos.`);
+        res.redirect('/');
     }
 
     try {
