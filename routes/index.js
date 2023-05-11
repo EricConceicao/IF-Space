@@ -19,14 +19,10 @@ router.get('/signup', (req, res, next) => {
 	res.render('singup');
 });
 
-/* POST Login para página inicial. */
-router.post('/login', async (req, res, next) => {
-	res.cookie('name', req.body.email)
-	res.redirect('/home');
-});
+/* POST Login */
+router.post('/login', usuariosController.login);
 
 /* POST para cadastrar. */
-
 router.post('/signup', usuariosController.cadastrar);
 
 module.exports = router;

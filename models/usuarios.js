@@ -1,14 +1,14 @@
 const db = require('../config/db');
 
 class Usuario {
-    constructor (email, senha, pNome, sNome, nick, dataNasc){
+    constructor(email, senha, pNome, sNome, nick, dataNasc) {
         this.email = email;
         this.senha = senha;
         this.pNome = pNome;
         this.sNome = sNome;
         this.nick = nick;
         this.dataNasc = dataNasc;
-        
+
     }
 
     async verificarEmail() {
@@ -25,10 +25,10 @@ class Usuario {
             /* Serve como uma condição. Se a query encontrar um email igual na consulta. rows sera maior que 0
                E então, ele retornará 'TRUE', e do contrário 'FALSE' */
             return rows.length > 0;
-            
+
         } catch (err) {
             throw new Error(`Erro na operação de verificar E-mail. Erro: ${err}`);
-            
+
         }
     }
 
@@ -37,7 +37,7 @@ class Usuario {
             const connection = await db.getConnection();
 
             const result = await db.query(
-                'INSERT INTO usuarios (email, senha, pNome, sNome, nick, dataNasc) VALUES (?, SHA2(?, 256), ?, ?, ?, ?)', 
+                'INSERT INTO usuarios (email, senha, pNome, sNome, nick, dataNasc) VALUES (?, SHA2(?, 256), ?, ?, ?, ?)',
                 [this.email, this.senha, this.pNome, this.sNome, this.nick, this.dataNasc]
             );
             connection.release();
@@ -54,13 +54,25 @@ class Usuario {
         try {
             const connection = await db.getConnection();
 
-            const [ rows, fields ] = await db.query(
+            const [rows] = await db.query(
                 'SELECT * FROM usuarios WHERE email = ? AND senha = SHA2(?, 256)',
                 [this.email, this.senha]
             );
+            console.log(rows);
+            if (rows.length > 0) {
+                const { email, senha } = rows[0];
+
+                if (this.email === email && this.senha === senha) {
+                    return true;
+
+
+                } else {
+                    throw 'Email ou senha incorretos'
+                }
+            }
             
         } catch (err) {
-            throw new Error('Erro na operação de login', err);
+                throw 'Erro na operação de login', err;
         }
     }
 }

@@ -5,13 +5,14 @@ exports.cadastrar = async function (req, res) {
     //Pega os dados do formulário
 	const {email, senha, pNome, sNome, nick, dataNasc} = req.body;
 
+    //Verifica se não há valores nulos
+    if (!email || !senha || !pNome || !sNome || !dataNasc) {
+        throw 'Erro. Campos obrigatórios não preenchidos.'
+        res.redirect('/signup');
+    }
     //Cria um novo objeto embasado na classe Usuario, e passa os dados correspondentes
     const novoUsuario = new Usuario(email, senha, pNome, sNome, nick, dataNasc);
-    if (!email || !senha || !pNome || !sNome || !dataNasc) {
-        alert('Erro. Campos obrigatórios não preenchidos.');
-        res.redirect('/');
-    }
-
+    
     try {
         //chama o método verificarEmail() da classe Usuarios para ver se o email já existe.
         const result = await novoUsuario.verificarEmail();
@@ -30,4 +31,26 @@ exports.cadastrar = async function (req, res) {
         //Apenas em caso de erro
         throw new Error(`Erro na operação de cadastro. Erro: ${err}`);
     }
+}
+
+exports.login = async function (req, res) {
+
+    //Pega o email e senha
+    const { email, senha } = req.body;
+
+    //passa os dados para o modelo
+    const novoUsuario = new Usuario(email, senha);
+    try {
+        const result = await novoUsuario.login();
+
+        if(result) {
+            res.cookie('name', novoUsuario.pNome);
+            res.redirect('/home');
+        } else {
+            throw 'Email ou senha incorretos.'
+        }
+    } catch (err) {
+        throw 'Erro na operação de login: ',err
+    }
+
 }
