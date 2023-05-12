@@ -11,7 +11,7 @@ USE ifspace;
 CREATE TABLE usuarios (
 id          INT             AUTO_INCREMENT  PRIMARY KEY,
 email       VARCHAR(50)     NOT NULL        UNIQUE,
-senha       BINARY(32)      NOT NULL,                   
+senha       BINARY(64)      NOT NULL,                   
 pNome       VARCHAR(25)     NOT NULL,
 sNome       VARCHAR(25)     NOT NULL,
 nick        VARCHAR(50),

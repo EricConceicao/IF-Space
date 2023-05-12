@@ -4,8 +4,7 @@ var router = express.Router();
 
 // Renderiza a página inicial com o nome do usuário
 router.get('/', (req, res, next) => {
-    let name = req.cookies.name;
-    res.render('principal/home', { name }); //Só pra aparecer de exemplo no title
+    res.render('principal/home', { name: req.cookies.name }); //Só pra aparecer de exemplo no title
 });
 router.get('/profile', (req, res, next) => {//Vai ter um parâmetro 'id' aqui depois
     //Se não carregar o cookie. Ele irá renderizar a página ainda

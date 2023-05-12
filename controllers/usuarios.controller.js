@@ -1,9 +1,11 @@
 const Usuario = require('../models/usuarios');
+const crypto = require('crypto');
 
 exports.cadastrar = async function (req, res) {
 
     //Pega os dados do formulário
-	const {email, senha, pNome, sNome, nick, dataNasc} = req.body;
+	const {email, pNome, sNome, nick, dataNasc} = req.body;
+    const senha = crypto.createHash('sha256').update(req.body.senha).digest('hex');
 
     //Verifica se não há valores nulos
     if (!email || !senha || !pNome || !sNome || !dataNasc) {
@@ -36,21 +38,28 @@ exports.cadastrar = async function (req, res) {
 exports.login = async function (req, res) {
 
     //Pega o email e senha
-    const { email, senha } = req.body;
-
+    const email = req.body.email;
+    const senha = crypto.createHash('sha256').update(req.body.senha).digest('hex');
+    console.log(email, senha)
     //passa os dados para o modelo
-    const novoUsuario = new Usuario(email, senha);
+    const usuario = new Usuario(email, senha);
+
     try {
-        const result = await novoUsuario.login();
+        const result = await usuario.login();
 
         if(result) {
-            res.cookie('name', novoUsuario.pNome);
-            res.redirect('/home');
+            const {email, senha, pNome, sNome, nick, dataNasc} = result
+            
+            usuario(email, senha, pNome, sNome, nick, dataNasc);
+            res.cookie('name', usuario.pNome);
+            
+            res.redirect('/home')
         } else {
-            throw 'Email ou senha incorretos.'
+            console.error('Email ou senha incorretos.');
+            res.render('index');
         }
     } catch (err) {
-        throw 'Erro na operação de login: ',err
+        throw new Error('Erro na operação de login:' + err)
     }
 
 }

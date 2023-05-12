@@ -27,7 +27,7 @@ class Usuario {
             return rows.length > 0;
 
         } catch (err) {
-            throw new Error(`Erro na operação de verificar E-mail. Erro: ${err}`);
+            throw new Error('Erro na operação de verificar E-mail. Erro:' + err);
 
         }
     }
@@ -37,7 +37,7 @@ class Usuario {
             const connection = await db.getConnection();
 
             const result = await db.query(
-                'INSERT INTO usuarios (email, senha, pNome, sNome, nick, dataNasc) VALUES (?, SHA2(?, 256), ?, ?, ?, ?)',
+                'INSERT INTO usuarios (email, senha, pNome, sNome, nick, dataNasc) VALUES (?, ?, ?, ?, ?, ?)',
                 [this.email, this.senha, this.pNome, this.sNome, this.nick, this.dataNasc]
             );
             connection.release();
@@ -45,7 +45,7 @@ class Usuario {
             return result.insertId;
 
         } catch (err) {
-            throw new Error(`Erro na operação de cadastro no banco de dados: ${err}`);
+            throw new Error('Erro na operação de cadastro no banco de dados:' + err);
 
         }
     }
@@ -55,24 +55,25 @@ class Usuario {
             const connection = await db.getConnection();
 
             const [rows] = await db.query(
-                'SELECT * FROM usuarios WHERE email = ? AND senha = SHA2(?, 256)',
+                'SELECT * FROM usuarios WHERE email = ? AND senha = ?',
                 [this.email, this.senha]
             );
-            console.log(rows);
+            console.log(rows[0]);
+            let { email, senha } = rows[0];
+
             if (rows.length > 0) {
-                const { email, senha } = rows[0];
-
                 if (this.email === email && this.senha === senha) {
-                    return true;
-
-
+                    return {email, senha, pNome, sNome, nick, dataNasc} = rows[0];
                 } else {
-                    throw 'Email ou senha incorretos'
+                    return false;
                 }
+
+            } else {
+                return false
             }
             
         } catch (err) {
-                throw 'Erro na operação de login', err;
+                throw new Error('Erro na operação de login' + err.message);
         }
     }
 }
