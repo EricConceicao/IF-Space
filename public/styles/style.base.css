@@ -89,6 +89,13 @@ legend {
     font-size: var(--font-tam-titulo);
     padding: 0 1em;
 }
+
+.center {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+}
+
 /*=======================================*/
 
 /* Estilizando links */
@@ -190,6 +197,7 @@ legend {
 }
 
 /*============================*/
+
 /* Footer */
 .footer {
     width: 100%;
