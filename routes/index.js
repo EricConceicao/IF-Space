@@ -19,6 +19,20 @@ router.get('/signup', (req, res, next) => {
 	res.render('singup');
 });
 
+/* GET login */
+router.get('/login', (req, res, next) => {
+	if (req.session.usuario) {
+		res.redirect('/home');
+	} else {
+		res.redirect('/');
+	}
+});
+
+router.get('/logout', (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/');
+})
+
 /* POST Login */
 router.post('/login', usuariosController.login);
 

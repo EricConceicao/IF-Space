@@ -9,8 +9,8 @@ exports.cadastrar = async function (req, res) {
 
     //Verifica se não há valores nulos
     if (!email || !senha || !pNome || !sNome || !dataNasc) {
-        throw 'Erro. Campos obrigatórios não preenchidos.'
-        res.redirect('/signup');
+
+        res.render('/signup', {erro: 'Campos obrigatórios em branco'});
     }
     //Cria um novo objeto embasado na classe Usuario, e passa os dados correspondentes
     const novoUsuario = new Usuario(email, senha, pNome, sNome, nick, dataNasc);
@@ -40,18 +40,12 @@ exports.login = async function (req, res) {
     //Pega o email e senha
     const email = req.body.email;
     const senha = crypto.createHash('sha256').update(req.body.senha).digest('hex');
-    console.log(email, senha)
-    //passa os dados para o modelo
-    const usuario = new Usuario(email, senha);
 
     try {
-        const result = await usuario.login();
+        const result = await Usuario.login(email, senha);
 
         if(result) {
-            const {email, senha, pNome, sNome, nick, dataNasc} = result
-            
-            usuario(email, senha, pNome, sNome, nick, dataNasc);
-            res.cookie('name', usuario.pNome);
+            req.session.usuario = result;
             
             res.redirect('/home')
         } else {
@@ -59,7 +53,7 @@ exports.login = async function (req, res) {
             res.render('index');
         }
     } catch (err) {
-        throw new Error('Erro na operação de login:' + err)
+        console.error('Erro na operação de login:' + err)
     }
 
 }

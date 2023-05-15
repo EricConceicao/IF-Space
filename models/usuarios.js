@@ -34,46 +34,43 @@ class Usuario {
 
     async cadastrar() {
         try {
-            const connection = await db.getConnection();
-
             const result = await db.query(
                 'INSERT INTO usuarios (email, senha, pNome, sNome, nick, dataNasc) VALUES (?, ?, ?, ?, ?, ?)',
                 [this.email, this.senha, this.pNome, this.sNome, this.nick, this.dataNasc]
             );
-            connection.release();
-            //Retorna o ID do usuário cadastrado
-            return result.insertId;
+
+            return result
 
         } catch (err) {
-            throw new Error('Erro na operação de cadastro no banco de dados:' + err);
+            console.error('Erro na operação de cadastro no banco de dados: ' + err);
 
         }
     }
 
-    async login() {
-        try {
-            const connection = await db.getConnection();
+    static async login(email, senha) {
 
+        try {
             const [rows] = await db.query(
-                'SELECT * FROM usuarios WHERE email = ? AND senha = ?',
-                [this.email, this.senha]
+                'SELECT * FROM usuarios WHERE email = ?', [email]
             );
-            console.log(rows[0]);
-            let { email, senha } = rows[0];
 
             if (rows.length > 0) {
-                if (this.email === email && this.senha === senha) {
-                    return {email, senha, pNome, sNome, nick, dataNasc} = rows[0];
+                //Dados do banco para comparação
+                let authEmail = rows[0].email;
+                let authSenha = rows[0].senha;
+                console.log('E-mail: ',email, 'A E-mail: ',authEmail, 'Senha: ',senha, 'A Senha: ',authSenha)
+                if (authEmail === email && authSenha === senha) {
+                    return rows[0];
+
                 } else {
                     return false;
                 }
-
             } else {
                 return false
             }
             
         } catch (err) {
-                throw new Error('Erro na operação de login' + err.message);
+                console.error('Erro no método login: ' + err);
         }
     }
 }
