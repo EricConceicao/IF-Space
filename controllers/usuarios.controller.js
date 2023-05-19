@@ -12,6 +12,7 @@ exports.cadastrar = async function (req, res) {
 
         res.render('/signup', {erro: 'Campos obrigatórios em branco'});
     }
+    
     //Cria um novo objeto embasado na classe Usuario, e passa os dados correspondentes
     const novoUsuario = new Usuario(email, senha, pNome, sNome, nick, dataNasc);
     
