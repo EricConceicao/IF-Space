@@ -31,7 +31,7 @@ exports.cadastrar = async function (req, res) {
 
     } catch (err) {
         //Apenas em caso de erro
-        throw new Error(`Erro na operação de cadastro. Erro: ${err}`);
+        console.error(`Erro na operação de cadastro. Erro: ${err}`);
     }
 }
 

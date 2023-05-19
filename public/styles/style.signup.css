@@ -6,12 +6,6 @@ body {
     min-height: 100vh;
 }
 
-.center {
-    display: flex;
-    flex-flow: column wrap;
-    align-content: center;
-}
-
 .container {
     display: flex;
     flex-flow: column wrap;
