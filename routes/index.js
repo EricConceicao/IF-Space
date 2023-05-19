@@ -6,7 +6,11 @@ const usuariosController = require('../controllers/usuarios.controller');
 
 /* GET renderiza a página de login. */
 router.get('/', (req, res, next) => {
-	res.render('index');
+	if (req.session.usuario) {
+		res.redirect('/home');
+	} else {
+		res.render('index');
+	}
 });
 
 /* GET página contato. */
