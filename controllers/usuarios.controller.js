@@ -1,45 +1,41 @@
 const Usuario = require('../models/usuarios');
-const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 exports.cadastrar = async function (req, res) {
-
-    //Pega os dados do formulário
-	const {email, pNome, sNome, nick, dataNasc} = req.body;
-    const senha = crypto.createHash('sha256').update(req.body.senha).digest('hex');
-
-    //Verifica se não há valores nulos
-    if (!email || !senha || !pNome || !sNome || !dataNasc) {
-
-        res.render('/signup', {erro: 'Campos obrigatórios em branco'});
-    }
-    //Cria um novo objeto embasado na classe Usuario, e passa os dados correspondentes
-    const novoUsuario = new Usuario(email, senha, pNome, sNome, nick, dataNasc);
-    
     try {
+
+        //Pega os dados do formulário
+        const {email, senha, pNome, sNome, nick, dataNasc} = req.body;
+        const HashSenha = await bcrypt.hash(senha, 10);
+
+        //Verifica se não há valores nulos
+        if (!email || !senha || !pNome || !sNome || !dataNasc) {
+
+            res.render('/signup', {erro: 'Campos obrigatórios em branco'});
+        }
+
         //chama o método verificarEmail() da classe Usuarios para ver se o email já existe.
-        const result = await novoUsuario.verificarEmail();
+        const result = await Usuario.verificarEmail(email);
 
         //O resultado é um true ou false que diz se o email já existe ou não.
         if (!result) {
             //chama o método cadastrar() da classe Usuarios para inserir os dados no banco.
-            await novoUsuario.cadastrar();
+            await Usuario.cadastrar(email, senha, pNome, sNome, nick, dataNasc);
             res.redirect('/');
         } else {
             res.status(400).send('Email já cadastrado');
-    
         }
 
     } catch (err) {
         //Apenas em caso de erro
-        console.error(`Erro na operação de cadastro. Erro: ${err}`);
+        console.error('Erro na operação de cadastro ' + err);
     }
 }
 
 exports.login = async function (req, res) {
 
     //Pega o email e senha
-    const email = req.body.email;
-    const senha = crypto.createHash('sha256').update(req.body.senha).digest('hex');
+    const { email, senha } = req.body;
 
     try {
         const result = await Usuario.login(email, senha);
