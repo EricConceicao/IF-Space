@@ -27,6 +27,10 @@
 
       <form action="/signup" method="post" class="signup">
 
+        <% if (typeof erro !== 'undefined') { %>
+          <p style="color: red; font-weight: bold; text-align: center;"><%= erro %></p>
+        <% } %>
+
         <fieldset class="fields">
 
           <div class="field">

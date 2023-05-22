@@ -6,7 +6,7 @@ exports.cadastrar = async function (req, res) {
 
         //Pega os dados do formulário
         const {email, senha, pNome, sNome, nick, dataNasc} = req.body;
-        const HashSenha = await bcrypt.hash(senha, 10);
+        const hashSenha = await bcrypt.hash(senha, 10);
 
         //Verifica se não há valores nulos
         if (!email || !senha || !pNome || !sNome || !dataNasc) {
@@ -15,22 +15,22 @@ exports.cadastrar = async function (req, res) {
         }
 
         //chama o método verificarEmail() da classe Usuarios para ver se o email já existe.
-        const result = await Usuario.verificarEmail(email);
+        const result = await Usuario.procurarEmail(email);
 
         //O resultado é um true ou false que diz se o email já existe ou não.
         if (!result) {
             //chama o método cadastrar() da classe Usuarios para inserir os dados no banco.
-            await Usuario.cadastrar(email, senha, pNome, sNome, nick, dataNasc);
+            await Usuario.cadastrar(email, hashSenha, pNome, sNome, nick, dataNasc);
             res.redirect('/');
         } else {
-            res.status(400).send('Email já cadastrado');
+            res.status(400).render('signup', {erro: 'Email já cadastrado' });
         }
 
     } catch (err) {
         //Apenas em caso de erro
         console.error('Erro na operação de cadastro ' + err);
     }
-}
+}   
 
 exports.login = async function (req, res) {
 
@@ -41,12 +41,12 @@ exports.login = async function (req, res) {
         const result = await Usuario.login(email, senha);
 
         if(result) {
-            req.session.usuario = result;
+            res.setHeader('Authorization', ' Bearer' + token);
             
-            res.redirect('/home')
+            res.redirect('/home');
         } else {
             console.error('Email ou senha incorretos.');
-            res.render('index');
+            res.render('index', {erro: 'Senha incorreta'});
         }
     } catch (err) {
         console.error('Erro na operação de login:' + err)

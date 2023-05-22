@@ -10,17 +10,8 @@ class Postagem {
         this.likes = likes;
     }
 
-    async postar() {//Cria uma postagem nova na tabela
-        try {
-            const connection = await db.getConnection();
-
-        const [rows, fields] = await db.query('INSERT INTO postagens VALUES (?, ?, ?)', [this.titulo, this.texto, this.anexo]);
-        connection.release();
-
-        } catch (err) {
-            throw new Error(`Erro na operação de inserir postagem no banco. Erro: ${err}`);
-
-        }        
+    async postar() {
+        //Cria uma postagem nova na tabela
     }
 
     async editar () {

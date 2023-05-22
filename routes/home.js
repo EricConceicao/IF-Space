@@ -1,25 +1,25 @@
 var express = require('express');
 var router = express.Router();
-
+const auth = require('../middlewares/autenticacao.jwt');
 
 // Renderiza a página inicial com o nome do usuário
-router.get('/', (req, res, next) => {
+router.get('/', auth, (req, res, next) => {
     
     if (req.session.usuario.nick) {
-        const { nick } = req.session.usuario;
+        const { nick } = req.usuario;
         res.render('principal/home', { name: nick});
     } else {
-        const { pNome } = req.session.usuario;
+        const { pNome } = req.usuario;
         res.render('principal/home', { name: pNome});
     }
 });
 
-router.get('/profile', (req, res, next) => {//Vai ter um parâmetro 'id' aqui depois
+router.get('/profile', auth, (req, res, next) => {//Vai ter um parâmetro 'id' aqui depois
     if (req.session.usuario.nick) { //Se o usuário tiver um nick. O rendezira primeiro
-        const { nick } = req.session.usuario;
+        const { nick } = req.usuario;
         res.render('principal/profile', { name: nick});
     } else {
-        const { pNome } = req.session.usuario;
+        const { pNome } = req.usuario;
         res.render('principal/profile', { name: pNome});
     }
 });
