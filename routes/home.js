@@ -4,6 +4,7 @@ var router = express.Router();
 
 // Renderiza a página inicial com o nome do usuário
 router.get('/', (req, res, next) => {
+    
     if (req.session.usuario.nick) {
         const { nick } = req.session.usuario;
         res.render('principal/home', { name: nick});
