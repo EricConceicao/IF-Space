@@ -38,11 +38,10 @@ exports.login = async function (req, res) {
     const { email, senha } = req.body;
 
     try {
-        const result = await Usuario.login(email, senha);
-
-        if(result) {
-            res.setHeader('Authorization', ' Bearer' + token);
-            
+        const token = await Usuario.login(email, senha);
+        console.log('token recebido: ', token)
+        if(token) {
+            res.setHeader('Authorization', 'Bearer ' + token);
             res.redirect('/home');
         } else {
             console.error('Email ou senha incorretos.');
