@@ -3,10 +3,18 @@ const router = express.Router();
 
 //Importando as funções do controller.
 const usuariosController = require('../controllers/usuarios.controller');
+const auth = require('../middlewares/autenticacao.jwt');
 
 /* GET renderiza a página de login. */
 router.get('/', (req, res, next) => {
-	res.render('index');
+	let info = req.query.info;
+
+	if (req.cookies.Auth) { // Se já existe uma sessão. Já manda bala		
+		res.redirect('/home');
+		
+	} else {
+		res.render('index', { info });
+	};	
 });
 
 /* GET página contato. */
@@ -18,20 +26,6 @@ router.get('/contato', (req, res, next) => {
 router.get('/signup', (req, res, next) => {
 	res.render('singup');
 });
-
-/* GET login */
-router.get('/login', (req, res, next) => {
-	if (req.session.usuario) {
-		res.redirect('/home');
-	} else {
-		res.redirect('/');
-	}
-});
-
-router.get('/logout', (req, res, next) => {
-    req.session.destroy();
-    res.redirect('/');
-})
 
 /* POST Login */
 router.post('/login', usuariosController.login);

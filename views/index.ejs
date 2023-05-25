@@ -38,8 +38,8 @@
         </main>
 
         <form action="/login" method="post" class="login">
-          <% if (typeof erro !== 'undefined') { %>
-            <p style="color: red; font-weight: bold; text-align: center;"><%= erro %></p>
+          <% if (info) { %>
+            <p style="color: red; font-weight: bold; text-align: center;"><%= info %></p>
           <% } %>
 
           <div class="fields">

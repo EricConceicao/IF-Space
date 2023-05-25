@@ -2,30 +2,32 @@ const jwt = require('jsonwebtoken');
 const Usuario = require('../models/usuarios');
 
 // Middleware para verificar o token em todas as rotas protegidas
-async function auth(req, res, next) {
-  const token = req.headers.authorization?.split(' ')[1];
-  console.log('auth - token recebido: ', token)
-
-  if (!token) {
-    return res.status(401).render('index', {erro: 'Falha na autenticação' });
+async function auth(req, res, next) { 
+  if (!req.cookies.Auth) {
+    return res.redirect("/?info=Erro de autenticação");
   }
 
+  const values = JSON.parse(req.cookies.Auth);
+  
   try {
-    const chave = await Usuario.procurarChave(req.body.email);
+    const chave = await Usuario.chaveiro(values.id);
+
     if (chave) {
 
-      const decoded = jwt.verify(token, chave);
+      const decoded = jwt.verify(values.token, chave);
       req.usuario = decoded; // Armazena o payload decodificado na requisição para uso posterior
-
+      console.log(chave)
       next();
 
     } else {
-      console.error('Chave não encontrada, ou inválida')
+      res.clearCookies('Auth'); // Se livra do cookie para caso tenha algo errado com ele
+      return res.redirect("/?info=Erro chave não encontrada");
     }
     
     
   } catch (err) {
-    return res.status(401).json({ message: 'Token inválido' });
+    res.clearCookies('Auth'); // Se livra do cookie caso tenha algo errado com ele
+    return res.status(401).json({ message: err });
   }
 }
 

@@ -18,7 +18,6 @@ class Usuario {
         try {
             //Os dados vem em 'rows' e os tipos de dados em 'fields'
             const [rows] = await db.query('SELECT * from usuarios where email = ?;', [email]);
-            console.log(rows);
             return rows.length > 0 ? rows[0] : null;
 
         } catch (err) {
@@ -27,11 +26,11 @@ class Usuario {
         }
     }
 
-    static async chaveiro(email) {//Procura a chave para o token no banco
+    static async chaveiro(id) {//Procura a chave para o token no banco
         try {
             
-            const [rows] = await db.query('SELECT chave from usuarios where email = ?;', [email]);
-            return rows.length > 0 ? rows[0] : null;
+            const [rows] = await db.query('SELECT chave from usuarios where id = ?;', [id]);
+            return rows.length > 0 ? rows[0].chave : null;
 
         } catch (err) {
             console.error('Erro na operação de pegar a chave ' + err);
@@ -71,8 +70,10 @@ class Usuario {
                         dataNasc: rows.dataNasc,
                     };
                     const token = jwt.sign(payload, rows.chave, {expiresIn: '12h'}); // Criação do token com data de expiração
+                    const id = rows.id;
+                    const values = {token, id}
                     
-                    return token;
+                    return values;
 
                 } else {
                     return false;

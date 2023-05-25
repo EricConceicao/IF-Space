@@ -21,9 +21,9 @@ exports.cadastrar = async function (req, res) {
         if (!result) {
             //chama o método cadastrar() da classe Usuarios para inserir os dados no banco.
             await Usuario.cadastrar(email, hashSenha, pNome, sNome, nick, dataNasc);
-            res.redirect('/');
+            res.redirect('/?info=Cadastro feito com sucesso!');
         } else {
-            res.status(400).render('signup', {erro: 'Email já cadastrado' });
+            res.status(409).render('signup', {erro: 'Email já cadastrado' });
         }
 
     } catch (err) {
@@ -39,13 +39,14 @@ exports.login = async function (req, res) {
 
     try {
         const token = await Usuario.login(email, senha);
-        console.log('token recebido: ', token)
+
         if(token) {
-            res.setHeader('Authorization', 'Bearer ' + token);
+            const tokenString = JSON.stringify(token);
+
+            res.cookie('Auth', tokenString, { maxAge: 1000 * 60 * 60 * 12 });
             res.redirect('/home');
         } else {
-            console.error('Email ou senha incorretos.');
-            res.render('index', {erro: 'Senha incorreta'});
+            res.render('index', { info: 'Senha incorreta' });
         }
     } catch (err) {
         console.error('Erro na operação de login:' + err)
