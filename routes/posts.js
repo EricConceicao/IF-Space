@@ -18,7 +18,6 @@ router.get('/', (req, res, next) => {
 
 //Submeter o post
 router.post('/', (req, res, next) => {
-    res.end('<h1>Postou com sucesso!<h1>');
 });
 
 module.exports = router;

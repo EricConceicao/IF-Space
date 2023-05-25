@@ -16,12 +16,12 @@ async function auth(req, res, next) {
 
       const decoded = jwt.verify(values.token, chave);
       req.usuario = decoded; // Armazena o payload decodificado na requisição para uso posterior
-      console.log(chave)
+      console.log('Autentiquei, em', chave);
       next();
 
     } else {
       res.clearCookies('Auth'); // Se livra do cookie para caso tenha algo errado com ele
-      return res.redirect("/?info=Erro chave não encontrada");
+      return res.redirect("/?info=Ocorreu algo inesperado. Faça login novamente.");
     }
     
     

@@ -1,8 +1,7 @@
 const db = require('../config/db');
 
 class Postagem {
-    constructor (id, userId, titulo, texto, anexo, likes) {
-        this.id = id;
+    constructor (userId, titulo, texto, anexo, likes) {
         this.userId = userId;
         this.titulo = titulo;
         this.texto = texto;
@@ -10,8 +9,16 @@ class Postagem {
         this.likes = likes;
     }
 
-    async postar() {
-        //Cria uma postagem nova na tabela
+    async postar(userId, titulo, texto, anexo) {//Cria uma nova postagem na tabela
+        const result = db.query(
+            'INSERT INTO postagens (userId, titulo, texto, anexo, likes) VALUES (?, ?, ?, ?)',
+            [userId, titulo, texto, anexo]
+        );
+
+        if (result) {
+            return result[0];
+        }
+        
     }
 
     async editar () {

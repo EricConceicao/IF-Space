@@ -96,6 +96,11 @@ legend {
     align-content: center;
 }
 
+.info {
+    font-size: var(--font-tam-opcoes);
+    text-align: center;
+    font-weight: bold;
+}
 /*=======================================*/
 
 /* Estilizando links */

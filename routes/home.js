@@ -4,7 +4,6 @@ const auth = require('../middlewares/autenticacao.jwt');
 
 // Renderiza a página inicial com o nome do usuário
 router.get('/', auth, (req, res, next) => {
-    console.log('Usuario:', req.usuario);
     if (req.usuario.nick) {
         const { nick } = req.usuario;
         res.render('principal/home', { name: nick });
@@ -32,7 +31,7 @@ router.get('/logout', (req, res) => {
     // Limpar o payload do token
     req.usuario = null;
     console.log('Usuario:', req.usuario);
-    res.redirect('/?info=Até logo o/');
+    res.redirect('/?info=Até logo');
 });
 
 module.exports = router;
