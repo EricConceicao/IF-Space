@@ -5,13 +5,17 @@ exports.cadastrar = async function (req, res) {
     try {
 
         //Pega os dados do formulário
-        const {email, senha, pNome, sNome, nick, dataNasc} = req.body;
+        let {email, senha, pNome, sNome, nick, dataNasc} = req.body;
         const hashSenha = await bcrypt.hash(senha, 10);
 
         //Verifica se não há valores nulos
         if (!email || !senha || !pNome || !sNome || !dataNasc) {
 
             res.render('/signup', {erro: 'Campos obrigatórios em branco'});
+        }
+
+        if (!nick) {
+            nick = await Usuario.concatName(pNome, sNome);
         }
 
         //chama o método verificarEmail() da classe Usuarios para ver se o email já existe.

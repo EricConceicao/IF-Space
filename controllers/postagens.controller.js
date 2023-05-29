@@ -1,4 +1,5 @@
 const Postagem = require('../models/postagem');
+const Usuario = require('../models/usuarios');
 
 exports.postar = async function (req, res) {
     const { titulo, texto, anexo } = req.body;
@@ -9,7 +10,11 @@ exports.postar = async function (req, res) {
         res.redirect('/post?info=Você esqueceu de escrever um lindo texto!');
     } else {
         try {
-            const result = await Postagem.postar(req.usuario.id, titulo, texto, anexo);
+            const userId = req.usuario.id;
+            const user = await Usuario.buscarNome(userId); // Vai até a o banco buscar o nome para exibição
+            const autor = user.nick;
+            
+            const result = await Postagem.postar(userId, titulo, texto, autor, anexo);
 
             if (result) {
                res.redirect('/home?info=Postagem Enviada!'); 

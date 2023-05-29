@@ -14,7 +14,7 @@ email       VARCHAR(50)     NOT NULL        UNIQUE,
 senha       VARCHAR(64)     NOT NULL,                   
 pNome       VARCHAR(25)     NOT NULL,
 sNome       VARCHAR(25)     NOT NULL,
-nick        VARCHAR(50),
+nick        VARCHAR(50)     UNIQUE,
 dataNasc    DATE NOT NULL,
 chave       VARCHAR(64)     NOT NULL,
 dataCriacao TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
@@ -24,10 +24,11 @@ dataCriacao TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
 CREATE TABLE postagens (
 id              INT             AUTO_INCREMENT      PRIMARY KEY,
 usuariosId      INT             NOT NULL,
+autor           VARCHAR(50)     NOT NULL,
 titulo          VARCHAR(50)     NOT NULL,    
 texto           TEXT,
 dataCriacao     TIMESTAMP       DEFAULT             CURRENT_TIMESTAMP,
-anexos          BLOB, // mudar para o caminho do arquivo
+anexos          BLOB,
 likes           INT,
 
 FOREIGN KEY (usuariosId) REFERENCES usuarios(id)

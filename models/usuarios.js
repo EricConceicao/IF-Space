@@ -14,9 +14,9 @@ class Usuario {
 
     }
 
-    static async procurarEmail(email) {//Procura o E-mail no banco
+    static async procurarEmail(email) {// Procura o E-mail no banco
         try {
-            //Os dados vem em 'rows' e os tipos de dados em 'fields'
+            // Os dados vem em 'rows' e os tipos de dados em 'fields'
             const [rows] = await db.query('SELECT * from usuarios where email = ?;', [email]);
             return rows.length > 0 ? rows[0] : null;
 
@@ -26,7 +26,7 @@ class Usuario {
         }
     }
 
-    static async chaveiro(id) {//Procura a chave para o token no banco
+    static async chaveiro(id) {// Procura a chave para o token no banco
         try {
             
             const [rows] = await db.query('SELECT chave from usuarios where id = ?;', [id]);
@@ -38,10 +38,11 @@ class Usuario {
         }
     }
 
-    static async buscarNome(id) {//Procura o nome ou apelido para exibir no post
+    static async buscarNome(id) {// Procura o nome ou apelido para exibir no post
         try {
             
             const [rows] = await db.query('SELECT pNome, sNome, nick from usuarios where id = ?;', [id]);
+            console.log(rows[0]);
             return rows.length > 0 ? rows[0] : null;
 
         } catch (err) {
@@ -50,13 +51,19 @@ class Usuario {
         }
     }
 
+    static async concatName(pNome, sNome) { // Concatena o nome para usar como um nick provisório
+        return pNome + ' ' + sNome;
+    }
+
     static async cadastrar(email, senha, pNome, sNome, nick, dataNasc) {
         try {
-            const chave = crypto.randomBytes(32).toString('hex'); //Chave aleatória
+            const chave = crypto.randomBytes(32).toString('hex'); // Chave aleatória
+            
             const result = await db.query(
                 'INSERT INTO usuarios (email, senha, pNome, sNome, nick, dataNasc, chave) VALUES (?, ?, ?, ?, ?, ?, ?)',
                 [email, senha, pNome, sNome, nick, dataNasc, chave]
             );
+            
             return result
 
         } catch (err) {
@@ -74,7 +81,7 @@ class Usuario {
                 const auth = await bcrypt.compare(senha, rows.senha);
                 if (auth) {
 
-                    const payload = { //Conteúdo em Json que irá para o token
+                    const payload = { // Conteúdo em Json que irá para o token
                         id: rows.id,
                         email: rows.email,  
                         pNome: rows.pNome, 

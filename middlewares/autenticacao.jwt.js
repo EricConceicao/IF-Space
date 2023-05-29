@@ -20,7 +20,7 @@ async function auth(req, res, next) {
       next();
 
     } else {
-      res.clearCookies('Auth'); // Se livra do cookie para caso tenha algo errado com ele
+      res.clearCookie('Auth'); // Se livra do cookie para caso tenha algo errado com ele
       return res.redirect("/?info=Ocorreu algo inesperado. Faça login novamente.");
     }
     

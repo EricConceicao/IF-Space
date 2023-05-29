@@ -10,11 +10,11 @@ class Postagem {
         this.likes = likes;
     }
 
-    static async postar(userId, titulo, texto, anexo) {//Cria uma nova postagem na tabela
+    static async postar (userId, titulo, texto, autor, anexos) {//Cria uma nova postagem na tabela
         try {
             const result = await db.query(
-                'INSERT INTO postagens (usuariosId, titulo, texto, anexos) VALUES (?, ?, ?, ?)',
-                [userId, titulo, texto, anexo]
+                'INSERT INTO postagens (usuariosId, titulo, texto, autor, anexos) VALUES (?, ?, ?, ?, ?)',
+                [userId, titulo, texto, autor, anexos]
             );
 
             if (result) {
@@ -31,12 +31,12 @@ class Postagem {
         //Edita uma entrada de uma determinada postagem na tabela
     }
 
-    static async selecionarPosts(id) {//Lê a tabela para retornar as postagens para o feed
+    static async selecionarPosts() {//Lê a tabela para retornar as postagens para o feed
         try {
             const [post] = await db.query(
                 'SELECT * FROM postagens ORDER BY dataCriacao DESC'
             );
-            //const user = await Usuario.buscarNome(id);
+
             if (post) {
                 return post; 
             } else {
