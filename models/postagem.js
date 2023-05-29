@@ -1,4 +1,5 @@
 const db = require('../config/db');
+const Usuario = require('./usuarios');
 
 class Postagem {
     constructor (userId, titulo, texto, anexo, likes) {
@@ -9,23 +10,44 @@ class Postagem {
         this.likes = likes;
     }
 
-    async postar(userId, titulo, texto, anexo) {//Cria uma nova postagem na tabela
-        const result = db.query(
-            'INSERT INTO postagens (userId, titulo, texto, anexo, likes) VALUES (?, ?, ?, ?)',
-            [userId, titulo, texto, anexo]
-        );
+    static async postar(userId, titulo, texto, anexo) {//Cria uma nova postagem na tabela
+        try {
+            const result = await db.query(
+                'INSERT INTO postagens (usuariosId, titulo, texto, anexos) VALUES (?, ?, ?, ?)',
+                [userId, titulo, texto, anexo]
+            );
 
-        if (result) {
-            return result[0];
+            if (result) {
+                return result;
+            };
+        } catch (err) {
+            console.error('Erro na inserção da postagem: ',err);
         }
+        
         
     }
 
     async editar () {
-        //Edita um entrada de uma determinada postagem na tabela
+        //Edita uma entrada de uma determinada postagem na tabela
     }
 
-    async exibirNoFeed() {
-        //Lê a tabela para retornar as postagens para o feed
+    static async selecionarPosts(id) {//Lê a tabela para retornar as postagens para o feed
+        try {
+            const [post] = await db.query(
+                'SELECT * FROM postagens ORDER BY dataCriacao DESC'
+            );
+            //const user = await Usuario.buscarNome(id);
+            if (post) {
+                return post; 
+            } else {
+                console.error('Erro. [user] ou [post] estão nulos');
+            }
+
+        } catch (err) {
+            console.error('Erro na seleção de postagens: ',err);
+        }
+        
     }
 }
+
+module.exports = Postagem;

@@ -38,6 +38,18 @@ class Usuario {
         }
     }
 
+    static async buscarNome(id) {//Procura o nome ou apelido para exibir no post
+        try {
+            
+            const [rows] = await db.query('SELECT pNome, sNome, nick from usuarios where id = ?;', [id]);
+            return rows.length > 0 ? rows[0] : null;
+
+        } catch (err) {
+            console.error('Erro na operação de pegar o nome e apelido ' + err);
+
+        }
+    }
+
     static async cadastrar(email, senha, pNome, sNome, nick, dataNasc) {
         try {
             const chave = crypto.randomBytes(32).toString('hex'); //Chave aleatória
@@ -63,6 +75,7 @@ class Usuario {
                 if (auth) {
 
                     const payload = { //Conteúdo em Json que irá para o token
+                        id: rows.id,
                         email: rows.email,  
                         pNome: rows.pNome, 
                         sNome: rows.sNome, 

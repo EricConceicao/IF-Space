@@ -35,88 +35,29 @@
             </nav>        
 
             <main class="posts">
+                <% if (info) { %>
+                    <p class="info"><%= info %></p>
+                <% } %>
 
-                <article class="post">
-                    <div class="post-profile">
-                        <img src="/img/logo-ifspace.png">
-                        <p>Fulano</p>
-                    </div>
-                    <header class="title">
-                        <h1>postzin</h1>
-                    </header>
-                    <a href="/post/user/1">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Molestias, nostrum debitis quidem doloremque quae culpa blanditiis
-                            repudiandae, ut, odit tenetur excepturi minus nam consequuntur modi libero vitae laudantium sunt iure!</p>
-                    </a>
-                </article>
+                <% posts.forEach((post) => { %>
+                    <article class="post">
 
-                <article class="post">
-                    <div class="post-profile">
-                        <img src="/img/logo-ifspace.png">
-                        <p>Fulano</p>
-                    </div>
-                    <header class="title">
-                        <h1>postinho</h1>
-                    </header>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Molestias, nostrum debitis quidem doloremque quae culpa blanditiis
-                        repudiandae, ut, odit tenetur excepturi minus nam consequuntur modi libero vitae laudantium sunt iure!</p>
-                </article>
+                        <div class="post-profile">
+                            <img src="/img/logo-ifspace.png">
+                            <p>aaa</p>
+                        </div>
 
-                <article class="post">
-                    <div class="post-profile">
-                        <img src="/img/logo-ifspace.png">
-                        <p>Fulano</p>
-                    </div>
-                    <header class="title">
-                        <h1>poustageim</h1>
-                    </header>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Molestias, nostrum debitis quidem doloremque quae culpa blanditiis
-                        repudiandae, ut, odit tenetur excepturi minus nam consequuntur modi libero vitae laudantium sunt iure!</p>
-                </article>
+                        <header class="title">
+                            <h1><%= post.titulo %></h1>
+                        </header>
 
-                <article class="post">
-                    <div class="post-profile">
-                        <img src="/img/logo-ifspace.png">
-                        <p>Fulano</p>
-                    </div>
-                    <header class="title">
-                        <h1>postzin</h1>
-                    </header>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Molestias, nostrum debitis quidem doloremque quae culpa blanditiis
-                        repudiandae, ut, odit tenetur excepturi minus nam consequuntur modi libero vitae laudantium sunt iure!</p>
-                </article>
-
-                <article class="post">
-                    <div class="post-profile">
-                        <img src="/img/logo-ifspace.png">
-                        <p>Fulano</p>
-                    </div>
-                    <header class="title">
-                        <h1>postinho</h1>
-                    </header>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Molestias, nostrum debitis quidem doloremque quae culpa blanditiis
-                        repudiandae, ut, odit tenetur excepturi minus nam consequuntur modi libero vitae laudantium sunt iure!</p>
-                </article>
-
-                <article class="post">
-                    <div class="post-profile">
-                        <img src="/img/logo-ifspace.png">
-                        <p>Fulano</p>
-                    </div>
-                    <header class="title">
-                        <h1>poustageim</h1>
-                    </header>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                        Molestias, nostrum debitis quidem doloremque quae culpa blanditiis
-                        repudiandae, ut, odit tenetur excepturi minus nam consequuntur modi libero vitae laudantium sunt iure!</p>
-                </article>
-
+                        <a href="/post/user/<%= post.id %>">
+                            <p><%= post.texto %></p>
+                        </a>
+                    </article>
+                <% }); %>
             </main>
+
             <aside class="aside">
                 <h1 class="title">Amigos</h1>
                 <ul class="friends">

@@ -17,20 +17,20 @@ router.get('/', (req, res, next) => {
 	};	
 });
 
-/* GET página contato. */
-router.get('/contato', (req, res, next) => {
-	res.render('contato', { title: 'IF - Space | Contato' });
-});
+/* POST Login */
+router.post('/login', usuariosController.login);
 
 /* GET renderiza a página de cadastro. */
 router.get('/signup', (req, res, next) => {
 	res.render('singup');
 });
 
-/* POST Login */
-router.post('/login', usuariosController.login);
-
 /* POST para cadastrar. */
 router.post('/signup', usuariosController.cadastrar);
+
+/* GET página contato. */
+router.get('/contato', (req, res, next) => {
+	res.render('contato', { title: 'IF - Space | Contato' });
+});
 
 module.exports = router;

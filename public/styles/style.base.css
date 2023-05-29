@@ -95,9 +95,14 @@ legend {
     flex-flow: column wrap;
     align-content: center;
 }
-
+@keyframes info-blink {
+    from {color: var(--cor-texto-p);}
+    to {color: var(--cor-texto-b); font-size: large;}
+}   
 .info {
+    animation: info-blink 1.5s 1 ease-in forwards;
     font-size: var(--font-tam-opcoes);
+    text-shadow: 1px 1px #000;
     text-align: center;
     font-weight: bold;
 }
