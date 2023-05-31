@@ -17,7 +17,7 @@
 
         <header class="profile" id="topo">
             <img class="pfp" src="/img/logo-ifspace.png" alt="Foto de Perfil">
-            <p class="user-name">Fulano</p>
+            <p class="user-name"><%= posts.autor %></p>
         </header>
 
         <div class="layout">
@@ -35,24 +35,13 @@
 
                 <main class="post-container">
                     <header class="post-header">
-                        <h1 class="title">Revolução industrial</h1>
+                        <h1 class="title"><%= posts.titulo %></h1>
                     </header>
                     <section class="post-section">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem sunt deserunt cum quasi 
-                            ex illum repellat quos maxime sequi dicta eveniet recusandae, maiores ipsa. Quia expedita eligendi
-                             nam nemo incidunt nulla temporibus veniam hic ipsa, rem quidem mollitia laborum nobis quam veritatis
-                              exercitationem rerum saepe aperiam sequi consectetur illum ad dolor excepturi magni? Ex blanditiis quam 
-                              modi, suscipit tempore molestiae minus! Pariatur, ea! Fugiat omnis est corrupti eum! Quo vero necessitatibus sap
-                              iente iure voluptatum, atque doloremque dolorum a, esse labore earum dignissimos distinctio ratione ab ut delectus, quod
-                               harum repellat possimus numquam quos! Quaerat dolores a qui expedita dicta, veritatis suscipit ullam magnam eius vel totam
-                                aspernatur, nostrum omnis tempore harum consequatur explicabo ducimus unde dolorum delectus reprehenderit laudantium! Cum ipsa 
-                                velit consequuntur beatae illo ab doloribus error atque adipisci nemo. Provident saepe dolores, molestiae ullam laboriosam hic ne
-                                sciunt? Voluptatibus autem unde debitis labore, magni neque, at dignissimos asperiores nam et eaque vero! Ut, natus distinctio. Quas nam, eligendi consectetur commodi, totam laborum, molestiae eum sit dolores ipsam perspiciatis nulla. Placeat porro sapiente totam voluptatum facere quibusdam non eligendi
-                             doloremque unde, voluptatibus, consectetur dignissimos vel in voluptatem autem hic voluptate
-                             s corrupti fugiat, eius quaerat magni quia officiis. Non, voluptatum ut.</p>
+                        <p><%= posts.texto %></p>
                     </section>
                     <div class="reactions">
-                        <button class="btn">Gostei - [10]</button>
+                        <button class="btn"><%= posts.likes %></button>
 
                         <button class="btn">Seguir</button>
                     </div>

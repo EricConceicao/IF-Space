@@ -4,10 +4,7 @@ const auth = require('../middlewares/autenticacao.jwt');
 const postagensController = require('../controllers/postagens.controller');
 
 //Receber o post do usuário em que você acessou 
-router.get('/user/:id', auth, (req, res, next) => {
-    let id = req.params.id;
-    res.render('principal/userpost', { id: id })
-});
+router.get('/user/:id', auth, postagensController.exibirPaginaDoPost);
 
 //Receber a página para fazer uma postagem
 router.get('/', auth, (req, res, next) => {

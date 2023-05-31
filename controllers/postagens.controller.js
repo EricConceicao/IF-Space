@@ -31,7 +31,6 @@ exports.postar = async function (req, res) {
 exports.exibirPostagens = async function (req, res) {
     try {
     const posts = await Postagem.selecionarPosts(req.usuario.id);
-    console.log('info da postagem: ', posts);
 
     const info = req.query.info;
     if (req.usuario.nick) {
@@ -40,6 +39,25 @@ exports.exibirPostagens = async function (req, res) {
     } else {
         const { pNome } = req.usuario;
         res.render('principal/home', { name: pNome, info, posts });
+    }
+
+    } catch (err) {
+        console.error('Erro no controlador de exibição de postagens: ', err);
+    }
+}
+
+exports.exibirPaginaDoPost = async function (req, res) {
+    id = req.params.id;
+    try {
+    console.log('id: ',id) 
+    const posts = await Postagem.selecionarPostDoUsuario(id);
+    console.log('posts: ',posts)
+    const info = req.query.info;
+    
+    if (req.usuario.nick) {
+        res.render('principal/userpost', { info, posts });
+    } else {
+        res.render('principal/userpost', { info, posts });
     }
 
     } catch (err) {

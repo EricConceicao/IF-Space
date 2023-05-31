@@ -48,6 +48,24 @@ class Postagem {
         }
         
     }
-}
 
+    static async selecionarPostDoUsuario(id) {//Lê a tabela para retornar a postagem expecifica
+        try {
+            const [post] = await db.query(
+                'SELECT * FROM postagens WHERE id = ? ORDER BY dataCriacao DESC',
+                [id]
+            );
+
+            if (post) {
+                return post[0]; 
+            } else {
+                console.error('Erro. [user] ou [post] estão nulos');
+            }
+
+        } catch (err) {
+            console.error('Erro na seleção de postagens: ',err);
+        }
+        
+    }
+}
 module.exports = Postagem;
