@@ -94,6 +94,7 @@ legend {
     display: flex;
     flex-flow: column wrap;
     align-content: center;
+    text-align: center;
 }
 @keyframes info-blink {
     from {color: var(--cor-texto-p);}
@@ -105,6 +106,14 @@ legend {
     text-shadow: 1px 1px #000;
     text-align: center;
     font-weight: bold;
+}
+
+.logo-title {
+    flex-grow: 1;
+    font-family: 'Rajdhani', sans-serif;
+    line-height: 1;
+    color: var(--cor-destaque);
+    font-size: clamp(1.8rem, 10vw + 1.2rem, 2.6rem);
 }
 /*=======================================*/
 
@@ -207,31 +216,3 @@ legend {
 }
 
 /*============================*/
-
-/* Footer */
-.footer {
-    width: 100%;
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto-b);
-    text-align: right;
-    padding: .6em;
-    
-    position: absolute;
-    bottom: 0;
-}
-
-.footer p {
-    text-shadow: 0 0 4px black;
-    margin-right: 1em
-}
-
-.footer a {
-    display: inline;
-}
-
-@media screen and (max-width: 630px) {
-    .footer {
-        margin-top: 2em;
-        position: relative;
-    }
-}

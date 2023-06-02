@@ -8,13 +8,7 @@ const auth = require('../middlewares/autenticacao.jwt');
 /* GET renderiza a página de login. */
 router.get('/', (req, res, next) => {
 	let info = req.query.info;
-
-	if (req.cookies.Auth) { // Se já existe uma sessão. Já manda bala		
-		res.redirect('/home');
-		
-	} else {
-		res.render('index', { info });
-	};	
+	res.render('index', { layout: 'layouts/layout-login', title: 'IF - Space | Login', info });	
 });
 
 /* POST Login */
@@ -22,7 +16,7 @@ router.post('/login', usuariosController.login);
 
 /* GET renderiza a página de cadastro. */
 router.get('/signup', (req, res, next) => {
-	res.render('singup');
+	res.render('singup', { layout: 'layouts/layout-login', title: 'IF - Space | Cadastro'});
 });
 
 /* POST para cadastrar. */
@@ -30,7 +24,7 @@ router.post('/signup', usuariosController.cadastrar);
 
 /* GET página contato. */
 router.get('/contato', (req, res, next) => {
-	res.render('contato', { title: 'IF - Space | Contato' });
+	res.render('contato', { layout: 'layouts/layout-login', title: 'IF - Space | Contato' });
 });
 
 module.exports = router;

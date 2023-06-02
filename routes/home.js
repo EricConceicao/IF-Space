@@ -7,12 +7,9 @@ const postagensController = require('../controllers/postagens.controller');
 router.get('/', auth, postagensController.exibirPostagens);
 
 router.get('/profile', auth, (req, res, next) => {//Vai ter um parâmetro 'id' aqui depois
-    if (req.usuario.nick) { //Se o usuário tiver um nick. O rendezira primeiro
+    if (req.usuario) { //Se o usuário tiver um nick. O rendezira primeiro
         const { nick } = req.usuario;
-        res.render('principal/profile', { name: nick });
-    } else {
-        const { pNome } = req.usuario;
-        res.render('principal/profile', { name: pNome });
+        res.render('principal/profile', { name: nick, title: 'IF - Space | Perfil' });
     }
 });
 

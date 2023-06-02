@@ -1,0 +1,23 @@
+<style>
+    @keyframes float {
+        0% {transform: translateY(-.5em);}
+        50% {transform: translateY(.5em);}
+        100% {transform: translateY(-.5em);}
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h1 {
+        animation: float 4s infinite ease-in-out;
+        padding: 1em;
+        color: var(--cor-texto-b);
+    }
+</style>
+
+<h1>Opa. Acho que você foi longe demais e se perdeu</h1>
+<a href="/">Volta à central</a>

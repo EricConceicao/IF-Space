@@ -7,7 +7,7 @@ body {
     min-width: 300px;
 }
 
-.container {
+.container-login {
     max-width: 1220px;
     margin-inline: auto;
     padding: 0em .4em;
@@ -47,8 +47,8 @@ body {
         backdrop-filter: blur(3px);
     }
     aside div {
-        padding: .2em;
         flex-direction: column;
+        padding: .2em;
     }
     .layout {
         gap: 1em;
@@ -63,14 +63,6 @@ body {
     border-radius: 50%;
     border: solid .2em var(--cor-texto-p);
     box-shadow: .3em .3em .8em var(--cor-destaque);
-}
-
-.logo-title {
-    flex-grow: 1;
-    font-family: 'Rajdhani', sans-serif;
-    line-height: 1;
-    color: var(--cor-destaque);
-    font-size: clamp(1.8rem, 10vw + 1.2rem, 2.6rem);
 }
 
 .title {
@@ -121,5 +113,32 @@ body {
 
     .login p {
         padding: 1em;
+    }
+}
+
+.footer {
+    width: 100%;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-b);
+    text-align: right;
+    padding: .6em;
+    
+    position: absolute;
+    bottom: 0;
+}
+
+.footer p {
+    text-shadow: 0 0 4px black;
+    margin-right: 1em
+}
+
+.footer a {
+    display: inline;
+}
+
+@media screen and (max-width: 547px) {
+    .footer {
+        margin-top: 2em;
+        position: relative;
     }
 }

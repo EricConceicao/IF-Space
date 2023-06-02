@@ -33,12 +33,13 @@ exports.exibirPostagens = async function (req, res) {
     const posts = await Postagem.selecionarPosts(req.usuario.id);
 
     const info = req.query.info;
-    if (req.usuario.nick) {
+    if (req.usuario) {
+        console.log('entrei aqui')
         const { nick } = req.usuario;
-        res.render('principal/home', { name: nick, info, posts });
+        res.render('principal/home', { name: nick, title: 'IF - Space | Home', info, posts });
     } else {
-        const { pNome } = req.usuario;
-        res.render('principal/home', { name: pNome, info, posts });
+        console.error(req.usuario);
+        res.redirect('/?info=Algo deu errado ao resgatar os dados. Tente novamente');
     }
 
     } catch (err) {
@@ -54,10 +55,10 @@ exports.exibirPaginaDoPost = async function (req, res) {
     console.log('posts: ',posts)
     const info = req.query.info;
     
-    if (req.usuario.nick) {
-        res.render('principal/userpost', { info, posts });
+    if (req.usuario) {
+        res.render('principal/userpost', { title: 'IF - Space | Post', info, posts });
     } else {
-        res.render('principal/userpost', { info, posts });
+        res.redirect('/home?info=Algo deu errado ao resgatar os dados. Tente novamente');
     }
 
     } catch (err) {

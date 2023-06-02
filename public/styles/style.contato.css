@@ -1,13 +1,4 @@
-body {
-  min-height: 100vh;
-  font-size: var(--font-tam-texto);
-  background-color: var(--cor-clara-shade-2);
-  background-image: url('../img/bkg-2.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.container {
+.container-contato {
   text-align: center;
 }
 

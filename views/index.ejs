@@ -1,46 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IF-Space | Login</title>
+<div class="container-login">
+  <aside class="aside">
+    <div>
+      <img src="/img/logo-ifspace.png" alt="logo">
+      <h1 class="logo-title">IF-Space</h1>
+    </div>
+  </aside>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Rajdhani:wght@500&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
-    
-    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/styles/style.base.css">
-    <link rel="stylesheet" href="/styles/style.index.css">
-  </head>
-  
-  <body>
-    <div class="container">
-      <aside class="aside">
-        <div>
-          <img src="/img/logo-ifspace.png" alt="logo">
-          <h1 class="logo-title">IF-Space</h1>
-        </div>
-      </aside>
+  <div class="layout">
+    <main class="hero">
+      <section>
+        <header>
+          <h1 class="title">Bem vindo!</h1>
+          <i class="fa-solid fa-laptop-code fa-2xl"></i>
+        </header>
+        <p>Aqui no IF-Space, você tem seu próprio espaço para conhecer novos amigos que compartilham de seus interesses.
+          Para trocar conhecimento, dúvidas e informações.</p>
+      </section>
+    </main>
 
-      <div class="layout">
-        <main class="hero">
-          <section>
-            <header>
-              <h1 class="title">Bem vindo!</h1>
-              <i class="fa-solid fa-laptop-code fa-2xl"></i>
-            </header>
-            <p>Aqui no IF-Space, você tem seu próprio espaço para conhecer novos amigos que compartilham de seus interesses.
-              Para trocar conhecimento, dúvidas e informações.</p>
-          </section>
-        </main>
-
-        <form action="/login" method="post" class="login">
-          <% if (info) { %>
-            <p class="info"><%= info %></p>
-          <% } %>
+    <form action="/login" method="post" class="login">
+      <% if (info) { %>
+        <p class="info">
+          <%= info %>
+        </p>
+        <% } %>
 
           <div class="fields">
 
@@ -60,21 +43,19 @@
             <div class="options">
               <a href="#" class="link">Esqueceu sua senha?</a>
             </div>
-            
-            <input class="btn" type="submit" value="Acessar">       
-            <a href="/signup" class="btn"><i class="fa-solid fa-user-astronaut fa-lg"></i>Cadastre-se!</a>    
+
+            <input class="btn" type="submit" value="Acessar">
+            <a href="/signup" class="btn"><i class="fa-solid fa-user-astronaut fa-lg"></i>Cadastre-se!</a>
 
           </div>
-        </form>
-      
-      </div>
-      
-    </div> 
-      <footer class="footer">
-        <p>
-          &copy; IF-Space 2023. Todos os direitos reservados. <br>
-          <a href="/contato" class="link">Contate-nos</a>
-        </p> 
-      </footer>  
-  </body>
-</html>
+    </form>
+
+  </div>
+
+</div>
+<footer class="footer">
+  <p>
+    &copy; IF-Space 2023. Todos os direitos reservados. <br>
+    <a href="/contato" class="link">Contate-nos</a>
+  </p>
+</footer>
