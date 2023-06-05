@@ -1,61 +1,30 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edição de postagem</title>
-        <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Rajdhani:wght@500&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
-    
-        <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="/styles/style.base.css">
-        <link rel="stylesheet" href="/styles/style.home.css">
-    </head>
+<form action="/post" method="post" class="post-form">
+    <% if (info) { %>
+        <p class="info">
+            <%= info %>
+        </p>
+    <% } %>
 
-    <body>
+    <fieldset class='fields'>
+        <legend>Edite sua postagem</legend>
 
-        <header class="profile" id="topo">
-            <img class="pfp" src="/img/logo-ifspace.png" alt="Foto de Perfil">
-            <p class="user-name"><%= name %></p>
-        </header>
-
-        <div class="layout">
-            <nav class="nav">
-                <ul class="nav-items">
-                    <li class="nav-item"><a href="/home/profile" class="btn"><i class="fa-regular fa-address-card fa-lg"></i> Perfil</a></li>
-                    <li class="nav-item"><a href="/home" class="btn"><i class="fa-solid fa-house-user fa-lg"></i> Página Inicial</a></li>
-                    <li class="nav-item"><a href="/home/logout" class="btn"><i class="fa-solid fa-rocket fa-lg"></i> LogOut</a></li>
-                </ul>
-            </nav>
-        
-            <form action="/post" method="post" class="post-form">
-                <% if (info) { %>
-                    <p class="info"><%= info %></p>
-                <% } %>
-
-                <fieldset class='fields'>
-                    <legend>Edite sua postagem</legend>
-
-                    <div class="field">
-                        <label for="title">Título da postagem</label>
-                        <input type="text" class="field" name="titulo" id="title" size="30">
-                    </div>
-
-                    <div class="field">
-                        <label for="text">Descrição/Texto</label>
-                        <textarea type="text" name="texto" id="text" cols="30" rows="10" placeholder="Minha postagem muito legal"></textarea>
-                    </div>
-
-                    <div class="field">
-                        <label for="file">Anexe uma imagem ou arquivo!</label>
-                        <input type='file' name="anexo" id="file">
-                        
-                    </div>
-                    <input class="btn" type="submit" value="Postar!">
-                </fieldset>
-                
-            </form>
+        <div class="field">
+            <label for="title">Título da postagem</label>
+            <input type="text" class="field" name="titulo" id="title" size="30">
         </div>
-    </body>
-</html>
+
+        <div class="field">
+            <label for="text">Descrição/Texto</label>
+            <textarea type="text" name="texto" id="text" cols="30" rows="10"
+                placeholder="Minha postagem muito legal"></textarea>
+        </div>
+
+        <div class="field">
+            <label for="file">Anexe uma imagem ou arquivo!</label>
+            <input type='file' name="anexo" id="file">
+
+        </div>
+        <input class="btn" type="submit" value="Postar!">
+    </fieldset>
+
+</form>

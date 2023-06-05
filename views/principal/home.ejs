@@ -1,80 +1,31 @@
-<header class="profile" id="topo">
-    <img class="pfp" src="/img/logo-ifspace.png" alt="Foto de Perfil">
-    <p class="user-name">
-        <%= name %>
-    </p>
-</header>
+<main class="posts">
+    <% if (info) { %>
+        <p class="info">
+            <%= info %>
+        </p>
+    <% } %>
 
-<div class="layout">
-    <nav class="nav">
-        <ul class="nav-items">
-            <li class="nav-item"><a href="#topo" class="btn"><i class="fa-regular fa-circle-up fa-lg"></i> Voltar ao
-                    topo</a></li>
-            <li class="nav-item"><a href="/home/profile" class="btn"><i class="fa-regular fa-address-card fa-lg"></i>
-                    Perfil</a></li>
-            <li class="nav-item"><a href="/home" class="btn"><i class="fa-solid fa-house-user fa-lg"></i> Página
-                    Inicial</a></li>
-            <li class="nav-item"><a href="/post" class="btn"><i class="fa-regular fa-paper-plane fa-lg"></i> Postar</a>
-            </li>
-            <li class="nav-item"><a href="/home/logout" class="btn"><i class="fa-solid fa-rocket fa-lg"></i> LogOut</a>
-            </li>
-        </ul>
-    </nav>
+    <% posts.forEach((post)=> { %>
+        <article class="post">
 
-    <main class="posts">
-        <% if (info) { %>
-            <p class="info">
-                <%= info %>
-            </p>
-            <% } %>
+            <div class="post-profile">
+                <img src="/img/logo-ifspace.png">
+                <p>
+                    <%= post.autor %>
+                </p>
+            </div>
 
-                <% posts.forEach((post)=> { %>
-                    <article class="post">
+            <header >
+                <h1 class="title">
+                    <%= post.titulo %>
+                </h1>
+            </header>
 
-                        <div class="post-profile">
-                            <img src="/img/logo-ifspace.png">
-                            <p>
-                                <%= post.autor %>
-                            </p>
-                        </div>
-
-                        <header class="title">
-                            <h1>
-                                <%= post.titulo %>
-                            </h1>
-                        </header>
-
-                        <a href="/post/user/<%= post.id %>">
-                            <p>
-                                <%= post.texto %>
-                            </p>
-                        </a>
-                    </article>
-                    <% }); %>
-    </main>
-
-    <aside class="aside">
-        <h1 class="title">Amigos</h1>
-        <ul class="friends">
-            <li>
-                <div class="friend">
-                    <img src="/img/logo-ifspace.png">
-                    <p>Fulano</p>
-                </div>
-            </li>
-            <li>
-                <div class="friend">
-                    <img src="/img/logo-ifspace.png">
-                    <p>Ciclano</p>
-                </div>
-            </li>
-            <li>
-                <div class="friend">
-                    <img src="/img/logo-ifspace.png">
-                    <p>Beltrano</p>
-                </div>
-            </li>
-        </ul>
-    </aside>
-
-</div>
+            <a href="/post/user/<%= post.id %>">
+                <p>
+                    <%= post.texto %>
+                </p>
+            </a>
+        </article>
+    <% }); %>
+</main>

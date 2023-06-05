@@ -110,7 +110,7 @@ body {
     .nav-items,
     .friends {
         display: grid;
-        grid-auto-columns: minmax(9.1rem, 1fr);
+        grid-auto-columns: minmax(8.4rem, 1fr);
         grid-auto-flow: column;
 
         overflow-x: scroll;
@@ -147,6 +147,7 @@ body {
     padding: .5rem;
     margin: 2em 1em;
     min-height: 20em;
+ 
     border: solid .125rem var(--cor-contraste);
     border-radius: 10px;
     background: var(--cor-clara-1);
@@ -197,9 +198,18 @@ Página do perfil
 }
 
 .profile-form .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+
     border: solid .2em var(--cor-clara-2);
     border-radius: inherit;
     background-color: var(--cor-fundo);
+}
+@media screen and (max-width: 600px) {
+    .profile-form .fields {
+        grid-template-columns: 1fr;
+    }
 }
 
 .profile-form .btn {
@@ -249,14 +259,16 @@ Postagens dos outros usuários
 */
 
 .container {
-    flex-basis: 85%;
+    flex-basis: 80%;
     background-color: var(--cor-clara-shade-2);
     padding: .5em;
-    border: solid 0.3em var(--cor-clara-shade-1);
+
+    border-right: solid 0.3em var(--cor-clara-shade-1);
+    border-left: solid 0.3em var(--cor-clara-shade-1);
 }
 
 .container aside {
-    margin: 10em 1em 0 1em;
+    margin: 6em 1em 0 1em;
 }
 
 .post-container {
@@ -269,16 +281,26 @@ Postagens dos outros usuários
 }
 
 .post-header {
+    text-align: center;
     border: solid 0.2em var(--cor-clara-3);
     border-radius: 5px;
     background-color: var(--cor-clara-2);
+
+    min-width: 100%;
 }
 
 .post-section {
     background-color: var(--cor-clara-1);
     border-radius: 5px;
+
     padding: 0.4em;
     margin: 0.4em;
+    min-height: 15em;
+    min-width: 100%;
+}
+
+.post-section p {
+    padding: .5em
 }
 
 .reactions {
@@ -296,10 +318,16 @@ Seção de comentários
 */
 
 .comment {
+    font-size: 0.8em;
+    background: linear-gradient(45deg, var(--cor-clara-2) 10%,var(--cor-clara-shade-1) 95%);
+
+    border: solid .1em var(--cor-clara-shade-1);
+    border-bottom: solid .15em var(--cor-contraste);
     border-radius: 5px;
-    background-color: var(--cor-clara-2);
-    border-bottom: double .2em var(--cor-clara-shade-2) ;
+
     padding: 1em;
+    margin-bottom: .5em;
+    max-height: 10em;
 }
 
 .comment img {

@@ -23,7 +23,7 @@
 
     --font-tam-opcoes: clamp(.8rem, 5vw, 1rem);
     --font-tam-texto: clamp(.5rem, 5vw, 1.2rem);
-    --font-tam-titulo: clamp(1.5rem, 8vw, 2rem);
+    --font-tam-titulo: clamp(1.4rem, 6vw, 2rem);
 }
 /*=======================================*/
 
@@ -64,11 +64,17 @@ input[type="submit"]:hover {
 }
 
 textarea {
+    font-size: var(--font-tam-texto);
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--cor-texto-p);
+
     border: solid .2em var(--cor-escura-1);
-    background: var(--cor-clara-3);
     border-radius: 10px;
-    resize: none;
     padding: .5rem;
+
+    background: var(--cor-clara-3);
+    width: 100%;
+    resize: vertical;
 }
 
 fieldset {
@@ -87,7 +93,6 @@ legend {
 
 .title {
     font-size: var(--font-tam-titulo);
-    padding: 0 1em;
 }
 
 .center {
@@ -96,6 +101,7 @@ legend {
     align-content: center;
     text-align: center;
 }
+
 @keyframes info-blink {
     from {color: var(--cor-texto-p);}
     to {color: var(--cor-texto-b); font-size: large;}
@@ -115,6 +121,35 @@ legend {
     color: var(--cor-destaque);
     font-size: clamp(1.8rem, 10vw + 1.2rem, 2.6rem);
 }
+
+
+.footer {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-b);
+    text-align: right;
+    padding: .6em;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p {
+    text-shadow: 0 0 4px black;
+    margin-right: 1em
+}
+
+.footer a {
+    display: inline;
+}
+
+@media screen and (max-width: 547px) {
+    .footer {
+        margin-top: 2em;
+        position: relative;
+    }
+}
+
 /*=======================================*/
 
 /* Estilizando links */
@@ -142,7 +177,7 @@ legend {
     font-family: 'Rajdhani', sans-serif;
     color: var(--cor-texto-p);
     font-size: var(--font-tam-opcoes);
-
+    white-space: nowrap;
     padding: .3em .3em;
     margin: .1em;
     border: .1rem solid var(--cor-contraste);

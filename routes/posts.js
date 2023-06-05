@@ -11,10 +11,7 @@ router.get('/', auth, (req, res, next) => {
     let info = req.query.info;
     if (req.usuario.nick) {
         const { nick } = req.usuario;
-        res.render('principal/post', { name: nick, info });
-    } else {
-        const { pNome } = req.usuario;
-        res.render('principal/post', { name: pNome, info });
+        res.render('principal/post', { name: nick, title: 'IF - Space | Faça um postagem', info });
     }
 });
 

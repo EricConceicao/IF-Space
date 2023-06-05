@@ -7,6 +7,10 @@ body {
     min-width: 300px;
 }
 
+/*========================*/
+/* CSS da página de login */
+/*========================*/
+
 .container-login {
     max-width: 1220px;
     margin-inline: auto;
@@ -19,11 +23,11 @@ body {
 }
 
 .layout {
-   display: flex;
-   flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.layout > * {
+.layout>* {
     box-shadow: 0 0 .4em #000;
 }
 
@@ -33,23 +37,25 @@ body {
 }
 
 .aside div {
-    display: flex;  
+    display: flex;
     align-items: center;
     gap: 1em;
     margin-bottom: 1em;
 }
 
 @media screen and (min-width:800px) {
-    .aside {        
+    .aside {
         background-image: linear-gradient(180deg, var(--cor-contraste), #646496cc);
         min-height: 100vh;
         flex-basis: 20%;
         backdrop-filter: blur(3px);
     }
+
     aside div {
         flex-direction: column;
         padding: .2em;
     }
+
     .layout {
         gap: 1em;
         flex: 50%;
@@ -83,7 +89,7 @@ body {
 
 .hero section {
     text-align: center;
-    padding: 1em 1em 1.4em 1em; 
+    padding: 1em 1em 1.4em 1em;
 }
 
 .hero header {
@@ -100,7 +106,7 @@ body {
     border-radius: 10px 10px 0 0;
     padding: 0.8em;
     flex: 1;
-    background: linear-gradient(135deg, var(--cor-clara-1),var(--cor-fundo) 75%);
+    background: linear-gradient(135deg, var(--cor-clara-1), var(--cor-fundo) 75%);
 }
 
 @media screen and (max-width:547px) {
@@ -116,29 +122,102 @@ body {
     }
 }
 
-.footer {
+/*===========================*/
+/* CSS da página de cadastro */
+/*===========================*/
+
+.container-sign {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 1220px;
+    margin-inline: auto;
+    padding: 0em .4em;
+}
+
+.aside-logo {
+    padding-top: .4em;
+}
+
+.aside-logo div {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.aside-logo img {
+    flex-grow: 1;
+    width: 35vw;
+    max-width: 6em;
+    border-radius: 50%;
+    border: solid .2em var(--cor-texto-p);
+    box-shadow: .3em .3em .8em var(--cor-destaque);
+}
+
+.signup {
+    width: 80%
+}
+
+.signup .fields {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    padding: 2em;
+    border: solid .2rem var(--cor-clara-1);
+    border-radius: 10px;
+    box-shadow: 0 0 0.4em #000;
+    background-image: linear-gradient(135deg, var(--cor-fundo) 40%, var(--cor-contraste));
+}
+
+.signup .fields input {
     width: 100%;
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto-b);
-    text-align: right;
-    padding: .6em;
-    
-    position: absolute;
-    bottom: 0;
 }
 
-.footer p {
-    text-shadow: 0 0 4px black;
-    margin-right: 1em
-}
-
-.footer a {
-    display: inline;
-}
-
-@media screen and (max-width: 547px) {
-    .footer {
-        margin-top: 2em;
-        position: relative;
+@media screen and (min-width:580px) {
+    .signup .fields {
+        grid-template-columns: 1fr 1fr;
     }
+}
+
+/*==========================*/
+/* CSS da página de contato */
+/*==========================*/
+
+.container-contato {
+    text-align: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
+    ;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1em;
+    margin: 1em;
+    background: linear-gradient(180deg, var(--cor-contraste) 20%, var(--cor-fundo) 25%);
+
+    border: 0.2em solid var(--cor-clara-1);
+    border-bottom: solid .4em var(--cor-clara-shade-2);
+    border-radius: 10px;
+}
+
+.card img {
+    border: solid 1em var(--cor-clara-shade-1);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    width: 10em;
+}
+
+.card a {
+    display: inline;
 }
