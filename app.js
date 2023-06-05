@@ -43,11 +43,11 @@ app.use(function (err, req, res, next) {
 
   if (err.status == 404) { // Página 404 não encontrado
     res.status(err.status);
-    res.render('404', { title: 'Não encontrado' });
+    res.render('404', { layout: './layouts/layout-index', title: 'Não encontrado' });
   }
 
   if (err.status == 500) { // Página de erro
-    res.render('error', { title: 'Erro no servidor interno' });
+    res.render('error', { layout: './layouts/layout-index', title: 'Erro no servidor interno' });
   }
 });
 

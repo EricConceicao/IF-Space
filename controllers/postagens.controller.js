@@ -34,7 +34,6 @@ exports.exibirPostagens = async function (req, res) {
 
         const info = req.query.info;
         if (req.usuario) {
-            console.log('entrei aqui')
             const { nick } = req.usuario;
             res.render('principal/home', { name: nick, title: 'IF - Space | Home', info, posts });
         } else {
@@ -56,7 +55,7 @@ exports.exibirPaginaDoPost = async function (req, res) {
         const info = req.query.info;
 
         if (req.usuario) {
-            res.render('principal/userpost', {name: posts.autor, title: 'IF - Space | Postagem', info, posts });
+            res.render('principal/userpost', { name: posts.autor, title: 'IF - Space | Postagem', info, posts });
         } else {
             res.redirect('/home?info=Algo deu errado ao resgatar os dados. Tente novamente');
         }

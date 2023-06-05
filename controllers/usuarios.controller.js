@@ -11,7 +11,7 @@ exports.cadastrar = async function (req, res) {
         //Verifica se não há valores nulos
         if (!email || !senha || !pNome || !sNome || !dataNasc) {
 
-            res.render('/signup', {layout: 'layouts/layout-login', title: 'IF - Space | Cadastro', erro: 'Campos obrigatórios em branco'});
+            res.render('/signup', {layout: './layouts/layout-login', title: 'IF - Space | Cadastro', erro: 'Campos obrigatórios em branco'});
         }
 
         if (!nick) {
@@ -27,7 +27,7 @@ exports.cadastrar = async function (req, res) {
             await Usuario.cadastrar(email, hashSenha, pNome, sNome, nick, dataNasc);
             res.redirect('/?info=Cadastro feito com sucesso!');
         } else {
-            res.status(409).render('signup', {layout: 'layouts/layout-login', title: 'IF - Space | Cadastro', erro: 'Email já cadastrado' });
+            res.status(409).render('signup', {layout: './layouts/layout-login', title: 'IF - Space | Cadastro', erro: 'Email já cadastrado' });
         }
 
     } catch (err) {
@@ -42,15 +42,15 @@ exports.login = async function (req, res) {
     const { email, senha } = req.body;
 
     try {
-        const token = await Usuario.login(email, senha);
+        const result = await Usuario.login(email, senha);
 
-        if(token) {
-            const tokenString = JSON.stringify(token);
+        if(result.result) {
+            const tokenString = JSON.stringify(result.values);
 
             res.cookie('Auth', tokenString, { maxAge: 1000 * 60 * 60 * 12 });
             res.redirect('/home');
         } else {
-            res.render('index', { layout: 'layouts/layout-login', title: 'IF - Space | Login', info: 'Senha incorreta' });
+            res.render('index', { layout: './layouts/layout-index', title: 'IF - Space | Login', info: result.erro });
         }
     } catch (err) {
         console.error('Erro na operação de login:' + err)
