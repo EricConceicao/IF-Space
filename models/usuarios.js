@@ -114,6 +114,21 @@ class Usuario {
             console.error('Erro no método login ' + err);
         }
     }
-}
 
+    static async editarDados(pNome, sNome, nick, dataNasc, cursando, hobbies, bio, telefone) {
+        try {
+            result = await db.query(
+                `UPDATE usuarios SET
+                pNome = ?, sNome = ?,  nick = ?, dataNasc = ?, cursando = ?, hobbies = ?, bio = ?, telefone = ?
+                WHERE id = ?;`,
+                [pNome, sNome, nick, dataNasc, cursando, hobbies, bio, telefone]
+            );
+
+            return rows.affectedRows > 0 ? true : false;
+
+        } catch (err) {
+            console.error('Erro no método de editar dados' + err);
+        }
+    }
+}
 module.exports = Usuario;

@@ -53,6 +53,11 @@ a {
     color: var(--cor-texto-b);
 }
 
+p {
+    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
+}
+
 input {
     color: var(--cor-texto-b);
     border: none;

@@ -9,19 +9,30 @@
     <h1>Editar perfil</h1>
   </header>
 
-  <form method="POST" action="" class="profile-form">
+  <% if (info) { %>
+    <p class="info">
+        <%= info %>
+    </p>
+  <% } %>
+
+  <form method="put" action="/atualizar" class="profile-form">
 
     <fieldset class="fields">
       <legend>Minhas informações</legend>
 
       <div class="field">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome">
+        <label for="pNome">Nome</label>
+        <input type="text" id="pNome" name="pNome">
+      </div>
+
+      <div class="field">
+        <label for="sNome">Sobrenome</label>
+        <input type="text" id="sNome" name=sNome">
       </div>
 
       <div class="field">
         <label for="apelido">Apelido</label>
-        <input type="text" id="apelido" name="apelido">
+        <input type="text" id="apelido" name="nick">
       </div>
 
       <div class="field">
@@ -42,6 +53,7 @@
         <label for="bio">Sua Bio/Descrição</label>
         <textarea id="bio" name="bio" cols="30" rows="5"></textarea>
       </div>
+      
     </fieldset>
 
     <fieldset class="fields">
@@ -55,10 +67,20 @@
 
       <div class="field">
         <label for="telefone">Telefone/WhatsApp</label>
-        <input type="tel" id="telefone" name="telefone">
+        <input type="tel" id="telefone" name="telefone" maxlength="11" pattern="[0-9]+">
       </div>
 
     </fieldset>
+
+    <fieldset class="fields">
+      <legend>Segurança</legend>
+      <p>Digite sua senha para confirmar o envio dos dados</p>
+      <div class="field">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" minlength="8" required>
+      </div>
+    </fieldset>
+
     <input type="submit" class="btn" value="Salvar Alterações">
   </form>
 

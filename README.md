@@ -15,7 +15,11 @@ senha       VARCHAR(64)     NOT NULL,
 pNome       VARCHAR(25)     NOT NULL,
 sNome       VARCHAR(25)     NOT NULL,
 nick        VARCHAR(50)     UNIQUE,
-dataNasc    DATE NOT NULL,
+dataNasc    DATE            NOT NULL,
+cursos      VARCHAR(100)    NULL,
+hobbys      VARCHAR(100)    NULL,
+bio         TEXT            NULL,
+telefone    VARCHAR(9)
 chave       VARCHAR(64)     NOT NULL,
 dataCriacao TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
 );
