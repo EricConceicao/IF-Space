@@ -45,9 +45,7 @@ class Usuario {
 
     static async buscarNome(id) {// Procura o nome ou apelido para exibir no post
         try {
-
             const [rows] = await db.query('SELECT pNome, sNome, nick from usuarios where id = ?;', [id]);
-            console.log(rows[0]);
             return rows.length > 0 ? rows[0] : null;
 
         } catch (err) {
@@ -115,13 +113,13 @@ class Usuario {
         }
     }
 
-    static async editarDados(pNome, sNome, nick, dataNasc, cursando, hobbies, bio, telefone) {
+    static async editarDados(id, pNome, sNome, nick, dataNasc, curso, hobby, bio, telefone) {
         try {
-            result = await db.query(
+            const [rows] = await db.query(
                 `UPDATE usuarios SET
-                pNome = ?, sNome = ?,  nick = ?, dataNasc = ?, cursando = ?, hobbies = ?, bio = ?, telefone = ?
+                pNome = ?, sNome = ?, nick = ?, dataNasc = ?, curso = ?, hobby = ?, bio = ?, telefone = ?
                 WHERE id = ?;`,
-                [pNome, sNome, nick, dataNasc, cursando, hobbies, bio, telefone]
+                [pNome, sNome, nick, dataNasc, curso, hobby, bio, telefone, id]
             );
 
             return rows.affectedRows > 0 ? true : false;

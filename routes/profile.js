@@ -11,8 +11,6 @@ router.get('/', auth, (req, res, next) => {//Vai ter um parâmetro 'id' aqui dep
     }
 });
 
-router.put('/atualizar', auth, usuariosController.editar, () => {
-    console.log('hmmmm');
-});
+router.post('/atualizar', auth, usuariosController.editar);
 
 module.exports = router;

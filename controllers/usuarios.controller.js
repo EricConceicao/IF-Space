@@ -59,13 +59,12 @@ exports.login = async function (req, res) {
 }
 
 exports.editar = async function (req, res) {
-    console.log('aaa')
     let { pNome, sNome, nick, dataNasc, cursando, hobbies, bio, telefone, senha } = req.body;
 
     if (senha && pNome || sNome || nick || dataNasc || cursando || hobbies || bio || telefone) {
-        try {
-            
-            checkSenha = await Usuario.compararSenha(senha);
+        try {            
+            const user = await Usuario.procurarEmail(req.usuario.email);
+            checkSenha = await Usuario.compararSenha(senha, user.senha);
              
             if (checkSenha) {
                 const id = req.usuario.id;

@@ -16,10 +16,10 @@ pNome       VARCHAR(25)     NOT NULL,
 sNome       VARCHAR(25)     NOT NULL,
 nick        VARCHAR(50)     UNIQUE,
 dataNasc    DATE            NOT NULL,
-cursos      VARCHAR(100)    NULL,
-hobbys      VARCHAR(100)    NULL,
+curso       VARCHAR(100)    NULL,
+hobby       VARCHAR(100)    NULL,
 bio         TEXT            NULL,
-telefone    VARCHAR(9)
+telefone    VARCHAR(14)     NULL,
 chave       VARCHAR(64)     NOT NULL,
 dataCriacao TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
 );
