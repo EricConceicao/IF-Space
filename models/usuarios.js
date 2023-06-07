@@ -121,8 +121,18 @@ class Usuario {
                 WHERE id = ?;`,
                 [pNome, sNome, nick, dataNasc, curso, hobby, bio, telefone, id]
             );
-
-            return rows.affectedRows > 0 ? true : false;
+            
+            if (rows.affectedRows > 0) {
+                const result = await db.query(
+                    `UPDATE postagens SET
+                    autor = ?
+                    WHERE usuariosId = ?;`,
+                    [nick, id]
+                );
+                return true
+            } else {
+                return false
+            }
 
         } catch (err) {
             console.error('Erro no método de editar dados' + err);

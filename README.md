@@ -1,6 +1,13 @@
 # IF-Space
 Rede social para estudantes
 
+## Chaves no .env
+
+DATABASE = ''
+DATABASE_HOST = ''
+DATABASE_ROOT = ''
+DATABASE_PASS = ''
+
 ## Código SQL do nosso banco
 
 DROP DATABASE IF EXISTS ifspace;

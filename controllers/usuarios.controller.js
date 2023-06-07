@@ -69,7 +69,7 @@ exports.editar = async function (req, res) {
             if (checkSenha) {
                 const id = req.usuario.id;
                 result = await Usuario.editarDados(id, pNome, sNome, nick, dataNasc, cursando, hobbies, bio, telefone);
-
+                console.log(result)
                 if (result) {
                     res.redirect('/home?info=Edição bem sucedida!');
                 } else {
