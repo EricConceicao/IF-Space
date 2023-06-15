@@ -54,8 +54,45 @@ class Usuario {
         }
     }
 
-    static async concatName(pNome, sNome) { // Concatena o nome para usar como um nick provisório
+    static async concatName(pNome, sNome) { // Concatena o nome para usar como um nick provisório caso omitido no cadastro
         return pNome + ' ' + sNome;
+    }
+
+    static async token(user, req, res) { // Método de criação do token ou atualização
+        try {
+            const id = user.id;
+            const payload = { // Conteúdo em Json que irá para o token
+                id: user.id,
+                email: user.email,
+                pNome: user.pNome,
+                sNome: user.sNome,
+                nick: user.nick,
+                dataNasc: user.dataNasc,
+            };
+
+            // Ele ainda recebe os dados que estão localmente, sem procurar mais.
+
+            if (!user.chave) {
+                user.chave = await this.chaveiro(id); 
+            }
+
+            const token = jwt.sign(payload, user.chave, { expiresIn: '1h' }); // Criação do token com data de expiração     
+            
+            const values = { token, id }
+
+            console.log('Cookie: '+req.cookies.Auth)
+            if (req.cookies.Auth) {
+                res.clearCookie('Auth');
+            }
+            
+            const tokenString = JSON.stringify(values);
+            res.cookie('Auth', tokenString, { maxAge: 1000 * 60 * 60 });
+
+            return { result: true};
+        }
+        catch (err) {
+            console.log('Erro no método de geração de token. ')
+        }
     }
 
     static async cadastrar(email, senha, pNome, sNome, nick, dataNasc) {
@@ -67,7 +104,7 @@ class Usuario {
                 [email, senha, pNome, sNome, nick, dataNasc, chave]
             );
 
-            return result
+            return result;
 
         } catch (err) {
             console.error('Erro na operação de cadastro no banco de dados ' + err);
@@ -75,30 +112,16 @@ class Usuario {
         }
     }
 
-    static async login(email, senha) {
-
+    static async login(email, senha, req, res) {
         try {
+            const user = await this.procurarEmail(email);
+            if (user) {
 
-            const rows = await this.procurarEmail(email);
-            if (rows) {
-
-                const auth = await this.compararSenha(senha, rows.senha);
+                const auth = await this.compararSenha(senha, user.senha);
 
                 if (auth) {
-
-                    const payload = { // Conteúdo em Json que irá para o token
-                        id: rows.id,
-                        email: rows.email,
-                        pNome: rows.pNome,
-                        sNome: rows.sNome,
-                        nick: rows.nick,
-                        dataNasc: rows.dataNasc,
-                    };
-                    const token = jwt.sign(payload, rows.chave, { expiresIn: '12h' }); // Criação do token com data de expiração
-                    const id = rows.id;
-                    const values = { token, id }
-
-                    return { result: true, values };
+                    const result = await this.token(user, req, res); 
+                    return result
 
                 } else {
                     return { result: false, erro: 'Senha incorreta.' };;
@@ -113,23 +136,32 @@ class Usuario {
         }
     }
 
-    static async editarDados(id, pNome, sNome, nick, dataNasc, curso, hobby, bio, telefone) {
+    static async editarDados(id, pNome, sNome, nick, dataNasc, curso, hobby, bio, telefone, req, res) {
         try {
-            const [rows] = await db.query(
+            const [update] = await db.query(
                 `UPDATE usuarios SET
                 pNome = ?, sNome = ?, nick = ?, dataNasc = ?, curso = ?, hobby = ?, bio = ?, telefone = ?
                 WHERE id = ?;`,
                 [pNome, sNome, nick, dataNasc, curso, hobby, bio, telefone, id]
             );
             
-            if (rows.affectedRows > 0) {
-                const result = await db.query(
+            if (update.affectedRows > 0) {
+                const nickNoPost = await db.query(
                     `UPDATE postagens SET
                     autor = ?
                     WHERE usuariosId = ?;`,
                     [nick, id]
-                );
-                return true
+                )
+                
+                if (nickNoPost) {
+                    req.usuario.nick = nick; // Isso vai atualizar o nick do usuário no token com o novo
+                    const atualizarToken = await Usuario.token(req.usuario, req, res);
+
+                    if (atualizarToken.result) {
+                        return true
+                    }
+                }
+                
             } else {
                 return false
             }

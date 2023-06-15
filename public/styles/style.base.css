@@ -256,3 +256,27 @@ legend {
 }
 
 /*============================*/
+
+/* Fazendo um painel com opções */
+
+.panel-container {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+
+    color: var(--cor-texto-p);
+    border: 5px;
+    
+}
+
+.panel {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: var(--cor-clara-3);
+    min-width: 8em;
+}
+
+.panel-container:hover .panel {
+    display: block;
+}

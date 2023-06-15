@@ -42,15 +42,12 @@ exports.login = async function (req, res) {
     const { email, senha } = req.body;
 
     try {
-        const result = await Usuario.login(email, senha);
+        const login = await Usuario.login(email, senha, req, res);
 
-        if(result.result) {
-            const tokenString = JSON.stringify(result.values);
-
-            res.cookie('Auth', tokenString, { maxAge: 1000 * 60 * 60 });
+        if(login.result) {
             res.redirect('/home');
         } else {
-            res.render('index', { layout: './layouts/layout-index', title: 'IF - Space | Login', info: result.erro });
+            res.render('index', { layout: './layouts/layout-index', title: 'IF - Space | Login', info: login.erro });
         }
     } catch (err) {
         console.error('Erro na operação de login:' + err);
@@ -68,9 +65,9 @@ exports.editar = async function (req, res) {
              
             if (checkSenha) {
                 const id = req.usuario.id;
-                result = await Usuario.editarDados(id, pNome, sNome, nick, dataNasc, cursando, hobbies, bio, telefone);
-                console.log(result)
-                if (result) {
+                resultEditar = await Usuario.editarDados(id, pNome, sNome, nick, dataNasc, cursando, hobbies, bio, telefone, req, res);
+
+                if (resultEditar) {
                     res.redirect('/home?info=Edição bem sucedida!');
                 } else {
                     res.redirect('/perfil?info=Erro interno, tente mais tarde');
