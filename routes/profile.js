@@ -13,4 +13,6 @@ router.get('/', auth, (req, res, next) => {//Vai ter um parâmetro 'id' aqui dep
 
 router.post('/atualizar', auth, usuariosController.editar);
 
+router.post('/upload', )
+
 module.exports = router;
