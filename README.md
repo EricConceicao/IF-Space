@@ -79,8 +79,4 @@ FOREIGN KEY (seguidorId) REFERENCES usuarios(id),
 FOREIGN KEY (seguidoId) REFERENCES usuarios(id)
 );
 
-## Inserts para teste
-
-INSERT INTO usuarios (email, senha, pNome, sNome, nick, dataNasc)
-VALUES
-
+## Inserts para teste 'wip'

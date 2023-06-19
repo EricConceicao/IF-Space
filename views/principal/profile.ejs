@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <main class="profile-editor">
   <header class="editor-header">
     <h1>Editar perfil</h1>
@@ -7,80 +9,139 @@
     <p class="info">
       <%= info %>
     </p>
-    <% } %>
-
+  <% } %>
+  <section>
     <section>
       <h2>Nome</h2>
-      <p><%= dados.pNome %></p>
+      <p>
+        <%= dados.pNome %>
+      </p>
     </section>
 
-    <form method="post" action="/perfil/atualizar" class="profile-form">
+    <section>
+      <h2>Sobrenome</h2>
+      <p>
+        <%= dados.sNome %>
+      </p>
+    </section>
 
-      <fieldset class="fields">
-        <legend>Minhas informações</legend>
+    <section>
+      <h2>Apelido</h2>
+      <p>
+        <%= dados.nick %>
+      </p>
+    </section>
 
-        <div class="field">
-          <label for="pNome">Nome</label>
-          <input type="text" id="pNome" name="pNome">
-        </div>
+    <section>
+      <h2>Data de Nascimento</h2>
+      <p>
+        <%= dados.dataNasc %>
+      </p>
+    </section>
 
-        <div class="field">
-          <label for="sNome">Sobrenome</label>
-          <input type="text" id="sNome" name=sNome">
-        </div>
+    <section>
+      <h2>curso</h2>
+      <p>
+        <%= dados.curso %>
+      </p>
+    </section>
 
-        <div class="field">
-          <label for="apelido">Apelido</label>
-          <input type="text" id="apelido" name="nick">
-        </div>
+    <section>
+      <h2>hobby</h2>
+      <p>
+        <%= dados.hobby %>
+      </p>
+    </section>
 
-        <div class="field">
-          <label for="data_nascimento">Data Nascimento</label>
-          <input type="date" id="data_nascimento" name="data_nascimento">
-        </div>
+    <section>
+      <h2>Bio</h2>
+      <p>
+        <%= dados.bio %>
+      </p>
+    </section>
 
-        <div class="field">
-          <label for="cursando">Cursando</label>
-          <input type="text" id="cursando" name="cursando">
-        </div>
+    <section>
+      <h2>E-mail</h2>
+      <p>
+        <%= dados.email %>
+      </p>
+    </section>
 
-        <div class="field">
-          <label for="hobbies">Seus Hobbies</label>
-          <input type="text" id="hobbies" name="hobbies">
-        </div>
-        <div class="field">
-          <label for="bio">Sua Bio/Descrição</label>
-          <textarea id="bio" name="bio" cols="30" rows="5"></textarea>
-        </div>
+    <section>
+      <h2>Telefone</h2>
+      <p>
+        <%= dados.telefone %>
+      </p>
+    </section>
+  </section>
 
-      </fieldset>
+  <form method="post" action="/perfil/atualizar" class="profile-form">
 
-      <fieldset class="fields">
+    <fieldset class="fields">
+      <legend>Minhas informações</legend>
 
-        <legend>Minhas formas de contato</legend>
+      <div class="field">
+        <label for="pNome">Nome</label>
+        <input type="text" id="pNome" name="pNome">
+      </div>
 
-        <div class="field">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email">
-        </div>
+      <div class="field">
+        <label for="sNome">Sobrenome</label>
+        <input type="text" id="sNome" name="sNome">
+      </div>
 
-        <div class="field">
-          <label for="telefone">Telefone/WhatsApp</label>
-          <input type="tel" id="telefone" name="telefone" maxlength="11" pattern="[0-9]+">
-        </div>
+      <div class="field">
+        <label for="apelido">Apelido</label>
+        <input type="text" id="apelido" name="nick">
+      </div>
 
-      </fieldset>
+      <div class="field">
+        <label for="dataNasc">Data Nascimento</label>
+        <input type="date" id="dataNasc" name="dataNasc">
+      </div>
 
-      <fieldset class="fields">
-        <legend>Segurança</legend>
-        <p>Digite sua senha para confirmar o envio dos dados</p>
-        <div class="field">
-          <label for="senha">Senha</label>
-          <input type="password" id="senha" name="senha" minlength="8" required>
-        </div>
-      </fieldset>
+      <div class="field">
+        <label for="curso">Cursando</label>
+        <input type="text" id="curso" name="curso">
+      </div>
 
-      <input type="submit" class="btn" value="Salvar Alterações">
-    </form>
+      <div class="field">
+        <label for="hobby">Seus hobbies</label>
+        <input type="text" id="hobby" name="hobby">
+      </div>
+      <div class="field">
+        <label for="bio">Sua Bio/Descrição</label>
+        <textarea id="bio" name="bio" cols="30" rows="5"></textarea>
+      </div>
+
+    </fieldset>
+
+    <fieldset class="fields">
+
+      <legend>Minhas formas de contato</legend>
+
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email">
+      </div>
+
+      <div class="field">
+        <label for="telefone">Telefone/WhatsApp</label>
+        <input type="tel" id="telefone" name="telefone" maxlength="11" pattern="[0-9]+">
+      </div>
+
+    </fieldset>
+
+    <fieldset class="fields">
+      <legend>Segurança</legend>
+      <p>Digite sua senha para confirmar o envio dos dados</p>
+      <div class="field">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" minlength="8" required>
+      </div>
+    </fieldset>
+
+    <input type="submit" class="btn" value="Salvar Alterações">
+  </form>
 
 </main>

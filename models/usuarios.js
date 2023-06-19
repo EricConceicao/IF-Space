@@ -2,6 +2,7 @@ const db = require('../config/db');
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { param } = require('express/lib/request');
 
 class Usuario {
     constructor(email, senha, pNome, sNome, nick, dataNasc) {
@@ -80,7 +81,6 @@ class Usuario {
             
             const values = { token, id }
 
-            console.log('Cookie: '+req.cookies.Auth)
             if (req.cookies.Auth) {
                 res.clearCookie('Auth');
             }
@@ -91,7 +91,7 @@ class Usuario {
             return { result: true};
         }
         catch (err) {
-            console.log('Erro no método de geração de token. ')
+            console.error('Erro no método de geração de token. ')
         }
     }
 
@@ -136,34 +136,26 @@ class Usuario {
         }
     }
 
-    static async editarDados(id, pNome, sNome, nick, dataNasc, curso, hobby, bio, telefone, req, res) {
+    static async editarDados(query, params, req, res, nick) {
         try {
-            const [update] = await db.query(
-                `UPDATE usuarios SET
-                pNome = ?, sNome = ?, nick = ?, dataNasc = ?, curso = ?, hobby = ?, bio = ?, telefone = ?
-                WHERE id = ?;`,
-                [pNome, sNome, nick, dataNasc, curso, hobby, bio, telefone, id]
-            );
-            
-            if (update.affectedRows > 0) {
+            const [update] = await db.query(query, params);
+
+            if (nick) {
                 const nickNoPost = await db.query(
                     `UPDATE postagens SET
                     autor = ?
                     WHERE usuariosId = ?;`,
-                    [nick, id]
+                    [nick, req.usuario.id]
                 )
                 
                 if (nickNoPost) {
                     req.usuario.nick = nick; // Isso vai atualizar o nick do usuário no token com o novo
                     const atualizarToken = await Usuario.token(req.usuario, req, res);
-
-                    if (atualizarToken.result) {
-                        return true
-                    }
                 }
-                
+
+                return true
             } else {
-                return false
+                return true
             }
 
         } catch (err) {
