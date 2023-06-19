@@ -1,9 +1,3 @@
-<style>
-  .nav-items .nav-item:nth-child(2) {
-    display: none;
-  }
-</style>
-
 <main class="profile-editor">
   <header class="editor-header">
     <h1>Editar perfil</h1>
@@ -14,6 +8,11 @@
       <%= info %>
     </p>
     <% } %>
+
+    <section>
+      <h2>Nome</h2>
+      <p><%= dados.pNome %></p>
+    </section>
 
     <form method="post" action="/perfil/atualizar" class="profile-form">
 
