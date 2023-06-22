@@ -23,6 +23,7 @@ body {
 .pfp {
     margin: .4rem;
     width: 7rem;
+    height: 7rem;
     border: solid .3rem var(--cor-texto-p) ;
     border-radius: 50%;
 }
@@ -155,7 +156,7 @@ body {
     margin: 2em 1em;
     min-height: 20em;
  
-    border: solid .125rem var(--cor-contraste);
+    border-bottom: solid .2rem var(--cor-contraste);
     border-radius: 10px;
     background: var(--cor-clara-1);
 }

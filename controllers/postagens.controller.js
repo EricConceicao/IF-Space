@@ -33,9 +33,11 @@ exports.exibirPostagens = async function (req, res) {
         const posts = await Postagem.selecionarPosts(req.usuario.id);
 
         const info = req.query.info;
+        const { foto } = req.usuario;
+
         if (req.usuario) {
             const { nick } = req.usuario;
-            res.render('principal/home', { name: nick, title: 'IF - Space | Home', info, posts });
+            res.render('principal/home', { name: nick, title: 'IF - Space | Home', info, posts, foto });
         } else {
             console.error(req.usuario);
             res.redirect('/?info=Algo deu errado ao resgatar os dados. Tente novamente');
@@ -53,9 +55,10 @@ exports.exibirPaginaDoPost = async function (req, res) {
         const posts = await Postagem.selecionarPostDoUsuario(id);
 
         const info = req.query.info;
-
+        const { foto } = req.usuario
+        
         if (req.usuario) {
-            res.render('principal/userpost', { name: posts.autor, title: 'IF - Space | Postagem', info, posts });
+            res.render('principal/userpost', { name: posts.autor, title: 'IF - Space | Postagem', info, posts, foto });
         } else {
             res.redirect('/home?info=Algo deu errado ao resgatar os dados. Tente novamente');
         }

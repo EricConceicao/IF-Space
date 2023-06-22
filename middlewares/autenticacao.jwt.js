@@ -16,7 +16,6 @@ async function auth(req, res, next) {
 
       const decoded = jwt.verify(values.token, chave);
       req.usuario = decoded; // Armazena o payload decodificado na requisição para uso posterior
-
       next();
 
     } else {

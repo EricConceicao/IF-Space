@@ -32,12 +32,12 @@ const storage = multer.diskStorage({
         cb(null, userDirectory);
     },
 
-    filename: function (req, file, cb) {
-        const dataAtual = moment();
-        const dataFormatada = dataAtual.format('YYYY-MM-DD HH:MM');
+    filename: function (req, file, cb) { 
+        const data = moment().format('YYYY-MM-DD-HH-mm');
+        const nome = file.originalname.toLowerCase();
 
-        const nomeArquivo = file.originalname;
-
+        const nomeArquivo = `${data}-${nome}`;
+        
         cb(null, nomeArquivo);
     }
 });

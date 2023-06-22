@@ -160,10 +160,11 @@ exports.exibirPerfil = async function (req, res) {
         if (dados) {
             const { nick } = req.usuario;
             const info = req.query.info;
+            const { foto } = req.usuario;
 
             dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
 
-            res.render('principal/profile', { name: nick, title: 'IF - Space | Perfil', dados, info });
+            res.render('principal/profile', { name: nick, title: 'IF - Space | Perfil', dados, info, foto });
         } else {
             res.redirect('/home?info=Erro ao carregar dados para exibição');
         }
@@ -197,17 +198,23 @@ exports.seguir = async function (req, res) {
 /* Controlador de uploads do usuário */
 
 exports.upload = async function (req, res) {
-    if (req.file) {
-        const nomeArquivo = req.file.originalname;
-        const { id } = req.usuario;
+    try {
+        if (req.file) {
+            const nomeArquivo = req.file.filename;
 
-        caminho = path.join('uploads', 'fotos-de-perfil', id.toString(), nomeArquivo);
-        
-        console.log('Passei aqui');
+            const { id } = req.usuario;
 
-        res.redirect('/home?info=Perfil enviado!');
-    } else {
-        res.redirect('/home?info=Erro, nada enviado');
+            caminho = path.join('uploads', 'fotos-de-perfil', id.toString(), nomeArquivo);
+
+            const result = await Usuario.mudarFoto(caminho, id, req, res);
+
+            res.redirect('/home?info=Perfil enviado!'); 
+            
+        } else {
+            res.redirect('/home?info=Erro, nada enviado');
+        }
+
+    } catch (err) {
+        console.error('Erro no controlador de uploads ' + err);
     }
-
 }

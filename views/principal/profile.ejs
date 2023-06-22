@@ -1,9 +1,12 @@
 <main class="profile-editor">
   <nav>
-    <button class="btn" title="Exibe os dados do usuário" aria-label="Botão para exibir os dados do usuário"
-    onclick="trocar(dados, formulario)">Dados do Perfil</button>
-    <button class="btn" title="Exibe o formulário de edição de perfil" aria-label="Botão para exibir o formulário de edição de dados do perfil do usuário"
-    onclick="trocar(formulario, dados)">Editar Perfil</button>
+    <button class="btn" title="Exibe os dados do usuário" 
+    aria-label="Botão para exibir os dados do usuário"
+    onclick="trocar(dados, formulario)"><i class="fa-solid fa-user fa-lg"></i> Dados do Perfil</button>
+    
+    <button class="btn" title="Exibe o formulário de edição de perfil" 
+    aria-label="Botão para exibir o formulário de edição de dados do perfil do usuário"
+    onclick="trocar(formulario, dados)"><i class="fa-solid fa-pen fa-lg"></i> Editar Perfil</button>
   </nav>
   <% if (info) { %>
     <p class="info">
@@ -17,7 +20,7 @@
     </header>
     <dl class="user-profile">
       <div class="profile-data">
-        <dt>Nome</dt>
+        <dt><i class="fa-thin fa-pen-circle"></i> Nome</dt>
         <dd>
           <%= dados.pNome %>
         </dd>
@@ -138,13 +141,13 @@
       </fieldset>
       <input type="submit" class="btn" value="Salvar Alterações">
     </form>
-  </div>
 
-  <form action="/perfil/upload" method="post" enctype="multipart/form-data">
-    <label for="img">Envie uma foto para trocar sua foto de perfil</label>
-    <input type="file" name="image" id="img">
-    <input type="submit" value="Enviar!">
-  </form>
+    <form action="/perfil/upload" method="post" enctype="multipart/form-data">
+      <label for="img">Envie uma foto para trocar sua foto de perfil</label>
+      <input type="file" name="image" id="img">
+      <button type="submit" class="btn"><i class="fa-regular fa-share-from-square fa-xl"></i> Enviar!</button>
+    </form>
+  </div>
 
 </main>
 <script src="js/profile.js"></script>

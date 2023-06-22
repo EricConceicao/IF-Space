@@ -2,7 +2,7 @@ const db = require('../config/db');
 const crypto = require('crypto');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { param } = require('express/lib/request');
+const res = require('express/lib/response');
 
 class Usuario {
     constructor(email, senha, pNome, sNome, nick, dataNasc) {
@@ -68,6 +68,7 @@ class Usuario {
                 pNome: user.pNome,
                 sNome: user.sNome,
                 nick: user.nick,
+                foto: user.foto,
                 dataNasc: user.dataNasc,
             };
 
@@ -160,6 +161,22 @@ class Usuario {
 
         } catch (err) {
             console.error('Erro no método de editar dados' + err);
+        }
+    }
+
+    static async mudarFoto(caminho, id, req, res) {
+        try {
+            const result = await db.query(
+                'UPDATE usuarios SET foto = ? WHERE id = ?' ,
+                [caminho, id]
+            );
+
+            const token = await this.token(req.usuario, req, res);
+                
+            return true
+
+        } catch (err) {
+            console.error('Erro no método de mudar a foto ' + err);
         }
     }
 

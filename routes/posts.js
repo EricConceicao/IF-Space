@@ -6,9 +6,11 @@ const postagensController = require('../controllers/postagens.controller');
 //Receber a página para fazer uma postagem
 router.get('/', auth, (req, res, next) => {
     let info = req.query.info;
+    const { foto } = req.usuario;
+    
     if (req.usuario.nick) {
         const { nick } = req.usuario;
-        res.render('principal/post', { name: nick, title: 'IF - Space | Faça um postagem', info });
+        res.render('principal/post', { name: nick, title: 'IF - Space | Faça um postagem', info, foto });
     }
 });
 
