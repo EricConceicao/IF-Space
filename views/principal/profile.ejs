@@ -1,147 +1,150 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
 <main class="profile-editor">
-  <header class="editor-header">
-    <h1>Editar perfil</h1>
-  </header>
-
+  <nav>
+    <button class="btn" title="Exibe os dados do usuário" aria-label="Botão para exibir os dados do usuário"
+    onclick="trocar(dados, formulario)">Dados do Perfil</button>
+    <button class="btn" title="Exibe o formulário de edição de perfil" aria-label="Botão para exibir o formulário de edição de dados do perfil do usuário"
+    onclick="trocar(formulario, dados)">Editar Perfil</button>
+  </nav>
   <% if (info) { %>
     <p class="info">
       <%= info %>
     </p>
   <% } %>
-  <section>
-    <section>
-      <h2>Nome</h2>
-      <p>
-        <%= dados.pNome %>
-      </p>
-    </section>
 
-    <section>
-      <h2>Sobrenome</h2>
-      <p>
-        <%= dados.sNome %>
-      </p>
-    </section>
-
-    <section>
-      <h2>Apelido</h2>
-      <p>
-        <%= dados.nick %>
-      </p>
-    </section>
-
-    <section>
-      <h2>Data de Nascimento</h2>
-      <p>
-        <%= dados.dataNasc %>
-      </p>
-    </section>
-
-    <section>
-      <h2>curso</h2>
-      <p>
-        <%= dados.curso %>
-      </p>
-    </section>
-
-    <section>
-      <h2>hobby</h2>
-      <p>
-        <%= dados.hobby %>
-      </p>
-    </section>
-
-    <section>
-      <h2>Bio</h2>
-      <p>
-        <%= dados.bio %>
-      </p>
-    </section>
-
-    <section>
-      <h2>E-mail</h2>
-      <p>
-        <%= dados.email %>
-      </p>
-    </section>
-
-    <section>
-      <h2>Telefone</h2>
-      <p>
-        <%= dados.telefone %>
-      </p>
-    </section>
-  </section>
-
-  <form method="post" action="/perfil/atualizar" class="profile-form">
-
-    <fieldset class="fields">
-      <legend>Minhas informações</legend>
-
-      <div class="field">
-        <label for="pNome">Nome</label>
-        <input type="text" id="pNome" name="pNome">
+  <div id="dados">
+    <header class="editor-header">
+      <h1>Dados do perfil</h1>
+    </header>
+    <dl class="user-profile">
+      <div class="profile-data">
+        <dt>Nome</dt>
+        <dd>
+          <%= dados.pNome %>
+        </dd>
       </div>
-
-      <div class="field">
-        <label for="sNome">Sobrenome</label>
-        <input type="text" id="sNome" name="sNome">
+    
+      <div class="profile-data">
+        <dt>Sobrenome</dt>
+        <dd>
+          <%= dados.sNome %>
+        </dd>
       </div>
-
-      <div class="field">
-        <label for="apelido">Apelido</label>
-        <input type="text" id="apelido" name="nick">
+    
+      <div class="profile-data">
+        <dt>Apelido</dt>
+        <dd>
+          <%= dados.nick %>
+        </dd>
       </div>
-
-      <div class="field">
-        <label for="dataNasc">Data Nascimento</label>
-        <input type="date" id="dataNasc" name="dataNasc">
+    
+      <div class="profile-data">
+        <dt>Data de Nascimento</dt>
+        <dd>
+          <%= dados.dataNasc %>
+        </dd>
       </div>
-
-      <div class="field">
-        <label for="curso">Cursando</label>
-        <input type="text" id="curso" name="curso">
+    
+      <div class="profile-data">
+        <dt>Curso</dt>
+        <dd>
+          <%= dados.curso %>
+        </dd>
       </div>
-
-      <div class="field">
-        <label for="hobby">Seus hobbies</label>
-        <input type="text" id="hobby" name="hobby">
+    
+      <div class="profile-data">
+        <dt>Hobby</dt>
+        <dd>
+          <%= dados.hobby %>
+        </dd>
       </div>
-      <div class="field">
-        <label for="bio">Sua Bio/Descrição</label>
-        <textarea id="bio" name="bio" cols="30" rows="5"></textarea>
+    
+      <div class="profile-data">
+        <dt>Bio</dt>
+        <dd>
+          <%= dados.bio %>
+        </dd>
       </div>
-
-    </fieldset>
-
-    <fieldset class="fields">
-
-      <legend>Minhas formas de contato</legend>
-
-      <div class="field">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" name="email">
+    
+      <div class="profile-data">
+        <dt>E-mail</dt>
+        <dd>
+          <%= dados.email %>
+        </dd>
       </div>
-
-      <div class="field">
-        <label for="telefone">Telefone/WhatsApp</label>
-        <input type="tel" id="telefone" name="telefone" maxlength="11" pattern="[0-9]+">
+    
+      <div class="profile-data">
+        <dt>Telefone</dt>
+        <dd>
+          <%= dados.telefone %>
+        </dd>
       </div>
+    </dl>
+  </div>
 
-    </fieldset>
+  <div id="formulario" class="hidden">
+    <header class="editor-header">
+      <h1>Editar perfil</h1>
+    </header>
+    <form method="post" action="/perfil/atualizar" class="profile-form">
+      <fieldset class="fields">
+        <legend>Minhas informações</legend>
+        <div class="field">
+          <label for="pNome">Nome</label>
+          <input type="text" id="pNome" name="pNome">
+        </div>
+        <div class="field">
+          <label for="sNome">Sobrenome</label>
+          <input type="text" id="sNome" name="sNome">
+        </div>
+        <div class="field">
+          <label for="apelido">Apelido</label>
+          <input type="text" id="apelido" name="nick">
+        </div>
+        <div class="field">
+          <label for="dataNasc">Data Nascimento</label>
+          <input type="date" id="dataNasc" name="dataNasc">
+        </div>
+        <div class="field">
+          <label for="curso">Cursando</label>
+          <input type="text" id="curso" name="curso">
+        </div>
+        <div class="field">
+          <label for="hobby">Seus hobbies</label>
+          <input type="text" id="hobby" name="hobby">
+        </div>
+        <div class="field">
+          <label for="bio">Sua Bio/Descrição</label>
+          <textarea id="bio" name="bio" cols="30" rows="5"></textarea>
+        </div>
+      </fieldset>
+      <fieldset class="fields">
+        <legend>Minhas formas de contato</legend>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email">
+        </div>
+        <div class="field">
+          <label for="telefone">Telefone/WhatsApp</label>
+          <input type="tel" id="telefone" name="telefone" maxlength="11" pattern="[0-9]+">
+        </div>
+      </fieldset>
+      <fieldset class="fields">
+        <legend>Segurança</legend>
+        <dd>Digite sua senha para confirmar o envio dos dados</dd>
+        <div class="field">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" minlength="8" required>
+        </div>
+      </fieldset>
+      <input type="submit" class="btn" value="Salvar Alterações">
+    </form>
+  </div>
 
-    <fieldset class="fields">
-      <legend>Segurança</legend>
-      <p>Digite sua senha para confirmar o envio dos dados</p>
-      <div class="field">
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" minlength="8" required>
-      </div>
-    </fieldset>
-
-    <input type="submit" class="btn" value="Salvar Alterações">
+  <form action="/perfil/upload" method="post" enctype="multipart/form-data">
+    <label for="img">Envie uma foto para trocar sua foto de perfil</label>
+    <input type="file" name="image" id="img">
+    <input type="submit" value="Enviar!">
   </form>
 
 </main>
+<script src="js/profile.js"></script>

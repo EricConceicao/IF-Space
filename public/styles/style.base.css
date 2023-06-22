@@ -97,7 +97,12 @@ legend {
 }
 
 .title {
+    padding: .2em;
     font-size: var(--font-tam-titulo);
+}
+
+.hidden {
+    display: none;
 }
 
 .center {
@@ -269,10 +274,22 @@ legend {
     
 }
 
+.panel-container span {
+    padding: .3em;
+}
+
 .panel {
     display: none;
     position: absolute;
+    right: 0;
+    float: right;
     z-index: 1;
+
+    padding: .2em;
+
+    border: solid .1em var(--cor-contraste);
+    border-radius: 5px;
+    text-align: center;
     background-color: var(--cor-clara-3);
     min-width: 8em;
 }

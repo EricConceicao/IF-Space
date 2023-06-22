@@ -15,8 +15,9 @@
             <button class="btn">
                 <%= posts.likes %>
             </button>
-
-            <button class="btn">Seguir</button>
+            <form action="/perfil/seguir/<%= posts.usuariosId %>" method="post">
+                <button type="submit" class="btn">Seguir</button>
+            </form>
         </div>
     </main>
 

@@ -59,7 +59,7 @@ class Postagem {
             if (post) {
                 return post[0]; 
             } else {
-                console.error('Erro. [user] ou [post] estão nulos');
+                console.error('Erro. post retornou nulo: ' + post[0]);
             }
 
         } catch (err) {

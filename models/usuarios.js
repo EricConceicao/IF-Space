@@ -162,5 +162,22 @@ class Usuario {
             console.error('Erro no método de editar dados' + err);
         }
     }
+
+    static async seguir(seguidor, seguido) {
+        try {
+            const result = await db.query('INSERT INTO seguir (seguidorId, seguidoId) VALUES (?, ?)', [seguidor, seguido]);
+
+            if (result) {
+                console.log(result);
+                return true
+            } else {
+                console.error('Erro. Result retornou inesperadamente ' + result);
+                return false
+            }
+
+        } catch (err) {
+            console.error('Erro no método de seguir ' + err);
+        }
+    }
 }
 module.exports = Usuario;

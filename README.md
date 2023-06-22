@@ -22,6 +22,7 @@ senha       VARCHAR(64)     NOT NULL,
 pNome       VARCHAR(25)     NOT NULL,
 sNome       VARCHAR(25)     NOT NULL,
 nick        VARCHAR(50)     UNIQUE,
+foto        VARCHAR(200)    DEFAULT '/uploads/padrao.png',
 dataNasc    DATE            NOT NULL,
 curso       VARCHAR(100)    NULL,
 hobby       VARCHAR(100)    NULL,
@@ -38,7 +39,7 @@ usuariosId      INT             NOT NULL,
 autor           VARCHAR(50)     NOT NULL,
 titulo          VARCHAR(50)     NOT NULL,    
 texto           TEXT,
-dataCriacao     TIMESTAMP       DEFAULT             CURRENT_TIMESTAMP,
+dataCriacao     TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
 anexos          BLOB,
 likes           INT,
 
@@ -50,7 +51,7 @@ CREATE TABLE curtidas (
 id              INT             AUTO_INCREMENT      PRIMARY KEY,
 usuariosId      INT             NOT NULL,
 postagensId     INT             NOT NULL,
-data            TIMESTAMP       DEFAULT             CURRENT_TIMESTAMP,
+data            TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
 
 FOREIGN KEY (usuariosId) REFERENCES usuarios(id),
 FOREIGN KEY (postagensId) REFERENCES postagens(id)
@@ -62,7 +63,7 @@ id              INT             AUTO_INCREMENT      PRIMARY KEY,
 usuariosId      INT             NOT NULL,
 postagensId     INT             NOT NULL,
 comentario      TEXT            NOT NULL,
-data            TIMESTAMP       DEFAULT             CURRENT_TIMESTAMP,
+data            TIMESTAMP       DEFAULT CURRENT_TIMESTAMP,
 
 FOREIGN KEY (usuariosId) REFERENCES usuarios(id),
 FOREIGN KEY (postagensId) REFERENCES postagens(id)
@@ -72,11 +73,16 @@ FOREIGN KEY (postagensId) REFERENCES postagens(id)
 CREATE TABLE seguir (
 seguidorId      INT         NOT NULL,
 seguidoId       INT         NOT NULL,
-data            TIMESTAMP   DEFAULT     CURRENT_TIMESTAMP,
-status          ENUM('seguindo', 'parou_de_seguir') DEFAULT 'seguindo',
+data            TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
+status          ENUM('seguindo', 'parou de seguir') DEFAULT 'seguindo',
 
 FOREIGN KEY (seguidorId) REFERENCES usuarios(id),
 FOREIGN KEY (seguidoId) REFERENCES usuarios(id)
 );
 
-## Inserts para teste 'wip'
+## Banco com alguns registros
+
+
+código para importar o arquivo
+mysql -u root -p ifspace < C:caminho/ate/o/backup.sql
+

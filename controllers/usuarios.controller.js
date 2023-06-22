@@ -1,6 +1,9 @@
 const Usuario = require('../models/usuarios');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
+const path = require('path');
+
+// Controlador do cadastro //
 
 exports.cadastrar = async function (req, res) {
     try {
@@ -37,6 +40,8 @@ exports.cadastrar = async function (req, res) {
     }
 }
 
+// Controlador do login //
+
 exports.login = async function (req, res) {
 
     //Pega o email e senha
@@ -55,6 +60,8 @@ exports.login = async function (req, res) {
     }
 
 }
+
+// Controlador da edição do perfil de usuário //
 
 exports.editar = async function (req, res) {
     let { pNome, sNome, nick, dataNasc, curso, hobby, bio, email, telefone, senha } = req.body;
@@ -123,7 +130,7 @@ exports.editar = async function (req, res) {
                 params.push(id);
 
                 resultEditar = await Usuario.editarDados(query, params, req, res, nick);
-                
+
                 if (resultEditar) {
                     res.redirect('/home?info=Edição bem sucedida!');
                 } else {
@@ -143,6 +150,8 @@ exports.editar = async function (req, res) {
 
 }
 
+// Controlador para exibir os dados do usuário //
+
 exports.exibirPerfil = async function (req, res) {
     try {
         const { email } = req.usuario;
@@ -160,6 +169,45 @@ exports.exibirPerfil = async function (req, res) {
         }
     } catch (err) {
         console.error('Erro no controlador para exibição de dados do perfil. ' + err);
+    }
+
+}
+
+// Controlador para um usuário seguir outro //
+
+exports.seguir = async function (req, res) {
+    try {
+        const seguidor = req.usuario.id; // Usuário que clicou para seguir
+        const seguido = req.params.id; // Usuário que será seguido
+        console.log('Id do seguidor: ' + seguidor + ' Id do seguido: ' + seguido);
+
+        const result = await Usuario.seguir(seguidor, seguido);
+
+        if (result) {
+            res.redirect(`post/user/${seguido}?info=Você agora está seguindo este usuário!`);
+        } else {
+            console.error('Erro no result ' + err);
+            res.redirect(`post/user/${seguido}?info=Erro ao seguir este usuário`);
+        }
+    } catch (err) {
+        console.error('Erro no controlador de seguir ' + err);
+    }
+}
+
+/* Controlador de uploads do usuário */
+
+exports.upload = async function (req, res) {
+    if (req.file) {
+        const nomeArquivo = req.file.originalname;
+        const { id } = req.usuario;
+
+        caminho = path.join('uploads', 'fotos-de-perfil', id.toString(), nomeArquivo);
+        
+        console.log('Passei aqui');
+
+        res.redirect('/home?info=Perfil enviado!');
+    } else {
+        res.redirect('/home?info=Erro, nada enviado');
     }
 
 }

@@ -78,15 +78,18 @@ body {
 .friend {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: .2rem;
 
     border: solid 0.1em var(--cor-contraste);
     border-bottom: solid 0.2em var(--cor-contraste);
-    border-radius: 2em;
+    border-radius: 10px;
+
     background-color: var(--cor-clara-1);
     padding: .2em;
     scroll-snap-align: start;
 
+    font-size: var(--font-tam-opcoes);
     font-family: 'Rajdhani', system-ui, sans-serif;
 }
 
@@ -184,8 +187,50 @@ body {
 Página do perfil 
 ====================
 */
+.user-profile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .1em;
+
+    margin: 1em 0;
+    border-radius: 10px;
+    background-color: var(--cor-fundo);
+}
+
+.profile-data {
+    background-color: var(--cor-clara-shade-2);
+
+    border-radius: 5px;
+    border: .1em solid var(--cor-clara-shade-1);
+    border-bottom: .2em solid var(--cor-contraste);
+
+    margin: .5em .5em;
+    padding: .5em 1em;
+}
+
+.profile-data dt {
+    background-color: var(--cor-clara-1);
+    border-left: solid .3em var(--cor-contraste);
+    border-radius: 5px;
+    padding: .1em;
+
+    font-weight: bold;
+    font-size: var(--font-tam-texto);
+}
+
+.profile-data dd {
+    padding: .1em;
+}
+
+.profile-btn {
+    margin-top: -3em;
+    border: none;
+    background-color: var(--cor-clara-shade-1-1);
+    font-family: 'Rajdhani', system-ui, sans-serif;
+}
+
 .profile-editor {
-    flex-grow: 1;
+    flex-basis: 80%;
     background-color: var(--cor-clara-shade-2);
     padding: 1em;
     margin: .3em;
@@ -198,6 +243,7 @@ Página do perfil
     border-bottom: solid 0.3em var(--cor-clara-shade-1);
     border-radius: 10px;
     width: fit-content;
+    margin: .5em 0;
     padding: 0 1em;
 }
 
