@@ -5,6 +5,7 @@ const moment = require('moment');
 
 /* Configuração para upload da foto de perfil */
 
+// Esse process.cwd() em teoria faz referencia ao local onde o app está executando. sendo a raiz do projeto ./
 const caminhoFoto = path.join(process.cwd(), 'public', 'uploads', 'fotos-de-perfil');
 
 
@@ -18,14 +19,20 @@ function checarExtensao(file) {
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        
-        const { id } = req.usuario;
-
+        const { id, foto } = req.usuario;
         const userDirectory = path.join(caminhoFoto, id.toString());
+
+        // Verifica se a foto não é a padrão, e se tem uma foto no caminho anterior, para então excluir.
+        if (!foto == '/padrao.png' && fs.existsSync(foto)) { 
+            fs.unlink(foto, (err) => {
+                if (err) throw 'Erro ao excluir a foto anterior: ' + err;
+            })
+        }
         
+        // Checa se a pasta de destino existe, e caso não exista. Cria uma
         if (!fs.existsSync(userDirectory)) {
             fs.mkdir(userDirectory, { recursive: true }, (err) => {
-                if (err) throw err;
+                if (err) throw 'Erro ao criar a pasta de destino: ' + err;
             });
         }
         
@@ -33,6 +40,7 @@ const storage = multer.diskStorage({
     },
 
     filename: function (req, file, cb) { 
+        // Atribui o nome original do arquivo upado, antecedido pela data do momento atual 
         const data = moment().format('YYYY-MM-DD-HH-mm');
         const nome = file.originalname.toLowerCase();
 
