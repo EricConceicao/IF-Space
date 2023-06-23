@@ -15,7 +15,7 @@ class Usuario {
 
     }
 
-    static async procurarEmail(email) {// Procura o E-mail no banco
+    static async procurarEmail(email) {// Procura o E-mail no banco e retorna os dados com ele
         try {
             // Os dados vem em 'rows' e os tipos de dados em 'fields'
             const [rows] = await db.query('SELECT * from usuarios where email = ?;', [email]);
@@ -44,9 +44,9 @@ class Usuario {
         }
     }
 
-    static async buscarNome(id) {// Procura o nome ou apelido para exibir no post
+    static async buscarPorId(id) {// Procura os dados de um usuário por id
         try {
-            const [rows] = await db.query('SELECT pNome, sNome, nick from usuarios where id = ?;', [id]);
+            const [rows] = await db.query('SELECT * from usuarios where id = ?;', [id]);
             return rows.length > 0 ? rows[0] : null;
 
         } catch (err) {
@@ -72,24 +72,22 @@ class Usuario {
                 dataNasc: user.dataNasc,
             };
 
-            // Ele ainda recebe os dados que estão localmente, sem procurar mais.
-
             if (!user.chave) {
-                user.chave = await this.chaveiro(id); 
+                user.chave = await this.chaveiro(id);
             }
 
             const token = jwt.sign(payload, user.chave, { expiresIn: '1h' }); // Criação do token com data de expiração     
-            
+
             const values = { token, id }
 
             if (req.cookies.Auth) {
                 res.clearCookie('Auth');
             }
-            
+
             const tokenString = JSON.stringify(values);
             res.cookie('Auth', tokenString, { maxAge: 1000 * 60 * 60 });
 
-            return { result: true};
+            return { result: true };
         }
         catch (err) {
             console.error('Erro no método de geração de token. ')
@@ -121,7 +119,7 @@ class Usuario {
                 const auth = await this.compararSenha(senha, user.senha);
 
                 if (auth) {
-                    const result = await this.token(user, req, res); 
+                    const result = await this.token(user, req, res);
                     return result
 
                 } else {
@@ -142,19 +140,20 @@ class Usuario {
             const [update] = await db.query(query, params);
 
             if (nick) {
-                const nickNoPost = await db.query(
+                const [nickNoPost] = await db.query(
                     `UPDATE postagens SET
                     autor = ?
                     WHERE usuariosId = ?;`,
                     [nick, req.usuario.id]
                 )
-                
-                if (nickNoPost) {
+
+                if (nickNoPost.affectedRows > 0) {
                     req.usuario.nick = nick; // Isso vai atualizar o nick do usuário no token com o novo
                     const atualizarToken = await Usuario.token(req.usuario, req, res);
+                    
+                    return true
                 }
 
-                return true
             } else {
                 return true
             }
@@ -164,16 +163,40 @@ class Usuario {
         }
     }
 
+    static async procurarFoto(id) {
+        try {
+            const [rows] = await db.query(
+                'SELECT foto FROM usuarios WHERE id = ?',
+                [id]
+            );
+            if (rows.length > 0) {
+                const { foto } = rows[0];
+                return foto;
+            } else {
+                console.error('Nenhuma foto encontrada com esete ID ' + rows);
+                return false;
+            }
+        } catch (err) {
+            console.error('Erro no método de procurar foto ' + err)
+        }
+    }
+
     static async mudarFoto(caminho, id, req, res) {
         try {
-            const result = await db.query(
-                'UPDATE usuarios SET foto = ? WHERE id = ?' ,
+            const [result] = await db.query(
+                'UPDATE usuarios SET foto = ? WHERE id = ?',
                 [caminho, id]
             );
 
-            const token = await this.token(req.usuario, req, res);
-                
-            return true
+            if (result.affectedRows > 0) {
+                req.usuario.foto = caminho;
+                const token = await this.token(req.usuario, req, res);
+
+                return true
+
+            } else {
+                return false
+            }
 
         } catch (err) {
             console.error('Erro no método de mudar a foto ' + err);

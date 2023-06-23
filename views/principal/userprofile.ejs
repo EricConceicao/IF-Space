@@ -1,0 +1,79 @@
+<main class="profile-editor">
+      
+    <% if (info) { %>
+      <p class="info">
+        <%= info %>
+      </p>
+    <% } %>
+
+    <div id="dados">
+      <header class="editor-header">
+        <h1>Dados do perfil</h1>
+      </header>
+      <dl class="user-profile">
+        <div class="profile-data">
+          <dt><i class="fa-thin fa-pen-circle"></i> Nome</dt>
+          <dd>
+            <%= dados.pNome %>
+          </dd>
+        </div>
+      
+        <div class="profile-data">
+          <dt>Sobrenome</dt>
+          <dd>
+            <%= dados.sNome %>
+          </dd>
+        </div>
+      
+        <div class="profile-data">
+          <dt>Apelido</dt>
+          <dd>
+            <%= dados.nick %>
+          </dd>
+        </div>
+      
+        <div class="profile-data">
+          <dt>Data de Nascimento</dt>
+          <dd>
+            <%= dados.dataNasc %>
+          </dd>
+        </div>
+      
+        <div class="profile-data">
+          <dt>Curso</dt>
+          <dd>
+            <%= dados.curso %>
+          </dd>
+        </div>
+      
+        <div class="profile-data">
+          <dt>Hobby</dt>
+          <dd>
+            <%= dados.hobby %>
+          </dd>
+        </div>
+      
+        <div class="profile-data">
+          <dt>Bio</dt>
+          <dd>
+            <%= dados.bio %>
+          </dd>
+        </div>
+      
+        <div class="profile-data">
+          <dt>E-mail</dt>
+          <dd>
+            <%= dados.email %>
+          </dd>
+        </div>
+      
+        <div class="profile-data">
+          <dt>Telefone</dt>
+          <dd>
+            <%= dados.telefone %>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  
+  </main>

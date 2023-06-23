@@ -3,19 +3,19 @@
     <main class="post-container">
         <header class="post-header">
             <h1 class="title">
-                <%= posts.titulo %>
+                <%= post.titulo %>
             </h1>
         </header>
         <section class="post-section">
             <p>
-                <%= posts.texto %>
+                <%= post.texto %>
             </p>
         </section>
         <div class="reactions">
             <button class="btn">
-                <%= posts.likes %>
+                <%= post.likes %>
             </button>
-            <form action="/perfil/seguir/<%= posts.usuariosId %>" method="post">
+            <form action="/perfil/seguir/<%= post.usuariosId %>" method="post">
                 <button type="submit" class="btn">Seguir</button>
             </form>
         </div>

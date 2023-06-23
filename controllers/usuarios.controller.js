@@ -154,20 +154,37 @@ exports.editar = async function (req, res) {
 
 exports.exibirPerfil = async function (req, res) {
     try {
-        const { email } = req.usuario;
-        const dados = await Usuario.procurarEmail(email);
+        const info = req.query.info;
 
-        if (dados) {
-            const { nick } = req.usuario;
-            const info = req.query.info;
-            const { foto } = req.usuario;
+        if (req.params.id) {
+            const { id } = req.params;
+            const dados = await Usuario.buscarPorId(id);
 
-            dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
+            if (dados) {
+                const { nick, foto } = dados;
+                dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
 
-            res.render('principal/profile', { name: nick, title: 'IF - Space | Perfil', dados, info, foto });
+                res.render('principal/userprofile', { name: nick, title: `IF - Space | ${nick}`, dados, info, foto });
+            } else {
+                res.redirect('/home?info=Erro ao carregar dados do usuário para exibição');
+            }
+
         } else {
-            res.redirect('/home?info=Erro ao carregar dados para exibição');
+            const { email } = req.usuario;
+            const dados = await Usuario.procurarEmail(email);
+
+            if (dados) {
+                const { nick, foto } = req.usuario;
+
+                dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
+
+                res.render('principal/profile', { name: nick, title: `IF - Space | ${nick}`, dados, info, foto });
+            } else {
+                res.redirect('/home?info=Erro ao carregar dados para exibição');
+            }
         }
+
+        
     } catch (err) {
         console.error('Erro no controlador para exibição de dados do perfil. ' + err);
     }
@@ -180,7 +197,6 @@ exports.seguir = async function (req, res) {
     try {
         const seguidor = req.usuario.id; // Usuário que clicou para seguir
         const seguido = req.params.id; // Usuário que será seguido
-        console.log('Id do seguidor: ' + seguidor + ' Id do seguido: ' + seguido);
 
         const result = await Usuario.seguir(seguidor, seguido);
 
@@ -201,17 +217,20 @@ exports.upload = async function (req, res) {
     try {
         if (req.file) {
             const nomeArquivo = req.file.filename;
-
             const { id } = req.usuario;
 
             caminho = path.join('uploads', 'fotos-de-perfil', id.toString(), nomeArquivo);
 
             const result = await Usuario.mudarFoto(caminho, id, req, res);
 
-            res.redirect('/home?info=Perfil enviado!'); 
-            
+            if (result) {
+               res.redirect('/perfil?info=Perfil enviado!');  
+            } else {
+                res.redirect('/perfil?info=Erro interno. Tente mais tarde');
+            } 
+
         } else {
-            res.redirect('/home?info=Erro, nada enviado');
+            res.redirect('/perfil?info=Erro, nada enviado');
         }
 
     } catch (err) {

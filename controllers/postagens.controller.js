@@ -11,7 +11,7 @@ exports.postar = async function (req, res) {
     } else {
         try {
             const userId = req.usuario.id;
-            const user = await Usuario.buscarNome(userId); // Vai até a o banco buscar o nome para exibição
+            const user = await Usuario.buscarPorId(userId); // Vai até a o banco buscar o nome para exibição
             const autor = user.nick;
 
             const result = await Postagem.postar(userId, titulo, texto, autor, anexo);
@@ -30,14 +30,13 @@ exports.postar = async function (req, res) {
 
 exports.exibirPostagens = async function (req, res) {
     try {
-        const posts = await Postagem.selecionarPosts(req.usuario.id);
-
         const info = req.query.info;
-        const { foto } = req.usuario;
-
+        const posts = await Postagem.selecionarPosts(req.usuario.id);
+         
         if (req.usuario) {
-            const { nick } = req.usuario;
+            const { foto, nick } = req.usuario;
             res.render('principal/home', { name: nick, title: 'IF - Space | Home', info, posts, foto });
+
         } else {
             console.error(req.usuario);
             res.redirect('/?info=Algo deu errado ao resgatar os dados. Tente novamente');
@@ -49,16 +48,15 @@ exports.exibirPostagens = async function (req, res) {
 }
 
 exports.exibirPaginaDoPost = async function (req, res) {
-    id = req.params.id;
     try {
-
-        const posts = await Postagem.selecionarPostDoUsuario(id);
-
+        const id = req.params.id;
         const info = req.query.info;
-        const { foto } = req.usuario
-        
+
+        const post = await Postagem.selecionarPostDoUsuario(id);
+        const { foto } = post;
+                
         if (req.usuario) {
-            res.render('principal/userpost', { name: posts.autor, title: 'IF - Space | Postagem', info, posts, foto });
+            res.render('principal/userpost', { name: post.autor, title: 'IF - Space | Postagem', info, post, foto });
         } else {
             res.redirect('/home?info=Algo deu errado ao resgatar os dados. Tente novamente');
         }

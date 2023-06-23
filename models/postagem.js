@@ -33,14 +33,14 @@ class Postagem {
 
     static async selecionarPosts() {//Lê a tabela para retornar as postagens para o feed
         try {
-            const [post] = await db.query(
-                'SELECT * FROM postagens ORDER BY dataCriacao DESC'
+            const [rows] = await db.query(
+                'SELECT p.*, u.foto FROM postagens p INNER JOIN usuarios u ON p.usuariosId = u.id ORDER BY p.dataCriacao DESC'
             );
 
-            if (post) {
-                return post; 
+            if (rows.length > 0) {
+                return rows; 
             } else {
-                console.error('Erro. [user] ou [post] estão nulos');
+                console.error('Erro ' + rows);
             }
 
         } catch (err) {
@@ -52,14 +52,15 @@ class Postagem {
     static async selecionarPostDoUsuario(id) {//Lê a tabela para retornar a postagem expecifica
         try {
             const [post] = await db.query(
-                'SELECT * FROM postagens WHERE id = ? ORDER BY dataCriacao DESC',
+                'SELECT p.*, u.foto FROM postagens p INNER JOIN usuarios u ON p.usuariosId = u.id WHERE p.Id = ?',
                 [id]
             );
-
-            if (post) {
+            
+            if (post.length > 0) {
                 return post[0]; 
             } else {
                 console.error('Erro. post retornou nulo: ' + post[0]);
+                return false;
             }
 
         } catch (err) {

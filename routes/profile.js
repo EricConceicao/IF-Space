@@ -6,6 +6,8 @@ const uploadFoto = require('../middlewares/Uploads');
 
 router.get('/', auth, usuariosController.exibirPerfil);
 
+router.get('/:id', auth, usuariosController.exibirPerfil);
+
 router.post('/atualizar', auth, usuariosController.editar);
 
 // Seguir um usuário
