@@ -65,7 +65,7 @@ body {
 
 .nav,
 .aside {
-    flex-basis: 15%;
+    flex-basis: 18%;
 }
 
 .friends {
@@ -166,12 +166,21 @@ body {
     background: var(--cor-clara-1);
 }
 
+.post:hover,
+.post:focus {
+    box-shadow: 0 0 1em var(--cor-clara-3);
+}
+.post:active {
+    border: solid .3em var(--cor-contraste);
+}
+
 .post header {
+    color: var(--cor-texto-p);
     padding: .6rem;
 }
 
 .post p {
-    padding: .4rem;
+    padding: .4em 1.2em;
 }
 
 .post-profile {
@@ -384,7 +393,7 @@ Seção de comentários
     border-bottom: solid .15em var(--cor-contraste);
     border-radius: 10px;
 
-    margin-bottom: .5em;
+    margin-bottom: 3em;
     max-height: 10em;
 
     overflow: hidden;
@@ -396,5 +405,6 @@ Seção de comentários
 }
 
 .comment p {
-    padding: .2em .5em; 
+    margin: .5em 0;
+    padding: .5em .5em; 
 }

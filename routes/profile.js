@@ -5,7 +5,7 @@ const auth = require('../middlewares/autenticacao.jwt');
 const usuariosController = require('../controllers/usuarios.controller');
 const seguirController = require('../controllers/seguir.controller');
 const postagensController = require('../controllers/postagens.controller')
-const { uploadFoto } = require('../middlewares/Uploads');
+const { uploadFoto, uploadBanner } = require('../middlewares/Uploads');
 
 router.get('/', auth, seguirController.listarSeguidos, postagensController.exibirPostsDoUsuario, usuariosController.exibirPerfil);
 
@@ -13,6 +13,6 @@ router.get('/:id', auth, seguirController.listarSeguidos, postagensController.ex
 
 router.post('/atualizar', auth, usuariosController.editar);
 
-router.post('/upload', auth, uploadFoto.single('image'), usuariosController.upload);
+router.post('/upload', auth, uploadFoto.single('image'), uploadBanner.single('banner'), usuariosController.upload);
 
 module.exports = router;

@@ -6,27 +6,29 @@
     <% } %>
 
     <% posts.forEach((post)=> { %>
-        <article class="post">
+        <a href="/post/user/<%= post.id %>">
+            <article class="post">
 
-            <div class="post-profile">
+                <div class="post-profile">
+                    
+                    <img src="<%= post.foto %>" alt="Foto de Perfil">
+                    <p>
+                        <%= post.autor %>
+                    </p>
+                </div>
+
+                <header >
+                    <h1 class="title">
+                        <%= post.titulo %>
+                    </h1>
+                </header>
+
                 
-                <img src="<%= post.foto %>">
-                <p>
-                    <%= post.autor %>
-                </p>
-            </div>
-
-            <header >
-                <h1 class="title">
-                    <%= post.titulo %>
-                </h1>
-            </header>
-
-            <a href="/post/user/<%= post.id %>">
                 <p>
                     <%= post.texto %>
                 </p>
-            </a>
-        </article>
+                
+            </article>
+        </a>
     <% }); %>
 </main>

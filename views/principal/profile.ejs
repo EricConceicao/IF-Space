@@ -127,8 +127,8 @@
       </div>
 
       <div class="field">
-        <label for="img">Envie uma imagem para usar como banner!</label>
-        <input type="file" name="image" id="img">
+        <label for="banner">Envie uma imagem para usar como banner!</label>
+        <input type="file" name="banner" id="banner">
       </div>
       
     </fieldset> 
@@ -140,15 +140,15 @@
         <legend>Minhas informações</legend>
         <div class="field">
           <label for="pNome">Nome</label>
-          <input type="text" id="pNome" name="pNome">
+          <input type="text" id="pNome" name="pNome" value="<%= dados.pNome %>">
         </div>
         <div class="field">
           <label for="sNome">Sobrenome</label>
-          <input type="text" id="sNome" name="sNome">
+          <input type="text" id="sNome" name="sNome" value="<%= dados.sNome %>">
         </div>
         <div class="field">
           <label for="apelido">Apelido</label>
-          <input type="text" id="apelido" name="nick">
+          <input type="text" id="apelido" name="nick" value="<%= dados.nick %>">
         </div>
         <div class="field">
           <label for="dataNasc">Data Nascimento</label>
@@ -156,15 +156,15 @@
         </div>
         <div class="field">
           <label for="curso">Cursando</label>
-          <input type="text" id="curso" name="curso">
+          <input type="text" id="curso" name="curso" value="<%= dados.curso %>">
         </div>
         <div class="field">
           <label for="hobby">Seus hobbies</label>
-          <input type="text" id="hobby" name="hobby">
+          <input type="text" id="hobby" name="hobby" value="<%= dados.hobby %>">
         </div>
         <div class="field">
           <label for="bio">Sua Bio/Descrição</label>
-          <textarea id="bio" name="bio" cols="30" rows="5"></textarea>
+          <textarea id="bio" name="bio" cols="30" rows="5"><%= dados.bio %></textarea>
         </div>
       </fieldset>
       <fieldset class="fields">

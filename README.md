@@ -81,9 +81,17 @@ FOREIGN KEY (seguidorId) REFERENCES usuarios(id),
 FOREIGN KEY (seguidoId) REFERENCES usuarios(id)
 );
 
-## Banco com alguns registros
+## Banco com alguns registros e código para backup
 
+código para importar o arquivo de backup 
 
-código para importar o arquivo
 mysql -u root -p ifspace < C:caminho/ate/o/backup.sql
 
+Código de backup
+
+mysqldump -u root -p ifspace > C:\Users\cg3024695\Desktop\Curso - 2ºmódulo\IF-Space
+
+## Logins de teste
+
+email: bob@gmail.com | estrela@gmail.com | lixo@gmail.com | miau@gmail.com
+senha: 12345678      

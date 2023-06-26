@@ -88,7 +88,7 @@ exports.exibirPerfil = async function (req, res) {
                 const { nick, foto, banner } = req.usuario;
 
                 dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
-                console.log(dados, res.locals.posts)                                                                                                             
+                                                                                                                             
                 res.render('principal/profile', { name: nick, title: `IF - Space | ${nick}`, dados, info, foto, banner });
             } else {
                 res.redirect('/home?info=Erro ao carregar dados para exibição');
@@ -169,9 +169,9 @@ exports.editar = async function (req, res) {
                 params.push(id);
 
                 resultEditar = await Usuario.editarDados(query, params, req, res, nick);
-
+                
                 if (resultEditar) {
-                    res.redirect('/home?info=Edição bem sucedida!');
+                    res.redirect('/perfil?info=Edição bem sucedida!');
                 } else {
                     res.redirect('/perfil?info=Erro interno, tente mais tarde');
                 }

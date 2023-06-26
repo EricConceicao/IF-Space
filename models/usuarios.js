@@ -129,21 +129,21 @@ class Usuario {
     static async editarDados(query, params, req, res, nick) {
         try {
             const [update] = await db.query(query, params);
-
+            
             if (nick) {
+
                 const [nickNoPost] = await db.query(
                     `UPDATE postagens SET
                     autor = ?
                     WHERE usuariosId = ?;`,
                     [nick, req.usuario.id]
-                )
+                );
 
-                if (nickNoPost.affectedRows > 0) {
-                    req.usuario.nick = nick; // Isso vai atualizar o nick do usuário no token com o novo
-                    const atualizarToken = await Usuario.token(req.usuario, req, res);
-                    
-                    return true
-                }
+                req.usuario.nick = nick; // Isso vai atualizar o nick do usuário no token com o novo
+                const atualizarToken = await Usuario.token(req.usuario, req, res);
+                
+                return true
+                
 
             } else {
                 return true
