@@ -112,6 +112,10 @@ legend {
     text-align: center;
 }
 
+.text-center {
+    text-align: center;
+}
+
 @keyframes info-blink {
     from {color: var(--cor-texto-p);}
     to {color: var(--cor-texto-b); font-size: large;}
@@ -278,10 +282,15 @@ legend {
     margin-right: 1em;
 }
 
+.panel-container span i:hover {
+    color: var(--cor-texto-b)
+}
+
 .panel {
     display: none;
     position: absolute;
     right: 0;
+    top: 1em;
     float: right;
     z-index: 1;
 
@@ -290,8 +299,18 @@ legend {
     border: solid .1em var(--cor-contraste);
     border-radius: 5px;
     text-align: center;
+
     background-color: var(--cor-clara-3);
     min-width: 8em;
+}
+
+.panel a {
+    color: var(--cor-texto-p);
+}
+
+.panel a:hover, .panel a:focus {
+    color: var(--cor-texto-b);
+    background-color: var(--cor-contraste);
 }
 
 .panel-container:hover .panel {

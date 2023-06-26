@@ -6,10 +6,11 @@
       </p>
     <% } %>
 
-    <div id="dados">
+    <section id="dados">
       <header class="editor-header">
         <h1>Dados do perfil</h1>
       </header>
+
       <dl class="user-profile">
         <div class="profile-data">
           <dt><i class="fa-thin fa-pen-circle"></i> Nome</dt>
@@ -74,6 +75,34 @@
           </dd>
         </div>
       </dl>
-    </div>
+    </section>
+
+    <section>
+      <header class="editor-header">
+        <h1>Postagens do Usuário</h1>
+      </header>
+
+      <% posts.forEach((post)=> { %>
+        <article class="post">
+            <div class="post-profile">
+      
+                <img src="/<%= post.foto %>" alt="Foto de perfil">
+                <p>
+                    <%= post.autor %>
+                </p>
+            </div>
+            <header >
+                <h1 class="title">
+                    <%= post.titulo %>
+                </h1>
+            </header>
+            <a href="/post/user/<%= post.id %>">
+                <p>
+                    <%= post.texto %>
+                </p>
+            </a>
+        </article>
+        <% }); %>
+    </section>
   
   </main>

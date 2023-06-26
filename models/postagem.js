@@ -2,14 +2,6 @@ const db = require('../config/db');
 const Usuario = require('./usuarios');
 
 class Postagem {
-    constructor (userId, titulo, texto, anexo, likes) {
-        this.userId = userId;
-        this.titulo = titulo;
-        this.texto = texto;
-        this.anexo = anexo;
-        this.likes = likes;
-    }
-
     static async postar (userId, titulo, texto, autor, anexos) {//Cria uma nova postagem na tabela
         try {
             const result = await db.query(
@@ -37,10 +29,10 @@ class Postagem {
                 'SELECT p.*, u.foto FROM postagens p INNER JOIN usuarios u ON p.usuariosId = u.id ORDER BY p.dataCriacao DESC'
             );
 
-            if (rows.length > 0) {
+            if (rows) {
                 return rows; 
             } else {
-                console.error('Erro ' + rows);
+                console.error('Erro ao retornar posts ' + rows);
             }
 
         } catch (err) {
@@ -49,10 +41,10 @@ class Postagem {
         
     }
 
-    static async selecionarPostDoUsuario(id) {//Lê a tabela para retornar a postagem expecifica
+    static async selecionarPostExpecifico(id) {//Lê as tabelas para retornar a postagem expecifica e a foto
         try {
             const [post] = await db.query(
-                'SELECT p.*, u.foto FROM postagens p INNER JOIN usuarios u ON p.usuariosId = u.id WHERE p.Id = ?',
+                'SELECT p.*, u.foto, u.banner FROM postagens p INNER JOIN usuarios u ON p.usuariosId = u.id WHERE p.Id = ?',
                 [id]
             );
             
@@ -68,5 +60,21 @@ class Postagem {
         }
         
     }
+
+    static async selecionarPostsDoUsuario(id) {//Lê as tabelas para retornar as postagens e a foto
+        try {
+            const [post] = await db.query(
+                'SELECT p.*, u.foto FROM postagens p INNER JOIN usuarios u ON usuariosId = u.id WHERE usuariosId = ? ORDER BY dataCriacao desc',
+                [id]
+            );
+            
+            return post; 
+
+        } catch (err) {
+            console.error('Erro no método de selecionar posts do usuário: ',err);
+        }
+        
+    }
 }
+
 module.exports = Postagem;

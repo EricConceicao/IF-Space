@@ -5,16 +5,6 @@ const jwt = require('jsonwebtoken');
 const res = require('express/lib/response');
 
 class Usuario {
-    constructor(email, senha, pNome, sNome, nick, dataNasc) {
-        this.email = email;
-        this.senha = senha;
-        this.pNome = pNome;
-        this.sNome = sNome;
-        this.nick = nick;
-        this.dataNasc = dataNasc;
-
-    }
-
     static async procurarEmail(email) {// Procura o E-mail no banco e retorna os dados com ele
         try {
             // Os dados vem em 'rows' e os tipos de dados em 'fields'
@@ -69,6 +59,7 @@ class Usuario {
                 sNome: user.sNome,
                 nick: user.nick,
                 foto: user.foto,
+                banner: user.banner,
                 dataNasc: user.dataNasc,
             };
 
@@ -200,23 +191,6 @@ class Usuario {
 
         } catch (err) {
             console.error('Erro no método de mudar a foto ' + err);
-        }
-    }
-
-    static async seguir(seguidor, seguido) {
-        try {
-            const result = await db.query('INSERT INTO seguir (seguidorId, seguidoId) VALUES (?, ?)', [seguidor, seguido]);
-
-            if (result) {
-                console.log(result);
-                return true
-            } else {
-                console.error('Erro. Result retornou inesperadamente ' + result);
-                return false
-            }
-
-        } catch (err) {
-            console.error('Erro no método de seguir ' + err);
         }
     }
 }

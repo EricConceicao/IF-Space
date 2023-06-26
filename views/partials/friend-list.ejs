@@ -1,41 +1,28 @@
 <aside class="aside">
-    <h1 class="title">Amigos</h1>
-    <ul class="friends">
-        <li>
-            <div class="friend">
-                <img src="/img/logo-ifspace.png">
-                <p>Fulano</p>
-                <div class="panel-container">
-                    <span><i class="fa-solid fa-circle-up fa-rotate-180 fa-xl"></i></span>
-                    <div class="panel">
-                        <a href="/perfil/2">Perfil</a>
-                    </div> 
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="friend">
-                <img src="/padrao.png">
-                <p>Ciclano</p>
-                <div class="panel-container">
-                    <span><i class="fa-solid fa-circle-up fa-rotate-180 fa-xl"></i></span>
-                    <div class="panel">
-                        <p>Perfil</p>
-                    </div> 
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="friend">
-                <img src="/img/logo-ifspace.png">
-                <p>Beltrano</p>
-                <div class="panel-container">
-                    <span><i class="fa-solid fa-circle-up fa-rotate-180 fa-xl"></i></span>
-                    <div class="panel">
-                        <p>Perfil</p>
-                    </div> 
-                </div>
-            </div>
-        </li>
-    </ul>
+    <h1 class="title text-center">Minha lista</h1>
+
+    <%if (seguidos) { %>
+        <ul class="friends">
+            <% seguidos.forEach(user => { %>
+                <li>
+                    <div class="friend">
+
+                        <img src="/<%= user.foto %>">
+                        <p><%= user.nick %></p>
+
+                        <div class="panel-container">
+                            <span><i class="fa-solid fa-circle-up fa-rotate-180 fa-xl"></i></span>
+                            <div class="panel">
+                                <a href="/perfil/<%= user.id%>">Perfil</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+
+    <% } else { %>
+        <p>Usuários que você seguir aparecerão aqui</p>
+    <% } %>
 </aside>

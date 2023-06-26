@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
+
 const auth = require('../middlewares/autenticacao.jwt');
 const postagensController = require('../controllers/postagens.controller');
+const seguirController = require('../controllers/seguir.controller');
 
-// Renderiza a página inicial com o nome do usuário
-router.get('/', auth, postagensController.exibirPostagens);
+// Renderiza a home com as últimas postagens
+router.get('/', auth, seguirController.listarSeguidos, postagensController.exibirPostagens);
 
 // Rota para o logout
 router.get('/logout', (req, res) => {

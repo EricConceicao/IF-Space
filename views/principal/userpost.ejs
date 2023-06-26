@@ -1,5 +1,10 @@
 <div class="container">
-
+    <% if (info) { %>
+        <p class="info">
+          <%= info %>
+        </p>
+      <% } %>
+      
     <main class="post-container">
         <header class="post-header">
             <h1 class="title">
@@ -11,14 +16,18 @@
                 <%= post.texto %>
             </p>
         </section>
+
+        <% if (opt.form) { %>
         <div class="reactions">
             <button class="btn">
                 <%= post.likes %>
             </button>
-            <form action="/perfil/seguir/<%= post.usuariosId %>" method="post">
-                <button type="submit" class="btn">Seguir</button>
+
+            <form action="<%= opt.link %>/<%= post.usuariosId %>/<%= post.id %>" method="post">
+                <button type="submit" class="btn"><%= opt.msg %></button>
             </form>
         </div>
+        <% } %>
     </main>
 
     <aside>

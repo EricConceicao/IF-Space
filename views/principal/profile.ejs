@@ -82,6 +82,33 @@
         </dd>
       </div>
     </dl>
+
+    <section>
+      <header class="editor-header">
+        <h1>Minhas postagens</h1>
+      </header>
+      <% posts.forEach((post)=> { %>
+        <article class="post">
+            <div class="post-profile">
+      
+                <img src="/<%= post.foto %>" alt="Foto de perfil">
+                <p>
+                    <%= post.autor %>
+                </p>
+            </div>
+            <header >
+                <h1 class="title">
+                    <%= post.titulo %>
+                </h1>
+            </header>
+            <a href="/post/user/<%= post.id %>">
+                <p>
+                    <%= post.texto %>
+                </p>
+            </a>
+        </article>
+        <% }); %>
+    </section>
   </div>
 
   <div id="formulario" class="hidden">

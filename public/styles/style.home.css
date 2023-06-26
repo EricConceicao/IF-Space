@@ -12,9 +12,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
 
-    border-bottom: double .5em var(--cor-forte);
-
-    background-image: url('/img/espaco-bkg.jpg');
+    border-bottom: solid .4em var(--cor-contraste);
     background-size: cover;
     background-clip: content-box;
     background-position: center;
@@ -24,6 +22,7 @@ body {
     margin: .4rem;
     width: 7rem;
     height: 7rem;
+    background-color: grey;
     border: solid .3rem var(--cor-texto-p) ;
     border-radius: 50%;
 }
@@ -72,7 +71,7 @@ body {
 .friends {
     display: flex;
     flex-direction: column;
-    padding: .2em;
+    padding: .4em;
     gap: .5em;
 }
 
@@ -95,9 +94,15 @@ body {
 }
 
 .friend img {
+    background-color: grey;
     border-radius: 50%;
     border: solid .2em var(--cor-contraste);
-    width: 30%;
+    width: 3em;
+    height: 3em;
+}
+
+.friend p {
+    overflow-wrap: normal;
 }
 
 @media screen and (max-width: 769px) {
@@ -109,6 +114,7 @@ body {
     .nav {
         position: sticky;
         top: 0;
+        z-index: 2;
     }
 
     .friends {
@@ -143,16 +149,15 @@ body {
 
 .posts {
     flex: 1 60%;
-    border-right:solid .1em #000;
-    border-left:solid .1em #000;
+    border-right:solid .1em var(--cor-contraste);
+    border-left:solid .1em var(--cor-contraste);
     background: var(--cor-clara-shade-2)
 }
 
 .post {
     display: flex;
     flex-direction: column;
-    
-    padding: .5rem;
+
     margin: 2em 1em;
     min-height: 20em;
  
@@ -173,13 +178,19 @@ body {
     display: flex;
     align-items: center;
     gap: .2rem;
+    padding: .6em;
+    background-image: linear-gradient(to bottom, var(--cor-contraste) , var(--cor-clara-1) 6em);
+    border-radius: 10px 10px 0 0;
+
+    color: var(--cor-texto-b);
     font-family: 'Rajdhani', system-ui, sans-serif;
 }
 
 .post-profile img {
     border-radius: 50%;
     width: 4em;
-    
+    height: 4em;
+    background-color: grey;
     border: solid .3em var(--cor-contraste);
 }
 
@@ -234,9 +245,6 @@ Página do perfil
     flex-basis: 80%;
     background-color: var(--cor-clara-shade-2);
     padding: 1em;
-    margin: .3em;
-    border-radius: 10px;
-    box-shadow: 0 0 .5em #000;
 }
 
 .editor-header {

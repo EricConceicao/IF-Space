@@ -61,6 +61,45 @@ exports.login = async function (req, res) {
 
 }
 
+// Controlador para exibir os dados do usuário //
+
+exports.exibirPerfil = async function (req, res) {
+    try {
+        const info = req.query.info;
+
+        if (req.params.id) {
+            const { id } = req.params;
+            const dados = await Usuario.buscarPorId(id);
+
+            if (dados) {
+                const { nick, foto, banner } = dados;
+                dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
+
+                res.render('principal/userprofile', { name: nick, title: `IF - Space | ${nick}`, dados, info, foto, banner });
+            } else {
+                res.redirect('/home?info=Erro ao carregar dados do usuário para exibição');
+            }
+
+        } else {
+            const { email } = req.usuario;
+            const dados = await Usuario.procurarEmail(email);
+
+            if (dados) {
+                const { nick, foto, banner } = req.usuario;
+
+                dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
+                console.log(dados, res.locals.posts)                                                                                                             
+                res.render('principal/profile', { name: nick, title: `IF - Space | ${nick}`, dados, info, foto, banner });
+            } else {
+                res.redirect('/home?info=Erro ao carregar dados para exibição');
+            }
+        }
+    } catch (err) {
+        console.error('Erro no controlador para exibição de dados do perfil. ' + err);
+    }
+
+}
+
 // Controlador da edição do perfil de usuário //
 
 exports.editar = async function (req, res) {
@@ -148,67 +187,6 @@ exports.editar = async function (req, res) {
         res.redirect('/perfil?info=Nenhum dado submetido para atualização');
     }
 
-}
-
-// Controlador para exibir os dados do usuário //
-
-exports.exibirPerfil = async function (req, res) {
-    try {
-        const info = req.query.info;
-
-        if (req.params.id) {
-            const { id } = req.params;
-            const dados = await Usuario.buscarPorId(id);
-
-            if (dados) {
-                const { nick, foto } = dados;
-                dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
-
-                res.render('principal/userprofile', { name: nick, title: `IF - Space | ${nick}`, dados, info, foto });
-            } else {
-                res.redirect('/home?info=Erro ao carregar dados do usuário para exibição');
-            }
-
-        } else {
-            const { email } = req.usuario;
-            const dados = await Usuario.procurarEmail(email);
-
-            if (dados) {
-                const { nick, foto } = req.usuario;
-
-                dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
-
-                res.render('principal/profile', { name: nick, title: `IF - Space | ${nick}`, dados, info, foto });
-            } else {
-                res.redirect('/home?info=Erro ao carregar dados para exibição');
-            }
-        }
-
-        
-    } catch (err) {
-        console.error('Erro no controlador para exibição de dados do perfil. ' + err);
-    }
-
-}
-
-// Controlador para um usuário seguir outro //
-
-exports.seguir = async function (req, res) {
-    try {
-        const seguidor = req.usuario.id; // Usuário que clicou para seguir
-        const seguido = req.params.id; // Usuário que será seguido
-
-        const result = await Usuario.seguir(seguidor, seguido);
-
-        if (result) {
-            res.redirect(`post/user/${seguido}?info=Você agora está seguindo este usuário!`);
-        } else {
-            console.error('Erro no result ' + err);
-            res.redirect(`post/user/${seguido}?info=Erro ao seguir este usuário`);
-        }
-    } catch (err) {
-        console.error('Erro no controlador de seguir ' + err);
-    }
 }
 
 /* Controlador de uploads do usuário */
