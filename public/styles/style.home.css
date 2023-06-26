@@ -280,7 +280,7 @@ Página do perfil
     display: block;
 }
 
-.profile-form .field, input {
+.profile-form .field, .profile-form button, input {
     width: 100%;
 }
 /*
@@ -290,16 +290,15 @@ Pagina de edição de postagem
 */
 .post-form {
     flex-grow: 1;
-    height: fit-content;
-    margin: 1em .2em;
-    background-color: var(--cor-fundo);
+
+    margin: 0 0.2em;
     padding: 1em;
-    border-radius: 10px;
+    background-color: var(--cor-fundo);
 }
 
 .post-form .fields {
     display: block;
-    border-radius: inherit;
+    border-radius: 5px;
     gap: 1em;
     border: solid .2em var(--cor-clara-1);
 }
@@ -383,9 +382,8 @@ Seção de comentários
 
     border: solid .1em var(--cor-clara-shade-1);
     border-bottom: solid .15em var(--cor-contraste);
-    border-radius: 5px;
+    border-radius: 10px;
 
-    padding: 1em;
     margin-bottom: .5em;
     max-height: 10em;
 
@@ -394,6 +392,7 @@ Seção de comentários
 
 .comment img {
     width: 2.5em;
+    height: 2.5em;
 }
 
 .comment p {

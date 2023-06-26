@@ -112,9 +112,29 @@
   </div>
 
   <div id="formulario" class="hidden">
+
     <header class="editor-header">
       <h1>Editar perfil</h1>
     </header>
+
+    <form action="/perfil/upload" method="post" enctype="multipart/form-data" class="profile-form">
+    <fieldset class="fields">
+      
+      <legend>Alterar foto de perfil e banner</legend>
+      <div class="field">
+        <label for="img">Envie uma imagem para usar como foto de perfil!</label>
+        <input type="file" name="image" id="img">
+      </div>
+
+      <div class="field">
+        <label for="img">Envie uma imagem para usar como banner!</label>
+        <input type="file" name="image" id="img">
+      </div>
+      
+    </fieldset> 
+    <button type="submit" class="btn"><i class="fa-regular fa-share-from-square fa-xl"></i> Enviar!</button>   
+    </form>
+
     <form method="post" action="/perfil/atualizar" class="profile-form">
       <fieldset class="fields">
         <legend>Minhas informações</legend>
@@ -166,13 +186,7 @@
           <input type="password" id="senha" name="senha" minlength="8" required>
         </div>
       </fieldset>
-      <input type="submit" class="btn" value="Salvar Alterações">
-    </form>
-
-    <form action="/perfil/upload" method="post" enctype="multipart/form-data">
-      <label for="img">Envie uma foto para trocar sua foto de perfil</label>
-      <input type="file" name="image" id="img">
-      <button type="submit" class="btn"><i class="fa-regular fa-share-from-square fa-xl"></i> Enviar!</button>
+      <button type="submit" class="btn">Salvar Alterações</button>
     </form>
   </div>
 

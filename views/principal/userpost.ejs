@@ -20,11 +20,11 @@
         <% if (opt.form) { %>
         <div class="reactions">
             <button class="btn">
-                <%= post.likes %>
+                <i class="fa-sharp fa-solid fa-thumbs-up fa-lg"></i> <%= post.likes %>
             </button>
 
             <form action="<%= opt.link %>/<%= post.usuariosId %>/<%= post.id %>" method="post">
-                <button type="submit" class="btn"><%= opt.msg %></button>
+                <button type="submit" class="btn"><i class="fa-solid fa-users fa-lg"></i> <%= opt.msg %></button>
             </form>
         </div>
         <% } %>

@@ -187,7 +187,7 @@ legend {
 
 /* Botões */
 
-.btn {
+.btn, input::file-selector-button  {
     font-family: 'Rajdhani', sans-serif;
     color: var(--cor-texto-p);
     font-size: var(--font-tam-opcoes);
@@ -201,7 +201,9 @@ legend {
 }
 
 .btn:hover,
-.btn:focus {
+.btn:focus,
+input::file-selector-button:hover,
+input::file-selector-button:focus {
     outline: solid .125em var(--cor-clara-3);
 }
 
