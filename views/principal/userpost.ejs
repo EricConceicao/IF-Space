@@ -7,26 +7,28 @@
       
     <main class="post-container">
         <header class="post-header">
-            <h1 class="title">
-                <%= post.titulo %>
-            </h1>
+            <h1 class="title"><%= post.titulo %></h1>
         </header>
+
         <section class="post-section">
-            <p>
-                <%= post.texto %>
-            </p>
+            <p><%= post.texto %></p>
+            <div class="center">
+                <img src="/<%= post.anexos %>" alt="Imagem relaciona ao post">
+            </div>
         </section>
 
-        <% if (opt.form) { %>
-        <div class="reactions">
-            <button class="btn">
-                <i class="fa-sharp fa-solid fa-thumbs-up fa-lg"></i> <%= post.likes %>
-            </button>
+        
 
-            <form action="<%= opt.link %>/<%= post.usuariosId %>/<%= post.id %>" method="post">
-                <button type="submit" class="btn"><i class="fa-solid fa-users fa-lg"></i> <%= opt.msg %></button>
-            </form>
-        </div>
+        <% if (opt.form) { %>
+            <div class="reactions">
+                <button class="btn">
+                    <i class="fa-sharp fa-solid fa-thumbs-up fa-lg"></i> <%= post.likes %>
+                </button>
+
+                <form action="<%= opt.link %>/<%= post.usuariosId %>/<%= post.id %>" method="post">
+                    <button type="submit" class="btn"><i class="fa-solid fa-users fa-lg"></i> <%= opt.msg %></button>
+                </form>
+            </div>
         <% } %>
     </main>
 

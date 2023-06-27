@@ -1,11 +1,12 @@
 const Postagem = require('../models/postagem');
 const Usuario = require('../models/usuarios');
 const Seguir = require('../models/seguir');
+const path = require('path');
 
 /* Faz uma postagem */
 
 exports.postar = async function (req, res) {
-    const { titulo, texto, anexo } = req.body;
+    const { titulo, texto } = req.body;
 
     if (!titulo) {
         res.redirect('/post?info=Você esqueceu o seu título chamativo!');
@@ -13,11 +14,12 @@ exports.postar = async function (req, res) {
         res.redirect('/post?info=Você esqueceu de escrever um lindo texto!');
     } else {
         try {
+            const nomeArquivo = req.file.filename;
             const userId = req.usuario.id;
-            const user = await Usuario.buscarPorId(userId); // Vai até a o banco buscar o nome para exibição
-            const autor = user.nick;
+            const autor = req.usuario.nick;
+            const caminho = path.join('uploads', 'anexos', userId.toString(), nomeArquivo);
 
-            const result = await Postagem.postar(userId, titulo, texto, autor, anexo);
+            const result = await Postagem.postar(userId, titulo, texto, autor, caminho);
 
             if (result) {
                 res.redirect('/home?info=Postagem Enviada!');

@@ -70,7 +70,7 @@ exports.exibirPerfil = async function (req, res) {
         if (req.params.id) {
             const { id } = req.params;
             const dados = await Usuario.buscarPorId(id);
-
+            
             if (dados) {
                 const { nick, foto, banner } = dados;
                 dados.dataNasc = moment(dados.dataNasc).format('DD/MM/YYYY');
@@ -193,24 +193,45 @@ exports.editar = async function (req, res) {
 
 exports.upload = async function (req, res) {
     try {
-        if (req.file) {
+        if (req.file.fieldname == 'foto') { // Se vier do campo 'foto'
             const nomeArquivo = req.file.filename;
             const { id } = req.usuario;
+            let coluna = 'foto';
 
             caminho = path.join('uploads', 'fotos-de-perfil', id.toString(), nomeArquivo);
-
-            const result = await Usuario.mudarFoto(caminho, id, req, res);
+            
+            const result = await Usuario.mudarImagem(caminho.replace(/\\/g, '/'), coluna, id);
 
             if (result) {
-               res.redirect('/perfil?info=Perfil enviado!');  
+                req.usuario.foto = caminho;
+                const token = await Usuario.token(req.usuario, req, res);
+
+                res.redirect('/perfil?info=Foto de perfil alterada!');  
             } else {
                 res.redirect('/perfil?info=Erro interno. Tente mais tarde');
-            } 
+            }
 
+        } else if (req.file.fieldname == 'banner') { // Se vier do campo 'banner'
+            const nomeArquivo = req.file.filename;
+            const { id } = req.usuario;
+            let coluna = 'banner';
+
+            caminho = path.join('uploads', 'banners', id.toString(), nomeArquivo);
+            
+            const result = await Usuario.mudarImagem(caminho.replace(/\\/g, '/'), coluna, id);
+
+            if (result) {
+                req.usuario.banner = caminho;
+                const token = await Usuario.token(req.usuario, req, res);
+
+                res.redirect('/perfil?info=Banner alterado!');  
+            } else {
+                res.redirect('/perfil?info=Erro interno. Tente mais tarde');
+            }
         } else {
-            res.redirect('/perfil?info=Erro, nada enviado');
+            res.redirect('/perfil?info=Nada foi enviado...');
         }
-
+        
     } catch (err) {
         console.error('Erro no controlador de uploads ' + err);
     }

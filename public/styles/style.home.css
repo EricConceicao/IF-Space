@@ -14,8 +14,7 @@ body {
 
     border-bottom: solid .4em var(--cor-contraste);
     background-size: cover;
-    background-clip: content-box;
-    background-position: center;
+    background-repeat: round;
 }
 
 .pfp {
@@ -183,6 +182,11 @@ body {
     padding: .4em 1.2em;
 }
 
+.post img {
+    border: solid .2em var(--cor-clara-2);
+    width: 40%;
+}
+
 .post-profile {
     display: flex;
     align-items: center;
@@ -263,6 +267,10 @@ Página do perfil
     width: fit-content;
     margin: .5em 0;
     padding: 0 1em;
+}
+
+.form-uploads .profile-form .fields {
+    display: block;
 }
 
 .profile-form .fields {
@@ -369,6 +377,11 @@ Postagens dos outros usuários
 
 .post-section p {
     padding: .5em
+}
+
+.post-section img {
+    border: solid .2em var(--cor-clara-2);
+    width: 60%;
 }
 
 .reactions {

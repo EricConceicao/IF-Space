@@ -83,13 +83,13 @@ FOREIGN KEY (seguidoId) REFERENCES usuarios(id)
 
 ## Banco com alguns registros e código para backup
 
-código para importar o arquivo de backup 
+código para importar o arquivo de backup // É mais fácil colocando o arquivo na área de trabalho
 
 mysql -u root -p ifspace < C:caminho/ate/o/backup.sql
 
 Código de backup
 
-mysqldump -u root -p ifspace > C:\Users\cg3024695\Desktop\Curso - 2ºmódulo\IF-Space
+mysqldump -u root -p ifspace > C:\Users\cg3024695\Desktop\Curso - 2ºmódulo\IF-Space\banquinho
 
 ## Logins de teste
 

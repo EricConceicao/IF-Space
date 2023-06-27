@@ -12,22 +12,19 @@
                 <div class="post-profile">
                     
                     <img src="<%= post.foto %>" alt="Foto de Perfil">
-                    <p>
-                        <%= post.autor %>
-                    </p>
+                    <p><%= post.autor %></p>
                 </div>
 
                 <header >
-                    <h1 class="title">
-                        <%= post.titulo %>
-                    </h1>
+                    <h1 class="title"><%= post.titulo %></h1>
                 </header>
 
-                
-                <p>
-                    <%= post.texto %>
-                </p>
-                
+                <p><%= post.texto %></p>
+                <% if (post.anexos) { %>
+                    <div class="center">
+                        <img src="/<%= post.anexos %>" alt="Imagem relacionada ao post">
+                    </div>
+                <% } %>
             </article>
         </a>
     <% }); %>

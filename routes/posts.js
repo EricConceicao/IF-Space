@@ -4,6 +4,7 @@ const router = express.Router();
 const auth = require('../middlewares/autenticacao.jwt');
 const postagensController = require('../controllers/postagens.controller');
 const seguirController = require('../controllers/seguir.controller');
+const { uploadAnexo } = require('../middlewares/Uploads');
 
 //Receber a página para fazer uma postagem
 router.get('/', auth, seguirController.listarSeguidos, (req, res, next) => {
@@ -20,6 +21,6 @@ router.get('/', auth, seguirController.listarSeguidos, (req, res, next) => {
 router.get('/user/:id', auth, seguirController.listarSeguidos, postagensController.exibirPaginaDoPost);
 
 //Submeter o post
-router.post('/', auth, postagensController.postar);
+router.post('/', auth, uploadAnexo.single('anexo'), postagensController.postar);
 
 module.exports = router;

@@ -172,17 +172,12 @@ class Usuario {
         }
     }
 
-    static async mudarFoto(caminho, id, req, res) {
+    static async mudarImagem(caminho, coluna, id) {
         try {
-            const [result] = await db.query(
-                'UPDATE usuarios SET foto = ? WHERE id = ?',
-                [caminho, id]
-            );
+            const query = `UPDATE usuarios SET ${coluna} = ? WHERE id = ?`;
+            const [result] = await db.query(query, [caminho, id]);
 
             if (result.affectedRows > 0) {
-                req.usuario.foto = caminho;
-                const token = await this.token(req.usuario, req, res);
-
                 return true
 
             } else {

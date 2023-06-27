@@ -1,194 +1,195 @@
 <main class="profile-editor">
-  <nav>
-    <button class="btn" title="Exibe os dados do usuário" 
-    aria-label="Botão para exibir os dados do usuário"
-    onclick="trocar(dados, formulario)"><i class="fa-solid fa-user fa-lg"></i> Dados do Perfil</button>
-    
-    <button class="btn" title="Exibe o formulário de edição de perfil" 
-    aria-label="Botão para exibir o formulário de edição de dados do perfil do usuário"
-    onclick="trocar(formulario, dados)"><i class="fa-solid fa-pen fa-lg"></i> Editar Perfil</button>
-  </nav>
-  <% if (info) { %>
-    <p class="info">
-      <%= info %>
-    </p>
-  <% } %>
+	<nav>
+		<button class="btn" title="Exibe os dados do usuário" aria-label="Botão para exibir os dados do usuário"
+			onclick="trocar(dados, formulario)"><i class="fa-solid fa-user fa-lg"></i> Dados do Perfil</button>
 
-  <div id="dados">
-    <header class="editor-header">
-      <h1>Dados do perfil</h1>
-    </header>
-    <dl class="user-profile">
-      <div class="profile-data">
-        <dt><i class="fa-thin fa-pen-circle"></i> Nome</dt>
-        <dd>
-          <%= dados.pNome %>
-        </dd>
-      </div>
-    
-      <div class="profile-data">
-        <dt>Sobrenome</dt>
-        <dd>
-          <%= dados.sNome %>
-        </dd>
-      </div>
-    
-      <div class="profile-data">
-        <dt>Apelido</dt>
-        <dd>
-          <%= dados.nick %>
-        </dd>
-      </div>
-    
-      <div class="profile-data">
-        <dt>Data de Nascimento</dt>
-        <dd>
-          <%= dados.dataNasc %>
-        </dd>
-      </div>
-    
-      <div class="profile-data">
-        <dt>Curso</dt>
-        <dd>
-          <%= dados.curso %>
-        </dd>
-      </div>
-    
-      <div class="profile-data">
-        <dt>Hobby</dt>
-        <dd>
-          <%= dados.hobby %>
-        </dd>
-      </div>
-    
-      <div class="profile-data">
-        <dt>Bio</dt>
-        <dd>
-          <%= dados.bio %>
-        </dd>
-      </div>
-    
-      <div class="profile-data">
-        <dt>E-mail</dt>
-        <dd>
-          <%= dados.email %>
-        </dd>
-      </div>
-    
-      <div class="profile-data">
-        <dt>Telefone</dt>
-        <dd>
-          <%= dados.telefone %>
-        </dd>
-      </div>
-    </dl>
+		<button class="btn" title="Exibe o formulário de edição de perfil"
+			aria-label="Botão para exibir o formulário de edição de dados do perfil do usuário"
+			onclick="trocar(formulario, dados)"><i class="fa-solid fa-pen fa-lg"></i> Editar Perfil</button>
+	</nav>
+	<% if (info) { %>
+		<p class="info"><%= info %></p>
+	<% } %>
 
-    <section>
-      <header class="editor-header">
-        <h1>Minhas postagens</h1>
-      </header>
-      <% posts.forEach((post)=> { %>
-        <article class="post">
-            <div class="post-profile">
-      
-                <img src="/<%= post.foto %>" alt="Foto de perfil">
-                <p>
-                    <%= post.autor %>
-                </p>
-            </div>
-            <header >
-                <h1 class="title">
-                    <%= post.titulo %>
-                </h1>
-            </header>
-            <a href="/post/user/<%= post.id %>">
-                <p>
-                    <%= post.texto %>
-                </p>
-            </a>
-        </article>
-        <% }); %>
-    </section>
-  </div>
+	<div id="dados">
+		<header class="editor-header">
+			<h1>Dados do perfil</h1>
+		</header>
 
-  <div id="formulario" class="hidden">
+		<dl class="user-profile">
+			<div class="profile-data">
+				<dt><i class="fa-thin fa-pen-circle"></i> Nome</dt>
+				<dd><%= dados.pNome %></dd>
+			</div>
 
-    <header class="editor-header">
-      <h1>Editar perfil</h1>
-    </header>
+			<div class="profile-data">
+				<dt>Sobrenome</dt>
+				<dd><%= dados.sNome %></dd>
+			</div>
 
-    <form action="/perfil/upload" method="post" enctype="multipart/form-data" class="profile-form">
-    <fieldset class="fields">
-      
-      <legend>Alterar foto de perfil e banner</legend>
-      <div class="field">
-        <label for="img">Envie uma imagem para usar como foto de perfil!</label>
-        <input type="file" name="image" id="img">
-      </div>
+			<div class="profile-data">
+				<dt>Apelido</dt>
+				<dd><%= dados.nick %></dd>
+			</div>
 
-      <div class="field">
-        <label for="banner">Envie uma imagem para usar como banner!</label>
-        <input type="file" name="banner" id="banner">
-      </div>
-      
-    </fieldset> 
-    <button type="submit" class="btn"><i class="fa-regular fa-share-from-square fa-xl"></i> Enviar!</button>   
-    </form>
+			<div class="profile-data">
+				<dt>Data de Nascimento</dt>
+				<dd><%= dados.dataNasc %></dd>
+			</div>
 
-    <form method="post" action="/perfil/atualizar" class="profile-form">
-      <fieldset class="fields">
-        <legend>Minhas informações</legend>
-        <div class="field">
-          <label for="pNome">Nome</label>
-          <input type="text" id="pNome" name="pNome" value="<%= dados.pNome %>">
-        </div>
-        <div class="field">
-          <label for="sNome">Sobrenome</label>
-          <input type="text" id="sNome" name="sNome" value="<%= dados.sNome %>">
-        </div>
-        <div class="field">
-          <label for="apelido">Apelido</label>
-          <input type="text" id="apelido" name="nick" value="<%= dados.nick %>">
-        </div>
-        <div class="field">
-          <label for="dataNasc">Data Nascimento</label>
-          <input type="date" id="dataNasc" name="dataNasc">
-        </div>
-        <div class="field">
-          <label for="curso">Cursando</label>
-          <input type="text" id="curso" name="curso" value="<%= dados.curso %>">
-        </div>
-        <div class="field">
-          <label for="hobby">Seus hobbies</label>
-          <input type="text" id="hobby" name="hobby" value="<%= dados.hobby %>">
-        </div>
-        <div class="field">
-          <label for="bio">Sua Bio/Descrição</label>
-          <textarea id="bio" name="bio" cols="30" rows="5"><%= dados.bio %></textarea>
-        </div>
-      </fieldset>
-      <fieldset class="fields">
-        <legend>Minhas formas de contato</legend>
-        <div class="field">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email">
-        </div>
-        <div class="field">
-          <label for="telefone">Telefone/WhatsApp</label>
-          <input type="tel" id="telefone" name="telefone" maxlength="11" pattern="[0-9]+">
-        </div>
-      </fieldset>
-      <fieldset class="fields">
-        <legend>Segurança</legend>
-        <dd>Digite sua senha para confirmar o envio dos dados</dd>
-        <div class="field">
-          <label for="senha">Senha</label>
-          <input type="password" id="senha" name="senha" minlength="8" required>
-        </div>
-      </fieldset>
-      <button type="submit" class="btn">Salvar Alterações</button>
-    </form>
-  </div>
+			<div class="profile-data">
+				<dt>Curso</dt>
+				<dd><%= dados.curso %></dd>
+			</div>
+
+			<div class="profile-data">
+				<dt>Hobby</dt>
+				<dd><%= dados.hobby %></dd>
+			</div>
+
+			<div class="profile-data">
+				<dt>Bio</dt>
+				<dd><%= dados.bio %></dd>
+			</div>
+
+			<div class="profile-data">
+				<dt>E-mail</dt>
+				<dd><%= dados.email %></dd>
+			</div>
+
+			<div class="profile-data">
+				<dt>Telefone</dt>
+				<dd><%= dados.telefone %></dd>
+			</div>
+		</dl>
+
+		<section>
+			<header class="editor-header">
+				<h1>Minhas postagens</h1>
+			</header>
+			<% posts.forEach((post)=> { %>
+				<a href="/post/user/<%= post.id %>">
+					<article class="post">
+						<div class="post-profile">
+							<img src="/<%= post.foto %>" alt="Foto de perfil">
+							<p><%= post.autor %></p>
+						</div>
+
+						<header>
+							<h1 class="title"><%= post.titulo %></h1>
+						</header>
+
+						<p><%= post.texto %></p>
+
+						<% if (post.anexos) { %>
+							<div class="center">
+								<img src="/<%= post.anexos %>" alt="Imagem relacionada ao post">
+							</div>
+						<% } %>
+						
+					</article>
+				</a>
+			<% }); %>
+		</section>
+	</div>
+
+	<!-- Formulários de edição -->
+
+	<div id="formulario" class="hidden">
+
+		<header class="editor-header">
+			<h1>Editar perfil</h1>
+		</header>
+
+		<div class="form-uploads">
+			<form action="/perfil/upload/foto" method="post" enctype="multipart/form-data" class="profile-form">
+				<fieldset class="fields">
+					<legend>Alterar sua foto de perfil</legend>
+					<div class="field">
+						<label for="img">Envie uma imagem para usar como foto de perfil!</label>
+						<input type="file" name="foto" id="img" required>
+					</div>
+				</fieldset>
+				<button type="submit" class="btn" style="width: auto;"><i class="fa-regular fa-share-from-square fa-xl"></i> Enviar!</button>
+			</form>
+			<form action="/perfil/upload/banner" method="post" enctype="multipart/form-data" class="profile-form">
+				<fieldset class="fields">
+					<legend>Alterar o banner de seu perfil</legend>
+					<div class="field">
+						<label for="banner">Envie uma imagem para usar como banner!</label>
+						<input type="file" name="banner" id="banner" required>
+					</div>
+				</fieldset>
+				<button type="submit" class="btn" style="width: auto;"><i class="fa-regular fa-share-from-square fa-xl"></i> Enviar!</button>
+			</form>
+		</div>
+		
+
+		<form method="post" action="/perfil/atualizar" class="profile-form">
+			<fieldset class="fields">
+				<legend>Minhas informações</legend>
+				<div class="field">
+					<label for="pNome">Nome</label>
+					<input type="text" id="pNome" name="pNome" value="<%= dados.pNome %>">
+				</div>
+
+				<div class="field">
+					<label for="sNome">Sobrenome</label>
+					<input type="text" id="sNome" name="sNome" value="<%= dados.sNome %>">
+				</div>
+
+				<div class="field">
+					<label for="apelido">Apelido</label>
+					<input type="text" id="apelido" name="nick" value="<%= dados.nick %>">
+				</div>
+
+				<div class="field">
+					<label for="dataNasc">Data Nascimento</label>
+					<input type="date" id="dataNasc" name="dataNasc">
+				</div>
+
+				<div class="field">
+					<label for="curso">Cursando</label>
+					<input type="text" id="curso" name="curso" value="<%= dados.curso %>">
+				</div>
+
+				<div class="field">
+					<label for="hobby">Seus hobbies</label>
+					<input type="text" id="hobby" name="hobby" value="<%= dados.hobby %>">
+				</div>
+
+				<div class="field">
+					<label for="bio">Sua Bio/Descrição</label>
+					<textarea id="bio" name="bio" cols="30" rows="5"><%= dados.bio %></textarea>
+				</div>
+			</fieldset>
+
+			<fieldset class="fields">
+				<legend>Minhas formas de contato</legend>
+
+				<div class="field">
+					<label for="email">E-mail</label>
+					<input type="email" id="email" name="email">
+				</div>
+
+				<div class="field">
+					<label for="telefone">Telefone/WhatsApp</label>
+					<input type="tel" id="telefone" name="telefone" maxlength="11" pattern="[0-9]+">
+				</div>
+			</fieldset>
+
+			<fieldset class="fields">
+				<legend>Segurança</legend>
+
+				<p>Digite sua senha para confirmar o envio dos dados</p>
+				<div class="field">
+					<label for="senha">Senha</label>
+					<input type="password" id="senha" name="senha" autocomplete="current-password" minlength="8" required>
+				</div>
+			</fieldset>
+			<button type="submit" class="btn">Salvar Alterações</button>
+		</form>
+	</div>
 
 </main>
 <script src="js/profile.js"></script>

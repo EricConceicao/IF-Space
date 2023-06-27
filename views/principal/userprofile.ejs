@@ -83,25 +83,27 @@
       </header>
 
       <% posts.forEach((post)=> { %>
-        <article class="post">
-            <div class="post-profile">
-      
-                <img src="/<%= post.foto %>" alt="Foto de perfil">
-                <p>
-                    <%= post.autor %>
-                </p>
-            </div>
-            <header >
-                <h1 class="title">
-                    <%= post.titulo %>
-                </h1>
-            </header>
-            <a href="/post/user/<%= post.id %>">
-                <p>
-                    <%= post.texto %>
-                </p>
-            </a>
-        </article>
+		<a href="/post/user/<%= post.id %>">
+			<article class="post">
+				<div class="post-profile">
+					<img src="/<%= post.foto %>" alt="Foto de perfil">
+					<p><%= post.autor %></p>
+				</div>
+
+				<header>
+					<h1 class="title"><%= post.titulo %></h1>
+				</header>
+			
+				<p><%= post.texto %></p>
+				
+				<% if (post.anexos) { %>
+					<div class="center">
+						<img src="/<%= post.anexos %>" alt="Imagem relacionada ao post">
+					</div>
+				<% } %>
+
+			</article>
+		</a>
         <% }); %>
     </section>
   
