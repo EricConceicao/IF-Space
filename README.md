@@ -93,7 +93,7 @@ data            TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
 
 código para importar o arquivo de backup // É mais fácil colocando o arquivo na área de trabalho
 
-mysql -u root -p ifspace < C:caminho/ate/o/backup.sql
+mysql -u root -p ifspace < backup.sql
 
 Código de backup
 
