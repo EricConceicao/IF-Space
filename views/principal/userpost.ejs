@@ -5,27 +5,27 @@
         </p>
       <% } %>
       
-    <main class="post-container">
+    <main class="post-container" id="main">
         <header class="post-header">
             <h1 class="title"><%= post.titulo %></h1>
         </header>
 
         <section class="post-section">
             <p><%= post.texto %></p>
-            <div class="center">
-                <img src="/<%= post.anexos %>" alt="Imagem relaciona ao post">
-            </div>
+            <% if (post.anexos) { %>
+                <div class="center">
+                    <img src="/<%= post.anexos %>" alt="Imagem relacionada ao post">
+                </div>
+            <% } %>
         </section>
-
-        
 
         <% if (opt.form) { %>
             <div class="reactions">
-                <button class="btn">
-                    <i class="fa-sharp fa-solid fa-thumbs-up fa-lg"></i> <%= post.likes %>
-                </button>
+                <form action="<%= opt.linkCurtir %>/<%= user.id %>/<%= post.id %>" method="post">
+                    <button class="btn"><i class="fa-sharp fa-solid fa-thumbs-up fa-lg"></i> <%= post.likes %></button>
+                </form>
 
-                <form action="<%= opt.link %>/<%= post.usuariosId %>/<%= post.id %>" method="post">
+                <form action="<%= opt.linkSeguir %>/<%= post.usuariosId %>/<%= post.id %>" method="post">
                     <button type="submit" class="btn"><i class="fa-solid fa-users fa-lg"></i> <%= opt.msg %></button>
                 </form>
             </div>
@@ -36,33 +36,29 @@
         <header>
             <h2 class="title">Comentários</h2>
         </header>
-        <article class="comment">
+
+        <article class="user-comment">
             <div class="post-profile">
-                <img src="/img/logo-ifspace.png" alt="logo">
-                <p>Fulaninho</p>
+                <img src="/<%= user.foto %>" alt="Foto de perfil">
+                <p><%= user.nick %></p>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur,
-                illum? Animi illo nobis est iusto mollitia,
-                consequuntur eius, quas, unde quisquam expedita sapiente dignissimos architecto.
-                Lorem ipsum, dolor sit.</p>
+
+            <form action="/comentar/<%= user.id %>/<%= post.id %>" method="post">
+               <textarea name="comment" id="comment" cols="30" rows="5" placeholder="Deixe seu comentario aqui!"></textarea>
+               <input type="submit" value="Enviar!" class="btn"> 
+            </form>
         </article>
 
-        <article class="comment">
-            <div class="post-profile">
-                <img src="/img/logo-ifspace.png" alt="logo">
-                <p>Ciclaninho</p>
-            </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur,
-                consequuntur eius, quas, unde quisquam expedita sapiente dignissimos architecto.</p>
-        </article>
-
-        <article class="comment">
-            <div class="post-profile">
-                <img src="/img/logo-ifspace.png" alt="logo">
-                <p>Juninho</p>
-            </div>
-            <p>Lorem ipsum consequuntur eius, quas, unde quisquam expedita sapiente dignissimos architecto.</p>
-        </article>
+        <% comentarios.forEach((comment) => { %>
+            <article class="comment">
+                <div class="post-profile">
+                    <img src="/<%= comment.foto %>" alt="logo">
+                    <p><%= comment.nick %></p>
+                </div>
+                
+                <p><%= comment.comentario %></p>
+            </article>
+        <% }) %>
     </aside>
 
 </div>

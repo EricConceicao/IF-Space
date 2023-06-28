@@ -59,6 +59,17 @@ FOREIGN KEY (postagensId) REFERENCES postagens(id)
 );
 
 
+CREATE TABLE seguir (
+seguidorId      INT         NOT NULL,
+seguidoId       INT         NOT NULL,
+data            TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
+status          ENUM('seguindo', 'parou de seguir') DEFAULT 'seguindo',
+
+FOREIGN KEY (seguidorId) REFERENCES usuarios(id),
+FOREIGN KEY (seguidoId) REFERENCES usuarios(id)
+);
+
+
 CREATE TABLE comentarios (
 id              INT             AUTO_INCREMENT      PRIMARY KEY,
 usuariosId      INT             NOT NULL,
@@ -71,14 +82,11 @@ FOREIGN KEY (postagensId) REFERENCES postagens(id)
 );
 
 
-CREATE TABLE seguir (
-seguidorId      INT         NOT NULL,
-seguidoId       INT         NOT NULL,
-data            TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
-status          ENUM('seguindo', 'parou de seguir') DEFAULT 'seguindo',
-
-FOREIGN KEY (seguidorId) REFERENCES usuarios(id),
-FOREIGN KEY (seguidoId) REFERENCES usuarios(id)
+CREATE TABLE feedbacks (
+id              INT             AUTO_INCREMENT      PRIMARY KEY,
+email           VARCHAR(255)    NOT NULL,
+texto           TEXT            NOT NULL,
+data            TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
 );
 
 ## Banco com alguns registros e código para backup

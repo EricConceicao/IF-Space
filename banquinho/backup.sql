@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.4.22-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.19  Distrib 10.4.25-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: ifspace
 -- ------------------------------------------------------
--- Server version	10.4.22-MariaDB
+-- Server version	10.4.25-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +33,7 @@ CREATE TABLE `comentarios` (
   KEY `postagensId` (`postagensId`),
   CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`usuariosId`) REFERENCES `usuarios` (`id`),
   CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`postagensId`) REFERENCES `postagens` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `comentarios` (
 
 LOCK TABLES `comentarios` WRITE;
 /*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
+INSERT INTO `comentarios` VALUES (1,4,4,'Meow.','2023-06-28 04:33:29'),(2,1,2,'Nunca!','2023-06-28 04:34:17');
 /*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,12 +58,13 @@ CREATE TABLE `curtidas` (
   `usuariosId` int(11) NOT NULL,
   `postagensId` int(11) NOT NULL,
   `data` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('curtido','descurtido') DEFAULT 'curtido',
   PRIMARY KEY (`id`),
   KEY `usuariosId` (`usuariosId`),
   KEY `postagensId` (`postagensId`),
   CONSTRAINT `curtidas_ibfk_1` FOREIGN KEY (`usuariosId`) REFERENCES `usuarios` (`id`),
   CONSTRAINT `curtidas_ibfk_2` FOREIGN KEY (`postagensId`) REFERENCES `postagens` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +73,33 @@ CREATE TABLE `curtidas` (
 
 LOCK TABLES `curtidas` WRITE;
 /*!40000 ALTER TABLE `curtidas` DISABLE KEYS */;
+INSERT INTO `curtidas` VALUES (2,2,1,'2023-06-27 23:21:43','curtido'),(3,4,2,'2023-06-28 00:49:34','curtido'),(6,4,4,'2023-06-28 02:52:47','curtido');
 /*!40000 ALTER TABLE `curtidas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `feedbacks`
+--
+
+DROP TABLE IF EXISTS `feedbacks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `feedbacks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `texto` text NOT NULL,
+  `data` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `feedbacks`
+--
+
+LOCK TABLES `feedbacks` WRITE;
+/*!40000 ALTER TABLE `feedbacks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `feedbacks` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -93,7 +121,7 @@ CREATE TABLE `postagens` (
   PRIMARY KEY (`id`),
   KEY `usuariosId` (`usuariosId`),
   CONSTRAINT `postagens_ibfk_1` FOREIGN KEY (`usuariosId`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +130,7 @@ CREATE TABLE `postagens` (
 
 LOCK TABLES `postagens` WRITE;
 /*!40000 ALTER TABLE `postagens` DISABLE KEYS */;
-INSERT INTO `postagens` VALUES (1,1,'Bob Esponja','Meu perfil está prontoooo!','Só falta terminar eu terminar meu hambúrguer','2023-06-26 18:37:43','',0),(2,2,'Larry Alfinete','Eu sou o dão Sujão!','Aceite, Bob Esponja.','2023-06-26 18:51:33','',0),(3,4,'Gary','Miau','MiauMiau Miau Miau, Miau MiauMiau Miaaaaaaaaaaaau.','2023-06-26 19:35:28','',0);
+INSERT INTO `postagens` VALUES (1,1,'Bob Esponja','Meu perfil está prontoooo!','Só falta terminar eu terminar meu hambúrguer','2023-06-26 18:37:43','',4),(2,2,'Larry Alfinete','Eu sou o dão Sujão!','Aceite, Bob Esponja.','2023-06-26 18:51:33','',1),(3,4,'Gary','Miau','MiauMiau Miau Miau, Miau MiauMiau Miaaaaaaaaaaaau.','2023-06-26 19:35:28','',0),(4,1,'Bob Esponja','Olha o meu hambúrguer!','Está P E R F E I T O','2023-06-27 05:10:42','uploads\\anexos\\1\\2023-06-27-02-10-hambaorguer.webp',2);
 /*!40000 ALTER TABLE `postagens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +159,7 @@ CREATE TABLE `seguir` (
 
 LOCK TABLES `seguir` WRITE;
 /*!40000 ALTER TABLE `seguir` DISABLE KEYS */;
-INSERT INTO `seguir` VALUES (2,1,'2023-06-26 18:42:59','seguindo'),(3,2,'2023-06-26 19:32:30','seguindo'),(3,1,'2023-06-26 19:32:33','seguindo'),(4,1,'2023-06-26 19:34:55','seguindo');
+INSERT INTO `seguir` VALUES (2,1,'2023-06-26 18:42:59','seguindo'),(3,2,'2023-06-26 19:32:30','seguindo'),(3,1,'2023-06-26 19:32:33','seguindo'),(4,1,'2023-06-26 19:34:55','parou de seguir'),(1,4,'2023-06-27 04:39:32','seguindo'),(1,2,'2023-06-27 04:40:05','seguindo');
 /*!40000 ALTER TABLE `seguir` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +198,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'bob@gmail.com','$2b$10$V3uiL6DlfPH2YkeiiD0ox.5gFasJ.iOJnwA92YWS7wh.X2maWN./q','Bob','Esponja Calça Quadrada','Bob Esponja','uploads\\fotos-de-perfil\\1\\2023-06-26-15-23-bob-esponja.jpeg','banner.jpg','1999-05-01','Aulas de pilotagem da Sra.Puff','Caçar água viva, lutar caratê, soprar bolhas de sabão','Estou pronto!',NULL,'3b94f5576eb4ee7f3a661547c8d137874258c950f42f408280f9dc3ca66e507f','2023-06-26 18:08:54'),(2,'estrela@gmail.com','$2b$10$r.GLeWdz7coxT3jwfiFCDe/F49kzzUE46RT5jn2mPBM6vWwPxIBUu','Patrick','Estrela','Larry Alfinete','uploads\\fotos-de-perfil\\2\\2023-06-26-15-40-patrick.png','banner.jpg','1999-05-01','Absolutamente nada','Comer sorvete ','Hmmmmmmmmmmmmmmmmmmmm...',NULL,'3e52cc5ee872953afd4d1a52ae07481bc0880aec1985ecd033606efd21bda232','2023-06-26 18:10:05'),(3,'lixo@gmail.com','$2b$10$Ad1eXZygkGLHFr3COGGnK.jHjqnvDZPngsazOWHDT2Wf67DXqDBf6','Garrafa','Plástica','Garrafão imortal','uploads\\fotos-de-perfil\\3\\2023-06-26-16-12-plastico.jpg','banner.jpg','1862-01-01',NULL,'Boiar na água','Sujo tudo mesmo.',NULL,'80f868eecef2185a601cfb435f47eb53a05c9b27dc5148786e29d9dd03ea4bd4','2023-06-26 18:19:45'),(4,'miau@gmail.com','$2b$10$qVl1WSzxoaA6TveIWa9Baua3KS0T66FfEhlUs2sinF7PPUquDdqQW','Garold','Wilson.Jr','Gary','uploads\\fotos-de-perfil\\4\\2023-06-26-16-33-gary.png','banner.jpg','1999-05-01',NULL,'Literatura, música','Miau, miau miau miau. Miau...',NULL,'26dcb7e6391dfcaab02cdae8b0df81ee08d55546d5c2b07044650412cdede4bb','2023-06-26 18:20:48');
+INSERT INTO `usuarios` VALUES (1,'bob@gmail.com','$2b$10$V3uiL6DlfPH2YkeiiD0ox.5gFasJ.iOJnwA92YWS7wh.X2maWN./q','Bob','Esponja Calça Quadrada','Bob Esponja','uploads/fotos-de-perfil/1/2023-06-27-01-39-bob-esponja.jpeg','uploads/banners/1/2023-06-27-01-39-casa-do-bob.jpg','1999-05-01','Aulas de pilotagem da Sra.Puff','Caçar água viva, lutar caratê, soprar bolhas de sabão','Estou pronto!',NULL,'3b94f5576eb4ee7f3a661547c8d137874258c950f42f408280f9dc3ca66e507f','2023-06-26 18:08:54'),(2,'estrela@gmail.com','$2b$10$r.GLeWdz7coxT3jwfiFCDe/F49kzzUE46RT5jn2mPBM6vWwPxIBUu','Patrick','Estrela','Larry Alfinete','uploads\\fotos-de-perfil\\2\\2023-06-26-15-40-patrick.png','banner.jpg','1999-05-01','Absolutamente nada','Comer sorvete ','Hmmmmmmmmmmmmmmmmmmmm...',NULL,'3e52cc5ee872953afd4d1a52ae07481bc0880aec1985ecd033606efd21bda232','2023-06-26 18:10:05'),(3,'lixo@gmail.com','$2b$10$Ad1eXZygkGLHFr3COGGnK.jHjqnvDZPngsazOWHDT2Wf67DXqDBf6','Garrafa','Plástica','Garrafão imortal','uploads\\fotos-de-perfil\\3\\2023-06-26-16-12-plastico.jpg','banner.jpg','1862-01-01',NULL,'Boiar na água','Sujo tudo mesmo.',NULL,'80f868eecef2185a601cfb435f47eb53a05c9b27dc5148786e29d9dd03ea4bd4','2023-06-26 18:19:45'),(4,'miau@gmail.com','$2b$10$qVl1WSzxoaA6TveIWa9Baua3KS0T66FfEhlUs2sinF7PPUquDdqQW','Garold','Wilson.Jr','Gary','uploads\\fotos-de-perfil\\4\\2023-06-26-16-33-gary.png','banner.jpg','1999-05-01',NULL,'Literatura, música','Miau, miau miau miau. Miau...',NULL,'26dcb7e6391dfcaab02cdae8b0df81ee08d55546d5c2b07044650412cdede4bb','2023-06-26 18:20:48');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -183,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-26 16:57:53
+-- Dump completed on 2023-06-28 12:39:43

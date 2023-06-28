@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+
+    <link rel="stylesheet" href="/styles/style.base.css">
+
+    <style>
+        body {
+            background-color: var(--cor-contraste);
+        }
+
+        h1 {
+            background-color: var(--cor-fundo);
+            border: solid .2em var(--cor-clara-2);
+        }
+
+        main {
+            text-align: center;
+            width: 80%;
+            margin-inline: auto;
+        }
+
+        ul {
+            background-color: var(--cor-clara-1);
+        }
+
+        li {
+            padding: 1em 0;
+            border-bottom: solid .2em var(--cor-contraste);
+            margin-bottom: 1em;
+        }
+
+        #assunto {
+            background-color: var(--cor-clara-2);
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <h1>Lista de Feedbacks</h1>
+        <ul>
+            <% lista.forEach((feed) => { %>
+                <li>
+                    <h2>Email: <%= feed.email %></h2>
+                    <p id="assunto"><%= feed.texto %></p>
+                    <br>
+                    <p>Data de envio: <%= feed.data %></p>
+                </li>
+            <% }) %>    
+        </ul>
+    </main>
+    
+</body>
+</html>

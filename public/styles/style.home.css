@@ -344,7 +344,7 @@ Postagens dos outros usuários
 }
 
 .container aside {
-    margin: 6em 1em 0 1em;
+    margin: 2em .3em 0 .3em;
 }
 
 .post-container {
@@ -399,7 +399,7 @@ Seção de comentários
 */
 
 .comment {
-    font-size: 0.8em;
+    font-size: var(--font-tam-texto);
     background: linear-gradient(45deg, var(--cor-clara-2) 10%,var(--cor-clara-shade-1) 95%);
 
     border: solid .1em var(--cor-clara-shade-1);
@@ -419,5 +419,13 @@ Seção de comentários
 
 .comment p {
     margin: .5em 0;
-    padding: .5em .5em; 
+    padding: .3em .5em; 
+}
+
+.user-comment {
+    margin-bottom: 1em;
+}
+
+.user-comment input {
+    width: 30%;
 }

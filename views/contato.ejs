@@ -1,42 +1,95 @@
-<main class="container-contato">
-    <header>
-        <h1 class="title">Equipe do IF-Space</h1>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    <%= title %>
+  </title>
 
-    <div class="cards">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Courgette&family=Rajdhani:wght@500&family=Source+Sans+Pro:wght@400&display=swap"
+    rel="stylesheet">
 
-        <section class="card">
-            <figure>
-                <img src="img/logo-ifspace.png" alt="">
-                <figcaption class="title">Eric Ribeiro</figcaption>
-            </figure>
-            <address>E-mail: <a class="link" href="mailto:eric.r@aluno.ifsp.edu.br">eric.r@aluno.ifsp.edu.br</a>
-            </address>
-        </section>
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/styles/style.base.css">
+  <link rel="stylesheet" href="/styles/style.index.css">
+</head>
+<body>
 
-        <section class="card">
-            <figure>
-                <img src="img/logo-ifspace.png" alt="">
-                <figcaption class="title">Tatiana Carvalho</figcaption>
-            </figure>
-            <address>E-mail: <a class="link" href="mailto:carvalho.t@aluno.ifsp.edu.br">carvalho.t@aluno.ifsp.edu.br</a>
-            </address>
-        </section>
+    <main class="container-contato">
 
-        <section class="card">
-            <figure>
-                <img src="img/logo-ifspace.png" alt="">
-                <figcaption class="title">Sandro Gomes</figcaption>
-            </figure>
-            <address>E-mail: <a class="link"
-                    href="mailto:sandro.gomes@aluno.ifsp.edu.br">sandro.gomes@aluno.ifsp.edu.br</a></address>
-        </section>
+        <% if (info) { %>
+            <p class="info">
+              <%= info %>
+            </p>
+        <% } %>
 
-    </div>
-</main>
-<footer class="footer">
-    <p>
-        &copy; IF-Space 2023. Todos os direitos reservados. <br>
-        <a href="/" class="link">Voltar ao login</a>
-    </p>
-</footer>
+        <form action="/enviar" method="post" class="feedback">
+            <h1>Deixe seu feedback!</h1>
+
+            <div>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" value="<%= email %>">
+            </div>
+
+            <label for="text">Seu feedback</label>
+            <textarea name="text" id="text" cols="30" rows="10"><%= text %></textarea>
+
+            <button type="submit" class="btn">Enviar!</button>
+        </form>
+
+        <header>
+            <h1 class="title">Equipe do IF-Space</h1>
+        </header>
+
+        <div class="cards">
+
+            <section class="card">
+                <figure>
+                    <img src="img/contato/eric.jpg" alt="">
+                    <figcaption class="title">Eric Ribeiro</figcaption>
+                </figure>
+                <address><span>E-mail</span><a class="link" href="mailto:eric.r@aluno.ifsp.edu.br">eric.r@aluno.ifsp.edu.br</a>
+                </address>
+            </section>
+
+            <section class="card">
+                <figure>
+                    <img src="img/contato/tatiana.jpg" alt="">
+                    <figcaption class="title">Tatiana Carvalho</figcaption>
+                </figure>
+                <address><span>E-mail</span><a class="link" href="mailto:carvalho.t@aluno.ifsp.edu.br">carvalho.t@aluno.ifsp.edu.br</a>
+                </address>
+            </section>
+
+            <section class="card">
+                <figure>
+                    <img src="img/contato/sandro.jpg" alt="">
+                    <figcaption class="title">Sandro Gomes</figcaption>
+                </figure>
+                <address><span>E-mail</span><a class="link"
+                        href="mailto:sandro.gomes@aluno.ifsp.edu.br">sandro.gomes@aluno.ifsp.edu.br</a></address>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; IF-Space 2023. Todos os direitos reservados.<br><a href="/" class="link">Voltar ao login</a>
+        </p>
+    </footer>
+
+    <style>
+        .footer {
+            position: relative;
+        }
+    </style>
+</body>
+</html>

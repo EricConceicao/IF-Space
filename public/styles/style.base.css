@@ -157,7 +157,14 @@ legend {
     display: inline;
 }
 
-@media screen and (max-width: 547px) {
+@media screen and (max-width: 425px) {
+    .footer {
+        margin-top: 2em;
+        position: relative;
+    }
+}
+
+@media screen and (max-height: 575px) {
     .footer {
         margin-top: 2em;
         position: relative;

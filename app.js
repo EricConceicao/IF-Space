@@ -11,7 +11,8 @@ const homeRouter = require('./routes/home');
 const profileRouter = require('./routes/profile');
 const userpostRouter = require('./routes/posts');
 const seguirRouter = require('./routes/seguir');
-const usersRouter = require('./routes/users');
+const likeRouter = require('./routes/like');
+const commentRouter = require('./routes/comment');
 
 const app = express();
 
@@ -35,7 +36,8 @@ app.use('/home', homeRouter);
 app.use('/perfil', profileRouter);
 app.use('/post', userpostRouter);
 app.use('/seguir', seguirRouter);
-app.use('/usuarios', usersRouter);
+app.use('/curtir', likeRouter);
+app.use('/comentar', commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

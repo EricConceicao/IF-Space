@@ -1,6 +1,9 @@
 const Postagem = require('../models/postagem');
 const Usuario = require('../models/usuarios');
 const Seguir = require('../models/seguir');
+const Curtidas = require('../models/curtidas');
+const Comentarios = require('../models/comentarios');
+
 const path = require('path');
 
 /* Faz uma postagem */
@@ -60,32 +63,43 @@ exports.exibirPostagens = async function (req, res) {
 exports.exibirPaginaDoPost = async function (req, res) {
     try {
         const postId = req.params.id;
-        const userId = req.usuario.id;
+        const user = { id: req.usuario.id, foto: req.usuario.foto, nick: req.usuario.nick };
 
         const info = req.query.info;
 
-        let opt = { form: true, msg: '', link: '' };
+        let opt = { form: true, msg: '', linkSeguir: '', linkCurtir: '' };
 
         const post = await Postagem.selecionarPostExpecifico(postId);
+        const comentarios = await Comentarios.listar(postId);
 
-        const check = await Seguir.checarId(userId, post.usuariosId); // Vê se o usuário segue ou não a pessoa da postagem
-
-        if (userId == post.usuariosId) { // Se o post for do usuário. Ele não vai rederizar os botões Like e seguir.
+        const checkSeguir = await Seguir.checarId(user.id, post.usuariosId); // Vê se o usuário segue ou não a pessoa da postagem
+        const checkCurtida = await Curtidas.checar(user.id, postId);
+        
+        // Se o post for do usuário. Ele não vai rederizar os botões Like e seguir.
+        if (user.d == post.usuariosId) {
             opt.form = false;
         }
-
-        if (check.status == 'seguindo') { // Isso altera o botão e o action do formulário para seguir, com base no resultado de check.
+        
+        // Isso altera o botão e o action do formulário para seguir, com base no resultado de check.
+        if (checkSeguir.status == 'seguindo') { 
             opt.msg = 'Deixar de seguir';
-            opt.link = '/seguir/deixar';
+            opt.linkSeguir = '/seguir/deixar';
         } else {
             opt.msg = 'Seguir';
-            opt.link = '/seguir';
+            opt.linkSeguir = '/seguir';
+        }
+
+        // Altera o action do formulário caso ele já tenha curtido, ou não.
+        if (checkCurtida) {
+            opt.linkCurtir = '/curtir/deixar';
+        } else {
+            opt.linkCurtir = '/curtir';
         }
 
         if (post) {
             const { foto, banner } = post;
             res.render('principal/userpost',
-                { name: post.autor, title: `Postagem | ${post.autor}`, info, post, foto, banner, opt });
+                { name: post.autor, title: `Postagem | ${post.autor}`, info, post, foto, banner, user, opt, comentarios });
 
         } else {
             res.redirect('/home?info=Algo deu errado ao resgatar os dados. Tente novamente');
