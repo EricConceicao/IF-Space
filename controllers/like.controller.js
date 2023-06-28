@@ -1,5 +1,7 @@
 const Curtidas = require('../models/curtidas');
 
+// Controlador para o usuário curtir um post //
+
 exports.curtir = async function (req, res) {
     try {
         const { id, postId } = req.params; // Id do autor do post e do post
@@ -21,6 +23,8 @@ exports.curtir = async function (req, res) {
         console.error('Erro no controlador de curtir: ', err);
     }    
 }
+
+// Controlador para o usuário tirar sua curtida do post //
 
 exports.descurtir = async function (req, res) {
     try {

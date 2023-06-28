@@ -11,9 +11,4 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-/* DATABASE = 'ifspace'
-DATABASE_HOST = 'localhost'
-DATABASE_ROOT = 'root'
-DATABASE_PASS = '' */
-
 module.exports = pool;

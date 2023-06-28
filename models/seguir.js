@@ -19,7 +19,7 @@ class Seguir {
         }
     }
 
-    static async seguirId(seguidor, seguido, opcao) { // Faz usuário A seguir usuário B
+    static async seguirId(seguidor, seguido, opcao) { // Faz usuário 'A' seguir usuário 'B'
         try {
             let query;
             const status = 'seguindo'

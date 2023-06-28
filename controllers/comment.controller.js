@@ -1,11 +1,11 @@
 const Comentarios = require('../models/comentarios');
 
+// Controlador para comentar
+
 exports.comentar = async function (req, res) {
     try {
         const { id, postId } = req.params;
         const { comment } = req.body;
-
-        console.log(comment);
 
         if (comment.length > 0) {
             const comentario = await Comentarios.comentar(id, postId, comment);

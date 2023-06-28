@@ -6,7 +6,7 @@ const Comentarios = require('../models/comentarios');
 
 const path = require('path');
 
-/* Faz uma postagem */
+// Controlador para fazer uma postagem //
 
 exports.postar = async function (req, res) {
     const { titulo, texto } = req.body;
@@ -36,7 +36,7 @@ exports.postar = async function (req, res) {
     }
 }
 
-/* Exibir as postagens no seu feed na home */
+// Controlador para exibir as postagens no seu feed na home //
 
 exports.exibirPostagens = async function (req, res) {
     try {
@@ -58,7 +58,7 @@ exports.exibirPostagens = async function (req, res) {
     }
 }
 
-/* Exibir os dados do post que você acessou da miniatura da home  */
+// Controlador para exibir os dados do post que você acessou da miniatura da home  //
 
 exports.exibirPaginaDoPost = async function (req, res) {
     try {
