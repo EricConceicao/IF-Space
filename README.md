@@ -1,12 +1,9 @@
 # IF-Space
-Rede social para estudantes
-
-## Chaves no .env
-
-DATABASE = ''
-DATABASE_HOST = ''
-DATABASE_ROOT = ''
-DATABASE_PASS = ''
+Uma idéia de rede social direcionada para estudantes do IFSP feito para a aula Projeto Integrador II. 
+Feito em Node.js com framework express usando a view EJS e EJS Layots; 
+Conexão ao banco de dados com biblioteca MySQL 2; 
+Autenticação com JsonWebToken(JWT); 
+E uploads gerenciados com Multer.
 
 ## Código SQL do nosso banco
 
