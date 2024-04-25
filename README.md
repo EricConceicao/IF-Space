@@ -2,7 +2,7 @@
 Uma idéia de rede social direcionada para estudantes do IFSP feito para a aula Projeto Integrador II. 
 Feito em Node.js com framework express usando a view EJS e EJS Layots; 
 Conexão ao banco de dados com biblioteca MySQL 2; 
-Autenticação com JsonWebToken(JWT); 
+Autenticação simples com JsonWebToken(JWT); 
 E uploads gerenciados com Multer.
 
 ## Código SQL do nosso banco
@@ -88,13 +88,9 @@ data            TIMESTAMP       DEFAULT CURRENT_TIMESTAMP
 
 ## Banco com alguns registros e código para backup
 
-código para importar o arquivo de backup // É mais fácil colocando o arquivo na área de trabalho
+código para importar o backup
 
-mysql -u root -p ifspace < backup.sql
-
-Código de backup
-
-mysqldump -u root -p ifspace > C:\Users\cg3024695\Desktop\Curso - 2ºmódulo\IF-Space\banquinho
+mysql -u root -p nome_do_banco < backup.sql
 
 ## Logins de teste
 
